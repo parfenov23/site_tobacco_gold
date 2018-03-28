@@ -48,7 +48,7 @@ class ApiHookahStock
 
   def self.url
     #Rails.env.production? ? "http://hookah-stock.online" : "http://localhost:3000"
-    Rails.env.production? ? "http://hookah-stock.online" : "http://tobacco-gold.ru"
+    "http://hookah-stock.ru"
   end
 
   def self.api_key
