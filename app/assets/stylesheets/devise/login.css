@@ -1,0 +1,38 @@
+.form_auth form input {
+    width : 100%;
+}
+
+.form_auth form .title_input {
+    padding-bottom : 10px;
+    font-size      : 14px;
+}
+
+.form_auth form .password {
+    padding-top   : 10px;
+    padding-right : 5px;
+}
+
+.form_auth form .login {
+    padding-right : 5px;
+}
+
+.action_btn .link_registration {
+    float : left;
+}
+
+.action_btn .link_rechange_pass {
+    float         : left;
+    padding-right : 10px;
+
+}
+
+.action_btn .remember {
+    float      : left;
+    width      : 95px;
+    margin-top : -2px;
+}
+
+.action_btn .remember input[type=checkbox] {
+    width  : 10px;
+    height : 11px;
+}

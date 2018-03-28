@@ -1,0 +1,84 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ * require_tree ./vendor
+ *= require_self
+ *= require_tree ./win_size
+ *= require_tree ./pages
+ *= require_tree ./vendor
+  *= require_tree ./devise
+ */
+
+$color_flamingo_approx : #F6A623;
+
+.item_link {
+  color : #000;
+}
+
+.item_link:hover {
+  color : $color_flamingo_approx ;
+}
+
+.block_display_inline{
+  display: inline-block;
+}
+
+#alert {
+  position      : fixed;
+  display       : none;
+  z-index       : 1000;
+  bottom        : 20px;
+  left          : 50%;
+  height        : 52px;
+  padding       : 0 72px 0 16px;
+  transform     : translateX(-50%);
+  background    : rgba(0, 0, 0, .72);
+  border-radius : 4px;
+  font          : 400 14px/52px 'Roboto';
+  color         : #FFF;
+  text-align    : left;
+  .close {
+    position : absolute;
+    top      : 20px;
+    right    : 20px;
+    font     : 400 14px/1 'Roboto';
+    color    : #FFF;
+    cursor   : pointer;
+  }
+}
+
+.btn{
+  display: inline-block;
+  background-color: #F6A623;
+  height: 30px;
+  font-size: 18px;
+  line-height: 30px;
+  color: #FFF;
+  cursor: pointer;
+  padding: 0px 4px 0px 4px;
+  border-radius: 2px;
+  min-width: 120px;
+  text-align: center;
+  &.not{
+    background-color: #bbb;
+    cursor: default;
+  }
+}
+
+@import "left_sidebar/menu_normal";
+@import "aside";
+@import "common";
+@import "header";
+@import "sidebar_category";
+@import "fix";
+@import "font";
+@import "icons";

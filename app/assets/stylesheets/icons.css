@@ -1,0 +1,69 @@
+.user_menu .exit i{
+    color: #dfdfdf;
+    font-size: 20px;
+}
+
+.left-sidebar__normal .left-menu i{
+    width: 30px;
+    display: inline-block;
+    left: -20px;
+    position: relative;
+    font-size: 26px;
+    top: 6px;
+    cursor  : pointer;
+    color: #dfdfdf;
+}
+
+.left-sidebar__normal .left-menu a:hover i{
+    color: white;
+}
+
+i.buy_rate:before {
+    content : "\e673";
+}
+
+i.category:before {
+    content : "\e640";
+}
+
+i.how_it_works:before {
+    content : "\e994";
+}
+
+i.winners:before {
+    content : "\e8cb";
+}
+
+i.bonuses:before {
+    content : "\ea41";
+}
+
+i.faq:before {
+    content : "\e916";
+}
+
+i.contacts:before {
+    content : "\e9ca";
+}
+
+i.cash:before{
+    content : "\e93b";
+}
+
+i.participant:before{
+    content : "\e971";
+}
+
+i.burger:before{
+    content: "\e8a1";
+}
+
+i.clock:before{
+    content : "\e94e";
+}
+i.log_in:before{
+    content : "\ea13";
+}
+i.log_out:before{
+    content : "\ea14";
+}

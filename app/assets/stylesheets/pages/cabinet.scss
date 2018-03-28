@@ -1,0 +1,23 @@
+.user{
+  display: flex;
+  &_ava{
+    margin-right: 8px;
+  }
+  &_info{
+    .title{
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+  }
+}
+
+.my_sales{
+  .sale{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #bbb;
+    a{
+      font-size: 14px;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+<% content_for :styles do %>
+    <!--<link href="/assets/item.css" rel="stylesheet" media="screen">-->
+<% end %>
+<% content_for :script do %>
+    <script src="/uploads/script/item.js" type="text/javascript"></script>
+<% end %>
+
+<div class="content content-block__normal background normal_align">
+  <div class="header_block">
+    <div class="title hidden_text"><%= @item.first_name %></div>
+    <hr/>
+  </div>
+  <div class="content_item">
+    <div class="right_content">
+      <div class="info_point" id="info_point">
+
+      </div>
+    </div>
+    <div class="left_content">
+      <div class="description_item">
+        <p>
+          <img src="<%= @item.current_img %>"/>
+          <%= @item.description %>
+          <%= @item.description %>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</div>

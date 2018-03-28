@@ -1,0 +1,27 @@
+.content-block__normal.mix_box{
+  .column_content{
+    display: flex;
+    .right__content{
+      width: 100%;
+      .items{
+        padding-left: 14px;
+        padding-top: 14px;
+        .item_box{
+          display: flex;
+          padding-bottom: 12px;
+          .img{
+            height: 60px;
+            display: inline-block;
+            img{
+              height: 60px;
+            }
+          }
+          .content{
+            padding-top: 20px;
+            padding-left: 16px;
+          }
+        }
+      }
+    }
+  }
+}

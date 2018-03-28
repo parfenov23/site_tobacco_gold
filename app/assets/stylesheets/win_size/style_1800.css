@@ -1,0 +1,64 @@
+@media only screen and (min-width : 1800px) {
+    .left-sidebar__wrp .left-sidebar__shot {
+        display : none
+    }
+
+    .left-sidebar__wrp .left-sidebar__normal {
+        width : 306px
+    }
+
+    .right-sidebar__wrp .right-sidebar {
+        position : relative;
+    }
+
+    .my-tasks__wrp .inner__right-sidebar {
+        margin-right : 300px;
+        height       : 100%
+    }
+
+    .my-tasks__wrp .inner-left-sidebar {
+        margin-left : 306px;
+        height      : 100%
+    }
+
+    .my-tasks__wrp .inner__content {
+        margin-right : 51%;
+        height       : 100%;
+        position     : relative
+    }
+
+    .my-tasks__wrp .my-tasks__shot {
+        width    : 0;
+        overflow : hidden
+    }
+
+    .my-tasks__wrp .my-tasks__normal {
+        position : fixed;
+        height   : 100%;
+        top      : 0;
+        left     : 306px;
+        z-index  : 23;
+        width    : 34%
+    }
+
+    .content__wrp .inner__right-sidebar {
+        margin-right : 300px
+    }
+
+    .content__wrp .inner-left-sidebar {
+        margin-left : 330px
+    }
+
+    .content__wrp .inner__my-tasks {
+        /*margin-left : 49%*/
+    }
+
+    .content__wrp .content-block__shot {
+        display : none
+    }
+
+    .content__wrp .content-block__normal {
+        z-index : 22;
+        margin-top: 60px;
+    }
+}

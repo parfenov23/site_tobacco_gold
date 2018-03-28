@@ -1,0 +1,27 @@
+- title "Кальян микс #{@mix_box.title}"
+
+.content.content-block__normal.background.normal_align.mix_box
+  .header_block
+    .title.hidden_text #{@mix_box.title}
+    .sum_price ЦЕНА: #{@mix_box.price} руб
+  .content_item
+    .column_content
+      .left_content
+          .imgCenter
+            img src=@mix_box.img u="image"
+          / .all_action.parent_item
+          /   input.js__countItemBasket type="hidden" value="1"
+          /   .btn.js__addToBasket data-id=@item.id Добавить в корзину
+      .right__content
+        .items
+          - @mix_box.mix_box_items.each do |mix_box_item|
+            - product_item = mix_box_item.product_item
+            a.item_box href="/item/#{product_item.id}"
+              .img
+                img src=default_img_product(product_item)
+              .content
+                .title #{product_item.product.title} - #{product_item.title}
+
+    .description_item
+      = raw (@mix_box.description || "Нет описания")
+= render "layouts/comment_vk" if Rails.env.production?

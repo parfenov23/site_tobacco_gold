@@ -1,0 +1,46 @@
+- title "Корзина товаров"
+.content.content-block__normal.background.normal_align.page_buy_rate
+    .header_block
+        - count_items = session[:items].present? ? session[:items].uniq.count : 0
+        .title.hidden_text В корзине #{count_items} #{Russian.p(count_items, "товар", "товара", "товаров")}
+        .sum_price.js__titleTotlaPriceBasket #{@all_sum} руб
+
+    / .description_page
+    /   = raw((ContentPage.where(name_page: "buy_rate").last.description.to_s rescue "Нет описания страницы"))
+    .content_rate
+        - @all_items.each do |item|
+            - count = session[:items].count(item.id) 
+            - item_product = item.product
+            - sum = (!current_user.contact.opt rescue true) ? item_product.current_price : item_product.current_price_opt
+            .item_content
+                .icon
+                    img src=item.current_img
+                .name 
+                    a href="/item?id=#{item.id}" = "#{item.product.title} - #{item.title}"
+                .sum #{sum} руб
+                .count #{count} шт.
+                .remove.js__rmItemInBasket data-id=item.id
+                    .btn_rm ×
+    - if session[:items].present?
+        form.form_send_basket
+            - if current_user.contact.blank? 
+              .input-wrp
+                  input placeholder="Ваше имя" name="request[user_name]"
+              .input-wrp
+                  input placeholder="Номер телефона" name="request[user_phone]"
+            - else
+              input type="hidden" name="contact_id" value="#{current_user.contact.id}"
+            input type="hidden" name="user_id" value="#{current_user.id}"
+            .input-wrp
+                input placeholder="Комментарий к заказу" name="request[comment]"
+            .btn.js__submitFormBasket Отправить
+            / .column_left
+            /     .title_rate Выберите пакет ставок:
+            /     .packets
+            /         - 6.times do
+            /             .packet.block_display_inline
+            /                 img src="https://bonusmall.ru/img.php?id=5243"
+            /     .finish_price
+            /         |Стоимость 100 рублей
+            / / .column_right
+            / /     .title_rate Выберите способ оплаты:

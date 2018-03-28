@@ -1,0 +1,23 @@
+- title "Купить #{@item.product.title} - #{@item.title}"
+- content_for :script do
+  script src="/uploads/script/item.js" type="text/javascript"
+
+.content.content-block__normal.background.normal_align
+  .header_block
+    .title.hidden_text #{@item.product.title} - #{@item.title}
+    - item_product = @item.product
+    - price = (!current_user.contact.opt rescue true) ? item_product.current_price : item_product.current_price_opt
+    .sum_price ЦЕНА: #{price} руб
+  .content_item
+    .left_content
+        .imgCenter
+          img src=@item.current_img u="image"
+        .all_action.parent_item
+          input.js__countItemBasket type="hidden" value="1"
+          - if @item.count > 0 || @item.in_stock
+            .btn.js__addToBasket data-id=@item.id Добавить в корзину
+          - else
+            .btn.not Нет в наличии
+    .description_item
+      = raw (@item.description || "Нет описания")
+= render "layouts/comment_vk" if Rails.env.production?

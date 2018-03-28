@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <meta charset='utf-8' />
+  </head>
+  <body>
+    <style>
+      table { 
+        width: 100%; /* Ширина таблицы */
+/*        border: 1px solid black;*/ /* Рамка вокруг таблицы */
+        border-collapse: collapse; /* Отображать только одинарные линии */
+        margin-top: 16px;
+        border-bottom: 1px solid #fff;
+       }
+      th { 
+        text-align: left; /* Выравнивание по левому краю */
+        background: #ccc; /* Цвет фона ячеек */
+        padding: 5px; /* Поля вокруг содержимого ячеек */
+        border: 1px solid black; /* Граница вокруг ячеек */
+        text-align: center;
+      }
+      td { 
+        padding: 5px; /* Поля вокруг содержимого ячеек */
+        border: 1px solid black; /* Граница вокруг ячеек */
+      }
+      td.noBorder{
+        border: initial;
+      }
+      td.text_center{
+        text-align: center;
+      }
+      td.text_right{
+        text-align: right;
+      }
+    </style>
+    <div class="well">
+      <div>
+        <b>Название:</b>
+        <span>Tobacco Gold, ИНН: 665813566276</span>
+      </div>
+      <div>
+        <b>Адрес:</b>
+        <span>Мичурина 101</span>
+      </div>
+      <div style="text-align: center; margin-top: 24px;">
+        <% date_sale = @sale.created_at %>
+        <b>Товарный чек № <%= @sale.id %> от <%= date_sale.to_s.to_time.strftime("%d.%m.%Y") %></b>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>№</th>
+            <th>Товар</th>
+            <th>Ед.</th>
+            <th>Кол-во</th>
+            <th>Цена</th>
+            <th>Сумма</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% num = 0 %>
+          <% @sale.sale_items.each do |sale_item| %>
+            <tr>
+              <td><%= num+=1 %></td>
+              <td><%= sale_item.product_item.product.title %> <%= sale_item.product_item.title %></td>
+              <td class="text_center">шт</td>
+              <td class="text_right"><%= sale_item.count %></td>
+              <td class="text_right"><%= sale_item.price %></td>
+              <td class="text_right"><%= sale_item.count * sale_item.price %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <td class="noBorder"></td>
+            <td class="noBorder"></td>
+            <td class="noBorder"></td>
+            <td class="noBorder"></td>
+            <td class="noBorder text_right">Итого:</td>
+            <td class="text_right"><%= @sale.price %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top: 24px;"> 
+        Всего наименований <%= @sale.sale_items.count %>, на сумму <%= @sale.price %> руб. 
+      </div>
+      <div>
+        <div style="margin-top: 24px;">
+          Отпустил
+          <span>______________</span>
+          <span style="margin-left: 14px; text-decoration: underline;">&nbsp;&nbsp;Менеджер&nbsp;&nbsp;</span>
+          <span style="margin-left: 14px; text-decoration: underline;">&nbsp;&nbsp;Первушин Максим Александрович&nbsp;&nbsp;</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

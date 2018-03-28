@@ -1,0 +1,13 @@
+<div id="category">
+  <div class="triangle-left"></div>
+  <nav class="menu_category">
+    <% Product.all.each do |product| %>
+        <a class="for-hover" href="/?category=<%= product.id %>">
+            <span class="h-left-tooltip">
+              <%= product.title %>
+            </span>
+          <hr/>
+        </a>
+    <% end %>
+  </nav>
+</div>

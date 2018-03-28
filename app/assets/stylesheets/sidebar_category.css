@@ -1,0 +1,44 @@
+#category {
+    width: 200px;
+    height: 90%;
+    min-height: 200px;
+    background-color: #494B51;
+    left: -300px;
+    position: fixed;
+    z-index: 22;
+    overflow: auto;
+}
+
+#category .triangle-left {
+    width         : 0;
+    height        : 0;
+    margin-left   : -10px;
+    border-top    : 5px solid transparent;
+    border-right  : 5px solid #494B51;
+    border-bottom : 5px solid transparent;
+    position      : absolute;
+    margin-top    : 60px;
+    width         : 5px;
+}
+
+#category .menu_category a {
+    display        : block;
+    color          : #FFF;
+    padding-left   : 10px;
+    height         : 22px;
+    padding-bottom : 10px;
+    padding-top    : 10px;
+    line-height    : 25px;
+    padding-right  : 10px;
+}
+
+#category .menu_category a hr {
+    padding       : 0;
+    display       : block;
+    border        : none;
+    border-bottom : 1px solid #CEDBE3;
+}
+
+#category .menu_category a:hover {
+    background-color : #F1592A;
+}

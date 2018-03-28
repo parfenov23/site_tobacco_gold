@@ -1,0 +1,26 @@
+- title "Контакты"
+.content.content-block__normal.background
+  .header_block
+    .title Контакты
+    hr
+  .content_block
+    h2 style=("text-align: center;") 
+      | Найти нас можно по адресу:
+      br
+      | Мичурина 1О1 (цокольный этаж)
+      br
+      br
+      | Телефоны для связи:
+      br
+      | 8-982-61О-24-41 | 8-922-227-78-65
+      br
+      br
+      | Режим работы:
+      br
+      | ПН-ЧТ с 14:ОО до ОО:ОО
+      br
+      | ПТ-ВС с 16:ОО до О2:ОО
+      br
+      |wowksu@tobacco-gold.ru
+
+    -# raw((ContentPage.where(name_page: "contacts").last.description.to_s rescue "Нет описания страницы"))

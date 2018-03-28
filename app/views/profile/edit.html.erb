@@ -1,0 +1,70 @@
+<% content_for :styles do %>
+    <link href="/uploads/style/registration.css" rel="stylesheet" media="screen">
+<% end %>
+<% content_for :script do %>
+    <script src="/uploads/script/valid_input_form.js" type="text/javascript"></script>
+    <script src="/uploads/script/upload_ava.js" type="text/javascript"></script>
+<% end %>
+<div class="content content-block__normal background normal_align">
+  <div class="header_block">
+    <div class="title">Редактирование аккаунта</div>
+    <hr/>
+  </div>
+  <form class="avatar">
+    <div class="title">Аватар:</div>
+    <div class="upload_image">
+      <div class="mask_photo" id="checked_image">
+        <div class="background_mask"></div>
+        <div class="check_photo"></div>
+      </div>
+      <img id="userAva" src="<%= user_ava(current_user.avatar) %>" alt=""/>
+
+      <div class="block_hidden">
+        <input id="imgInp" name="ava" type="file">
+      </div>
+    </div>
+  </form>
+  <%= form_for(@resource, as: "user", url: "/profile", html: {method: :PUT, :class => "form_validate"}) do |f| %>
+
+      <div class="email">
+        <div class="title inline_block">Email:</div>
+        <div class="parent_input inline_block">
+          <%= f.email_field :email, autofocus: true, :class => "form_input"  %>
+        </div>
+      </div>
+
+      <div class="login">
+        <div class="title inline_block">Логин:</div>
+        <div class="parent_input inline_block">
+          <%= f.text_field :login, autofocus: true, :class => "form_input" %>
+        </div>
+      </div>
+      <div class="password">
+        <div class="title inline_block">Пароль:</div>
+        <div class="parent_input inline_block">
+          <%= f.password_field :password, autocomplete: "off", :class => "form_input no_valid", :placeholder =>"Новый пароль"%>
+        </div>
+        <%# @minimum_password_length %>
+      </div>
+      <div class="password">
+        <div class="title inline_block">Пароль:</div>
+        <div class="parent_input inline_block">
+          <%= f.password_field :password_confirmation, autocomplete: "off", :class => "form_input no_valid", :placeholder =>"Повторите новый пароль"%>
+        </div>
+        <%# @minimum_password_length %>
+      </div>
+      <div class="password">
+        <div class="title inline_block">Пароль:</div>
+        <div class="parent_input inline_block">
+          <%= f.password_field :current_password, autocomplete: "off", :class => "form_input no_valid", :placeholder =>"Текщий пароль для подтверждения данных"%>
+        </div>
+        <%# @minimum_password_length %>
+      </div>
+      <%= f.text_field :avatar, autofocus: true, :class => "no_valid", :type => "hidden", :id => "user_avatar" %>
+      <!--<input type="hidden" name="user[avatar]" id="user_avatar" class="no_valid">-->
+      <div class="action_btn">
+        <div class="submit_form disabled">Обновить</div>
+        <%= f.submit "", :style => "display:none;", :class => "no_valid" %>
+      </div>
+  <% end %>
+</div>

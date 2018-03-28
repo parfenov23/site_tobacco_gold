@@ -1,0 +1,21 @@
+- pop_items = ProductItem.top
+- visible_bar = @visible_bar != nil ? @visible_bar : true
+- if visible_bar
+  section.right-sidebar__wrp.wrapper style=""
+    aside#right-sidebar.right-sidebar style=("left: 1140px; position: absolute;") 
+      - pop_items.each do |item|
+        - product = item.product
+        .shadow-wrp
+          .today-date ХИТ ПРОДАЖ
+          a.close_item_content.item_content href="/item?id=#{item.id}"
+            .title.hidden_text
+              = item.title
+            .img_item
+              img src=item.current_img
+            .item_info
+              .price
+                i.icon.cash
+                .title_price = product.current_price
+              .user
+                i.icon.category
+                .user_name = product.title

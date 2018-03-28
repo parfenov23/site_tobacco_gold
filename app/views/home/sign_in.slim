@@ -1,0 +1,24 @@
+- content_for :script do 
+  script src="/uploads/script/valid_input_form.js" type="text/javascript"
+
+.content.content-block__normal.background.normal_align
+  .header_block
+    .title Авторизация
+    hr
+  .form_auth
+    form.form_validate#auth_user
+      .login
+        .title_input Email:
+        input#user_email.form_input autofocus="autofocus" name="user[email]" type="email" value=""
+      .password
+        .title_input Пароль:
+        input#user_password.form_input autocomplete="off" name="user[password]" type="password"
+      .action_btn
+        .left_action
+          / .link_rechange_pass
+          /   a href="/users/password/new"  Забыли пароль?
+          .link_registration
+            a href="/sign_up"  Регистрация
+        .right_action
+          .submit_form.disabled Вход
+          input.no_valid name="commit" style="display:none;" type="submit" value=""

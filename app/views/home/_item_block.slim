@@ -1,0 +1,27 @@
+.item.parent_item
+  .item_content
+    a.item_link href="/item/#{item.id}"
+      .title = item.title
+      .img_item
+        img src=item.current_img
+    
+    - item_product = item.product
+    .user
+      i.icon.category
+      .user_name = item_product.title
+    
+    .item_info
+      .price
+        i.icon.cash
+        - price = (!current_user.contact.opt rescue true) ? item_product.current_price : item_product.current_price_opt
+        .title_price #{price} руб
+      .time
+        .title_count
+          .btn_qty
+            .qty.js__addCountItemBasket data-type="rm" -
+          input.js__countItemBasket value="1"
+          .btn_qty
+            .qty.js__addCountItemBasket data-type="add" + 
+
+    - present_stock = item.count > 0 || item.in_stock
+    .button_rate.js__addToBasket data-id=item.id class=present_stock = present_stock ? "Добавить в корзину" : "Нет на складе"

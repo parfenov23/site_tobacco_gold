@@ -1,0 +1,27 @@
+<style>
+    .content .text_top {
+        position : relative;
+        top      : 5px;
+    }
+
+    .content .text_block {
+        font-size     : 16px;
+        margin-bottom : 30px;
+    }
+</style>
+
+<div class="content content-block__normal background normal_align">
+  <div class="header_block">
+    <div class="title">F.A.Q</div>
+    <hr/>
+  </div>
+  <% Question.all.each do |question| %>
+      <p class="text_block">
+        <b><%= raw question.title %></b>
+        <br/>
+        <span class="text_top">
+            <%= raw question.content %>
+        </span>
+      </p>
+  <% end %>
+</div>

@@ -1,0 +1,130 @@
+aside.right-sidebar .common-info {
+    padding-top    : 45px;
+    padding-bottom : 10px;
+}
+
+aside.right-sidebar section {
+    -moz-box-shadow    : 0 1px 4px rgba(51, 82, 109, 0.26);
+    -webkit-box-shadow : 0 1px 4px rgba(51, 82, 109, 0.26);
+    box-shadow         : 0 1px 4px rgba(51, 82, 109, 0.26);
+    background         : #FFF;
+    padding            : 0 20px;
+    margin-bottom      : 10px
+}
+
+aside.right-sidebar section .today-date {
+    text-align    : right;
+    font-size     : 12px;
+    color         : #6D6F79;
+    padding       : 14px 0 0;
+    font-weight   : 400;
+    margin-bottom : 20px
+}
+
+aside.right-sidebar section > .header {
+    background-color : #F1592A;
+    color            : #FFF;
+    font-size        : 12px;
+    text-align       : right;
+    padding          : 15px 20px 17px 0;
+    width            : 270px;
+    margin-left      : -20px
+}
+
+aside .shadow-wrp {
+    -moz-box-shadow    : 0 1px 4px rgba(51, 82, 109, 0.26);
+    -webkit-box-shadow : 0 1px 4px rgba(51, 82, 109, 0.26);
+    box-shadow         : 0 1px 4px rgba(51, 82, 109, 0.26);
+    background         : #FFF;
+    padding            : 0 20px;
+    margin-bottom      : 10px
+}
+
+aside .shadow-wrp a.close_item_content{
+    color: #000;
+}
+
+aside .shadow-wrp a.close_item_content:hover{
+    color: #F6A623;
+}
+
+aside .shadow-wrp .today-date {
+    text-align    : right;
+    font-size     : 12px;
+    color         : #6D6F79;
+    padding       : 14px 0 0;
+    font-weight   : 400;
+    margin-bottom : 20px
+}
+
+aside.frozen {
+    bottom : auto;
+    top    : auto
+}
+
+aside.fix-to-bottom {
+    position : fixed !important;
+    bottom   : 35px;
+    top      : auto
+}
+
+aside.fix-to-top {
+    position : fixed !important;
+    bottom   : auto;
+    top      : 45px
+}
+
+aside#user-page.fix-to-top {
+    bottom : auto;
+    top    : 145px
+}
+
+.close_item_content .item_info {
+    padding-bottom : 5px;
+    height         : 20px;
+    text-align     : center;
+}
+
+.close_item_content .price {
+    float            : left;
+    font-size        : 15px;
+    background-color : #1f1f1f;
+    width            : 97px;
+    height           : 20px;
+    color            : #FFF;
+    display          : inline-block;
+}
+
+.close_item_content .price .icon {
+    font-size   : 16px;
+    float       : left;
+    display     : inline-block;
+    margin-left : 3px;
+    margin-top  : 2px;
+    color       : #F6A623;
+}
+
+.close_item_content .price .title_price {
+    padding : 1px;
+    display : inline-block;
+}
+
+.close_item_content .user {
+    float : right;
+}
+
+.close_item_content .title {
+    width          : 260px;
+    float          : left;
+    font-size      : 15px;
+    padding-bottom : 10px;
+}
+
+.close_item_content .img_item {
+    text-align : center;
+}
+
+.close_item_content .img_item img {
+    height : 200px;
+}
+

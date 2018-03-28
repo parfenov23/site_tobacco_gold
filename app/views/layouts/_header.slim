@@ -1,0 +1,26 @@
+header
+  .holder__new.user_menu
+    .left-part
+      a.js__openLeftSideBarMenu href="#"
+        i.icon.burger
+      a.logo href="/" 
+        img#product_logo alt="" src="/uploads/img/logo.png"
+        img#product_logo_mini alt="" src="/uploads/img/logo.png" style="display:none;"
+    .right-part
+      .phone
+        a href="tel:+79826102441" +7(982)610-24-41
+      .my_rate
+        a.no_color href="/buy_rate" 
+          i.icon.buy_rate
+        - style = session[:items].blank? ? "display: none" : ""
+        span.count style=style = session[:items].uniq.count if session[:items].present? 
+      .separator
+      - if user_signed_in?
+        .profile onclick="window.location.href='/users/edit'"
+          a href="/users/edit"
+            img.circle-img-new src= user_ava(current_user.avatar)
+        a.exit.for-hover href="/users/sign_out"
+          i.icon.log_out
+      - else
+        a.exit.for-hover.log-in href="/sign_in"
+          i.icon.log_in

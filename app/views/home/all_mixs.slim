@@ -1,0 +1,9 @@
+.content.content-block__normal
+  .allItems
+    - MixBox.all.each do |mix_box|
+      .item.parent_item
+        .item_content
+          a.item_link href="/mix_box/#{mix_box.id}"
+            .title = mix_box.title
+            .img_item
+              img src="#{mix_box.img}"

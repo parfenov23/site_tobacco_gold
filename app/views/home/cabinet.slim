@@ -1,0 +1,24 @@
+.content.content-block__normal.background
+  .header_block
+    .title Личный кабинет
+  .content_block
+    .user
+      .user_ava
+        img id="userAva" src="/uploads/ava.jpg" alt=""
+      - if @contact.present?
+        .user_info
+          .title.first_name Имя: #{@contact.first_name}
+          .title.phone Телефон: #{@contact.phone}
+          .title.balance Баланс на карте: #{@contact.purse} руб.
+
+
+.content.content-block__normal.background
+  .header_block
+    .title Мои покупки
+  .content_block
+    .my_sales
+      - if @contact.present?
+        - @contact.sales.each do |sale|
+          .sale
+            a href="/show_sale/#{sale.id}.pdf" 
+              = "#{sale.created_at.to_s.to_time.strftime("%d-%m-%Y")} (#{sale.price}р.) "
