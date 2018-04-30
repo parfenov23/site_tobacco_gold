@@ -15,4 +15,8 @@ class ApplicationController < ActionController::Base
     @current_user = session[:api_key].present? ? User.current_user(session[:api_key]) : nil
     @current_user
   end
+
+  def current_company
+    Company.current
+  end
 end

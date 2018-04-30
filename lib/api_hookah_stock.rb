@@ -37,6 +37,10 @@ class ApiHookahStock
     sender(url + "/api/sales#{add_id}#{add_url}", params)
   end
 
+  def self.company
+    sender(url + "/api/api/company")
+  end
+
   def self.sender(url, params={}, type="get")
     time_hash = Rails.env.production? ? 5 : 0
     Rails.cache.fetch(url + "?" + params.to_query, expires_in: time_hash.minute) do
