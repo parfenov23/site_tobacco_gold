@@ -76,7 +76,7 @@ class HomeController < ApplicationController
     @all_items = ProductItem.where(id: session[:items])
     @all_sum = @all_items.map{|pi| 
       item_product = pi.product
-      price = (!current_user.contact.opt rescue true) ? item_product.current_price : item_product.current_price_opt
+      price = pi.current_price(current_user)
       price*session[:items].count(pi.id)
     }.sum
   end

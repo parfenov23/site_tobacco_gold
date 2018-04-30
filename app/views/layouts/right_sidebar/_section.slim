@@ -15,7 +15,7 @@
             .item_info
               .price
                 i.icon.cash
-                .title_price = product.current_price
+                .title_price = item.current_price(current_user)
               .user
                 i.icon.category
                 .user_name = product.title

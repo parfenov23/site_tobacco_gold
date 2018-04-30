@@ -11,7 +11,7 @@
         - @all_items.each do |item|
             - count = session[:items].count(item.id) 
             - item_product = item.product
-            - sum = (!current_user.contact.opt rescue true) ? item_product.current_price : item_product.current_price_opt
+            - sum = item.current_price(current_user)
             .item_content
                 .icon
                     img src=item.current_img

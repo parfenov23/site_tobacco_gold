@@ -6,7 +6,7 @@
   .header_block
     .title.hidden_text #{@item.product.title} - #{@item.title}
     - item_product = @item.product
-    - price = (!current_user.contact.opt rescue true) ? item_product.current_price : item_product.current_price_opt
+    - price = @item.current_price(current_user)
     .sum_price ЦЕНА: #{price} руб
   .content_item
     .left_content

@@ -11,6 +11,10 @@ class Contact
     new( ApiHookahStock.contacts("", "/#{id}") )
   end
 
+  def find_contact_price(item)
+    all_contact_prices.select{|k| k["product_id"] == item.product_id}.last
+  end
+
   def sales
     Sale.all_contact(id)
   end

@@ -38,7 +38,8 @@ class ApiHookahStock
   end
 
   def self.sender(url, params={}, type="get")
-    Rails.cache.fetch(url + "?" + params.to_query, expires_in: 5.minute) do
+    time_hash = Rails.env.production? ? 5 : 0
+    Rails.cache.fetch(url + "?" + params.to_query, expires_in: time_hash.minute) do
       agent = Mechanize.new
       params.merge!({api_key: api_key})
       page = (type == "get" ? agent.get(url, params) : agent.post(url, params))
@@ -47,12 +48,10 @@ class ApiHookahStock
   end
 
   def self.url
-    #Rails.env.production? ? "http://hookah-stock.online" : "http://localhost:3000"
-    "http://hookah-stock.ru"
+    Rails.env.production? ? "http://hookah-stock.ru" : "http://localhost:3000"
   end
 
   def self.api_key
-    #"3581226b0abdac4ab82d3fa6cf3ef088"
-    "22ef8fcbc747007dbf878c2bcad6c9cf"
+    Rails.env.production? ? "22ef8fcbc747007dbf878c2bcad6c9cf" : "3581226b0abdac4ab82d3fa6cf3ef088"
   end
 end
