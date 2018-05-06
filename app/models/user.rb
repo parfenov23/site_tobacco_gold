@@ -25,7 +25,7 @@ class User
       find_contact_price = contact.find_contact_price(item)
       find_contact_price.present? ? find_contact_price["price"] : ((!contact.opt rescue true) ? item.product.current_price : item.product.current_price_opt)
     else
-      item.default_price
+      item.default_price || item.product.current_price
     end
   end
 
