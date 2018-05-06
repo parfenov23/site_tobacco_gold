@@ -21,7 +21,7 @@ class User
   end
 
   def current_price_item(item)
-    if item.default_price.blank?
+    if item.default_price.blank? && contact.present?
       find_contact_price = contact.find_contact_price(item)
       find_contact_price.present? ? find_contact_price["price"] : ((!contact.opt rescue true) ? item.product.current_price : item.product.current_price_opt)
     else
