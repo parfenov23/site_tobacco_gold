@@ -81,6 +81,10 @@ module ApplicationHelper
     curr_title
   end
 
+  def all_product_items_top
+    ProductItem.new({api_key: session[:current_magazine]}).current_top
+  end
+
   # Методы которые нужно изменить
 
   def user_signed_in?

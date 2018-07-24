@@ -67,3 +67,8 @@ i.log_in:before{
 i.log_out:before{
     content : "\ea14";
 }
+
+i.location:before{
+ content: "\e900";
+}
+

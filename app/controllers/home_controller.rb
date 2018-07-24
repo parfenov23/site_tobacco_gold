@@ -3,11 +3,11 @@ class HomeController < ApplicationController
   # before_filter :redirect_test, except: [:callback_vk, :auth]
   def index
     @items = if params[:category_id].present?   
-      ProductItem.where(product_id: Category.find(params[:category_id]).products.map(&:id) )
+      ProductItem.new({api_key: session[:current_magazine]}).where(product_id: Category.find(params[:category_id]).products.map(&:id) )
     elsif params[:product_id].present? 
-      Product.find(params[:product_id]).product_items
+      Product.new({}).find(params[:product_id]).product_items(session[:current_magazine])
     else
-      ProductItem.all_present.sort_by { |hsh| hsh.count_sales }.reverse.first(20)
+      ProductItem.new({api_key: session[:current_magazine]}).all_present.sort_by { |hsh| hsh.count_sales }.reverse.first(20)
     end
     if params[:price].present?
       ids = @items.map do |item| 
@@ -61,6 +61,11 @@ class HomeController < ApplicationController
   def callback_vk
     VkMessage.message_price(params)
     render text: "5bbf068d"
+  end
+
+  def current_magazine
+    session[:current_magazine] = params[:current_magazine]
+    redirect_to "/"
   end
 
   def item

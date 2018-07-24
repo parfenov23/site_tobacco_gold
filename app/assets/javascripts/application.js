@@ -79,6 +79,18 @@ var get_url_params_to_hash = function (hash){
 $(document).scroll(function () {
     hide_to_top()
 });
+
+$(document).on('click', 'header .address .currAddress', function(){
+  $(this).closest(".address").find("ul").show();
+});
+
+$(document).on('click', 'body', function(e){
+  var block = $(e.target);
+  if(!block.closest(".address").length){
+    $(".listGroupAddress").hide();
+  }
+});
+
 $(document).ready(function () {
     hide_to_top();
     $('#to-top a').on('click', function (e) {

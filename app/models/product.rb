@@ -11,11 +11,11 @@ class Product
     ApiHookahStock.products.map{|product| new(product)}
   end
 
-  def self.find(id)
-    new(ApiHookahStock.products(id))
+  def find(id)
+    self.class.new(ApiHookahStock.products(id))
   end
 
-  def product_items
-    ApiHookahStock.products(id, "/product_items").map{|pi| ProductItem.new(pi)}
+  def product_items(api_key)
+    ApiHookahStock.products(id, "/product_items", {api_key: (api_key rescue nil)}).map{|pi| ProductItem.new(pi)}
   end
 end

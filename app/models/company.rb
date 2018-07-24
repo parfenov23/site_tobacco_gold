@@ -10,4 +10,8 @@ class Company
   def self.current
     new(ApiHookahStock.company)
   end
+
+  def magazines
+    ApiHookahStock.all_magazines
+  end
 end

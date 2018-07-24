@@ -3,7 +3,6 @@ class ApiHookahStock
 
   def self.product_items(id="", add_url="", params={})
     add_id = id.present? ? "/#{id}" : ""
-    # p "================== test ====================================="
     sender(url + "/api/product_items#{add_id}#{add_url}", params)
   end
 
@@ -12,9 +11,9 @@ class ApiHookahStock
     sender(url + "/api/categories#{add_id}#{add_url}")
   end
 
-  def self.products(id="", add_url="")
+  def self.products(id="", add_url="", params={})
     add_id = id.present? ? "/#{id}" : ""
-    sender(url + "/api/products#{add_id}#{add_url}")
+    sender(url + "/api/products#{add_id}#{add_url}", params)
   end
 
   def self.users(id="", add_url="", params={})
@@ -41,11 +40,15 @@ class ApiHookahStock
     sender(url + "/api/api/company")
   end
 
+  def self.all_magazines
+    sender(url + "/api/api/all_magazines")
+  end
+
   def self.sender(url, params={}, type="get")
     time_hash = Rails.env.production? ? 5 : 0
     Rails.cache.fetch(url + "?" + params.to_query, expires_in: time_hash.minute) do
       agent = Mechanize.new
-      params.merge!({api_key: api_key})
+      params.merge!({api_key: api_key}) if params[:api_key].blank?
       page = (type == "get" ? agent.get(url, params) : agent.post(url, params))
       JSON.parse(page.body)
     end
@@ -56,6 +59,6 @@ class ApiHookahStock
   end
 
   def self.api_key
-    Rails.env.production? ? "22ef8fcbc747007dbf878c2bcad6c9cf" : "3581226b0abdac4ab82d3fa6cf3ef088"
+    Rails.env.production? ? "d2e5220ce29d44a450ccd93db9c38d95e6860c1e7f0fbbd059cb308eaf59e7668a0b9f798ff647ea71ab2" : "d2e5220ce29d44a450ccd93db9c38d95e6860c1e7f0fbbd059cb308eaf59e7668a0b9f798ff647ea71ab2"
   end
 end

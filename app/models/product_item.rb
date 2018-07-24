@@ -7,12 +7,12 @@ class ProductItem
     end
   end
 
-  def self.all
-    ApiHookahStock.product_items("", "", {type: "all"})
+  def all
+    ApiHookahStock.product_items("", "", {type: "all", api_key: (api_key rescue nil)})
   end
 
-  def self.top
-    ApiHookahStock.product_items("", "", {type: "top"}).map{|pi| new(pi)}
+  def current_top
+    ApiHookahStock.product_items("", "", {type: "top", api_key: (api_key rescue nil)}).map{|pi| self.class.new(pi)}
   end
 
   def self.find(id)
@@ -20,11 +20,11 @@ class ProductItem
   end
 
   def product
-    Product.find(product_id)
+    Product.new({}).find(product_id)
   end
 
   def self.where(*arg)
-    ApiHookahStock.product_items("", "", {type: "where", where: arg.first.to_json}).map{|pi| new(pi)}
+    ApiHookahStock.product_items("", "", {type: "where", where: arg.first.to_json, api_key: (api_key rescue nil)}).map{|pi| self.class.new(pi)}
     # all.select{|hs| hs.slice(*arg.last.keys) == arg.last}
   end
 
@@ -36,7 +36,7 @@ class ProductItem
     current_user.present? ? current_user.current_price_item(self) : (default_price || product.current_price)
   end
 
-  def self.all_present
-    ApiHookahStock.product_items("", "", {type: "present"}).map{|pi| new(pi)}
+  def all_present
+    ApiHookahStock.product_items("", "", {type: "present", api_key: api_key}).map{|pi| self.class.new(pi)}
   end
 end

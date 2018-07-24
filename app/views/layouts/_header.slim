@@ -7,8 +7,16 @@ header
         img#product_logo alt="" src="/uploads/img/logo.png"
         img#product_logo_mini alt="" src="/uploads/img/logo.png" style="display:none;"
     .right-part
-      .phone
-        a href="tel:+79826102441" +7(982)610-24-41
+      .address
+        i.icon.location
+        - all_magazines = Company.current.magazines
+        - curr_magazine = all_magazines.find{|h| h["api_key"] == (session[:current_magazine] || ApiHookahStock.api_key)}
+        .currAddress = curr_magazine["address"]
+        ul.listGroupAddress
+          - all_magazines.each do |magazine|
+            - if magazine["address"].present? && magazine["api_key"].present?
+              li 
+                a href="/current_magazine/#{magazine['api_key']}" = magazine["address"]
       .my_rate
         a.no_color href="/buy_rate" 
           i.icon.buy_rate

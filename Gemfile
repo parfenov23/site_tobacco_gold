@@ -31,6 +31,8 @@ gem 'pg_search' # поиск по базе
 gem 'string-similarity'
 gem 'activerecord-session_store'
 
+gem 'unirest', '~> 1.1', '>= 1.1.2'
+
 # #========== sms center
 # gem 'smsc'
 # #==========
