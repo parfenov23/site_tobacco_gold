@@ -14,7 +14,7 @@ class HomeController < ApplicationController
         item_price = item.product.current_price
         item.id if item_price >= params[:price][:from].to_i && item_price <= params[:price][:to].to_i
       end.compact
-      @items = ProductItem.where(id: ids)
+      @items = ProductItem.new({api_key: session[:current_magazine]}).where(id: ids)
     end
   end
 
@@ -52,7 +52,7 @@ class HomeController < ApplicationController
   def send_item_to_basket
     basket = {}
     session[:items].map { |item| basket[item.to_s] = basket[item.to_s].to_i + 1 }
-    result = ApiHookahStock.order_request("", "", params.merge({basket: basket}), "post")
+    result = ApiHookahStock.order_request("", "", params.merge({basket: basket, api_key: session[:current_magazine]}), "post")
     Rails.cache.clear
     session[:items] = nil
     render json: result
@@ -78,7 +78,7 @@ class HomeController < ApplicationController
 
   def buy_rate
     current_user.blank? ? (redirect_to "/sign_in") : nil
-    @all_items = ProductItem.where(id: session[:items])
+    @all_items = ProductItem.new({api_key: session[:current_magazine]}).where(id: session[:items])
     @all_sum = @all_items.map{|pi| 
       item_product = pi.product
       price = pi.current_price(current_user)
