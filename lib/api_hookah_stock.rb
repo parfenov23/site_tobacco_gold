@@ -59,6 +59,6 @@ class ApiHookahStock
   end
 
   def self.api_key
-    Rails.env.production? ? "d2e5220ce29d44a450ccd93db9c38d95e6860c1e7f0fbbd059cb308eaf59e7668a0b9f798ff647ea71ab2" : "d2e5220ce29d44a450ccd93db9c38d95e6860c1e7f0fbbd059cb308eaf59e7668a0b9f798ff647ea71ab2"
+    Rails.env.production? ? "8605e5850d938c7ddb319760909524b2" : "d2e5220ce29d44a450ccd93db9c38d95e6860c1e7f0fbbd059cb308eaf59e7668a0b9f798ff647ea71ab2"
   end
 end
