@@ -2,19 +2,24 @@ require 'vk_message'
 class HomeController < ApplicationController
   # before_filter :redirect_test, except: [:callback_vk, :auth]
   def index
-    @items = if params[:category_id].present?   
-      ProductItem.new({api_key: session[:current_magazine]}).where(product_id: Category.find(params[:category_id]).products.map(&:id) )
-    elsif params[:product_id].present? 
-      Product.new({}).find(params[:product_id]).product_items(session[:current_magazine])
-    else
-      ProductItem.new({api_key: session[:current_magazine]}).all_present.sort_by { |hsh| hsh.count_sales }.reverse.first(20)
-    end
-    if params[:price].present?
-      ids = @items.map do |item| 
-        item_price = item.product.current_price
-        item.id if item_price >= params[:price][:from].to_i && item_price <= params[:price][:to].to_i
-      end.compact
-      @items = ProductItem.new({api_key: session[:current_magazine]}).where(id: ids)
+    begin
+      @items = if params[:category_id].present?   
+        ProductItem.new({api_key: session[:current_magazine]}).where(product_id: Category.find(params[:category_id]).products.map(&:id) )
+      elsif params[:product_id].present? 
+        Product.new({}).find(params[:product_id]).product_items(session[:current_magazine])
+      else
+        ProductItem.new({api_key: session[:current_magazine]}).all_present.sort_by { |hsh| hsh.count_sales }.reverse.first(20)
+      end
+      if params[:price].present?
+        ids = @items.map do |item| 
+          item_price = item.product.current_price
+          item.id if item_price >= params[:price][:from].to_i && item_price <= params[:price][:to].to_i
+        end.compact
+        @items = ProductItem.new({api_key: session[:current_magazine]}).where(id: ids)
+      end
+    rescue 
+      reset_session
+      redirect_to "/"
     end
   end
 
