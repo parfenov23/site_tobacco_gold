@@ -17,9 +17,10 @@ class HomeController < ApplicationController
         end.compact
         @items = ProductItem.new({api_key: session[:current_magazine]}).where(id: ids)
       end
-    rescue 
+    rescue => error
       reset_session
-      redirect_to "/"
+      handle_error error
+      redirect_to "/?type=error" if params[:type] != "error"
     end
   end
 
