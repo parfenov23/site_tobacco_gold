@@ -36,7 +36,7 @@ class HomeController < ApplicationController
 
   def rm_item_to_basket
     session[:items].delete(params[:item_id].to_i)
-    @all_items = ProductItem.where(id: session[:items])
+    @all_items = ProductItem.new.where(id: session[:items])
     @all_sum = @all_items.map{|pi| pi.product.current_price*session[:items].count(pi.id)}.sum
     render json: {all: session[:items], count: session[:items].uniq.count, total_price: @all_sum}
   end

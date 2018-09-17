@@ -23,7 +23,7 @@ class ProductItem
     Product.new({}).find(product_id)
   end
 
-  def self.where(*arg)
+  def where(*arg)
     ApiHookahStock.product_items("", "", {type: "where", where: arg.first.to_json, api_key: (api_key rescue nil)}).map{|pi| self.class.new(pi)}
     # all.select{|hs| hs.slice(*arg.last.keys) == arg.last}
   end
