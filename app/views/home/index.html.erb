@@ -15,10 +15,19 @@
     </div>
   <% end %>
   <div class="allItems">
-    <% @items.each do |item| %>
-      <% if item.count > 0 || item.in_stock %>
-        <%= render "item_block", {item: item} %>
-      <% end %>
+    <% if params[:category_id].present? %>
+      <div class="mobileDevice">
+        <% Category.find(params[:category_id]).products.each do |product| %>
+          <%= render "product_block", {product: product} %>
+        <% end %>
+      </div>
     <% end %>
+    <div class="<%= params[:category_id].present? ? 'fullDevics' : "" %>">
+      <% @items.each do |item| %>
+        <% if item.count > 0 || item.in_stock %>
+          <%= render "item_block", {item: item} %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

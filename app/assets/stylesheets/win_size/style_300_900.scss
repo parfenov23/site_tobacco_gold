@@ -40,6 +40,17 @@
             }
         }
     }
+    .sorting_slider{
+      display: none !important;
+    }
+    .allItems{
+      .mobileDevice{
+        display: initial;
+      }
+      .fullDevics{
+        display: none;
+      }
+    }
 }
 @media only screen and(min-width : 300px) and(max-width : 900px) and(max-width : 600px) {
     .content.content-block__normal{

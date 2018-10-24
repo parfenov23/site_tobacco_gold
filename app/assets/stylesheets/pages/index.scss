@@ -149,3 +149,11 @@ $color_flame_pea_approx : #de8b00;
     max-width: 175px;
   }
 }
+.allItems{
+  .mobileDevice{
+    display: none;
+  }
+  .fullDevics{
+    display: initial;
+  }
+}
