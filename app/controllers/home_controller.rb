@@ -2,7 +2,7 @@ require 'vk_message'
 class HomeController < ApplicationController
   # before_filter :redirect_test, except: [:callback_vk, :auth]
   def index
-    begin
+    # begin
       @items = if params[:category_id].present?   
         ProductItem.new({api_key: session[:current_magazine]}).where(product_id: Category.find(params[:category_id]).products.map(&:id) )
       elsif params[:product_id].present? 
@@ -17,11 +17,11 @@ class HomeController < ApplicationController
         end.compact
         @items = ProductItem.new({api_key: session[:current_magazine]}).where(id: ids)
       end
-    rescue => error
-      reset_session
-      # handle_error error
-      redirect_to "/?type=error" if params[:type] != "error"
-    end
+    # rescue => error
+    #   reset_session
+    #   # handle_error error
+    #   redirect_to "/?type=error" if params[:type] != "error"
+    # end
   end
 
   def how_it_works
