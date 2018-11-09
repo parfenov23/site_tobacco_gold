@@ -19,7 +19,7 @@ class HomeController < ApplicationController
       end
     rescue => error
       reset_session
-      handle_error error
+      # handle_error error
       redirect_to "/?type=error" if params[:type] != "error"
     end
   end
