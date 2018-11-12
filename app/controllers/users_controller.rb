@@ -15,7 +15,7 @@ class UsersController < ActionController::Base
 
   def sign_out
     session[:api_key] = nil
-    Rails.cache.clear
+    Rails.cache.clear rescue nil
     redirect_to "/"
   end
 end
