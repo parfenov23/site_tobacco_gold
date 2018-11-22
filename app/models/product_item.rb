@@ -29,7 +29,7 @@ class ProductItem
   end
 
   def current_img
-    default_img.to_s.scan("http").present? ? default_img : ApiHookahStock.url + "/#{default_img}"
+    default_img.to_s.scan("http").present? ? default_img : ApiHookahStock.url + "#{default_img}"
   end
 
   def current_price(current_user)

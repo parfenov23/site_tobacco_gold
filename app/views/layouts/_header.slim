@@ -24,7 +24,7 @@ header
         span.count style=style = session[:items].uniq.count if session[:items].present? 
       .separator
       - if user_signed_in?
-        .profile onclick="window.location.href='/users/edit'"
+        .profile onclick="window.location.href='/cabinet'"
           a href="/users/edit"
             img.circle-img-new src= user_ava(current_user.avatar)
         a.exit.for-hover href="/users/sign_out"
