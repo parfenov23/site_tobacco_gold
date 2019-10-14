@@ -45,7 +45,7 @@ class ApiHookahStock
   end
 
   def self.sender(url, params={}, type="get")
-    time_hash = Rails.env.production? ? 5 : 0
+    time_hash = Rails.env.production? ? 0 : 0
     Rails.cache.fetch(url + "?" + params.to_query, expires_in: time_hash.minute) do
       agent = Mechanize.new
       params.merge!({api_key: api_key}) if params[:api_key].blank?
