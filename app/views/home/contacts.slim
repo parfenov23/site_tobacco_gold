@@ -12,26 +12,30 @@
       br
       | Телефоны для связи:
       br
-      | 8-982-61О-24-41 | 8-922-227-78-65
+      a href="tel:+7(982)61О-24-41" style="font-size: 18px;"  = "8-982-61О-24-41"
+      = " | "
+      a href="tel:+7(922)227-78-65" style="font-size: 18px;" = "8-922-227-78-65"
       br
+      a.dg-widget-link href="http://2gis.ru/ekaterinburg/firm/70000001027580364/center/60.63145617255942,56.835829874345876/zoom/18?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap"  Посмотреть на карте Екатеринбурга
+      .dg-widget-link
+        a href="http://2gis.ru/ekaterinburg/center/60.631337,56.835916/zoom/18/routeTab/rsType/bus/to/60.631337,56.835916╎Tobacco Gold, магазин?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=route"  Найти проезд до Tobacco Gold, магазин
+      script charset="utf-8" src="https://widgets.2gis.com/js/DGWidgetLoader.js" 
+      javascript:
+        new DGWidgetLoader({"width":640,"height":600,"borderColor":"#a3a3a3","pos":{"lat":56.835829874345876,"lon":60.63145617255942,"zoom":18},"opt":{"city":"ekaterinburg"},"org":[{"id":"70000001027580364"}]});
+
       hr
-      | Фурманова 32 (цокольный этаж)
+      | Доставка
       br
       br
-      | Телефоны для связи:
+      | Доставляем в любые районы города Екатеринбурга, в вечернее время, в день заказа
       br
-      | 8-982-600-60-67
+      | Время доставки:
       br
+      | ПН-ЧТ, ВС с 22:ОО до 00:ОО
       br
-      | Режим работы:
-      br
-      | ПН-ЧТ с 14:ОО до 23:ОО
-      br
-      | ПТ-СБ с 16:ОО до О1:ОО
-      br
-      | Воскресенье с 16:ОО до 22:ОО
+      | ПТ-СБ с 00:ОО до О2:ОО
       br
       br
-      |wowksu@tobacco-gold.ru | ceo@tobacco-gold.ru
+      | Стоимость доставки расчитывается индивидуально, уточняйте у менеджера
 
     -# raw((ContentPage.where(name_page: "contacts").last.description.to_s rescue "Нет описания страницы"))
