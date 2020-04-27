@@ -108,7 +108,7 @@ module ApplicationHelper
   end
 
   def current_api_key
-    session[:current_magazine]
+    @current_api_key
   end
 
 end
