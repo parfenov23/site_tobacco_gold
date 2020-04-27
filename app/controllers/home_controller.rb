@@ -1,21 +1,21 @@
 require 'vk_message'
-class HomeController < ApplicationController
+class HomeController < ApiController
   # before_filter :redirect_test, except: [:callback_vk, :auth]
   def index
     # begin
       @items = if params[:category_id].present?   
-        ProductItem.new({api_key: session[:current_magazine]}).where(product_id: Category.find(params[:category_id]).products.map(&:id) )
+        ProductItem.new({api_key: current_api_key}).where(product_id: Category.find(params[:category_id], current_api_key).products.map(&:id) )
       elsif params[:product_id].present? 
-        Product.new({}).find(params[:product_id]).product_items(session[:current_magazine])
+        Product.new({}).find(params[:product_id]).product_items(current_api_key)
       else
-        ProductItem.new({api_key: session[:current_magazine]}).all_present.sort_by { |hsh| hsh.count_sales }.reverse.first(20)
+        ProductItem.new({api_key: current_api_key}).all_present.sort_by { |hsh| hsh.count_sales }.reverse.first(20)
       end
       if params[:price].present?
         ids = @items.map do |item| 
           item_price = item.product.current_price
           item.id if item_price >= params[:price][:from].to_i && item_price <= params[:price][:to].to_i
         end.compact
-        @items = ProductItem.new({api_key: session[:current_magazine]}).where(id: ids)
+        @items = ProductItem.new({api_key: current_api_key}).where(id: ids)
       end
     # rescue => error
     #   reset_session
@@ -25,6 +25,16 @@ class HomeController < ApplicationController
   end
 
   def how_it_works
+  end
+
+  def page
+    current_page = @all_content_pages.select {|page| page["url"] == params[:id] }.last
+    if current_page.present?
+      @title = current_page["title"]
+      @content = current_page["description"]
+    else
+      redirect_to "/"
+    end
   end
 
   def add_item_to_basket
@@ -57,8 +67,9 @@ class HomeController < ApplicationController
 
   def send_item_to_basket
     basket = {}
-    session[:items].map { |item| basket[item.to_s] = basket[item.to_s].to_i + 1 }
-    result = ApiHookahStock.order_request("", "", params.merge({basket: basket, api_key: session[:current_magazine]}), "post")
+    all_items_ids = all_item_basket.map(&:id)
+    session[:items].map { |item| (basket[item.to_s] = basket[item.to_s].to_i + 1) if all_items_ids.include?(item.to_i)  }
+    result = ApiHookahStock.order_request("", "", params.merge({basket: basket, api_key: current_api_key}), "post")
     Rails.cache.clear
     session[:items] = nil
     render json: result
@@ -75,16 +86,16 @@ class HomeController < ApplicationController
   end
 
   def item
-    @item = ProductItem.find(params[:id]) 
+    @item = ProductItem.find(params[:id], current_api_key) 
   end
 
-  def mix_box
-    @mix_box = MixBox.find(params[:id])
-  end
+  # def mix_box
+  #   @mix_box = MixBox.find(params[:id])
+  # end
 
   def buy_rate
     current_user.blank? ? (redirect_to "/sign_in") : nil
-    @all_items = ProductItem.new({api_key: session[:current_magazine]}).where(id: session[:items])
+    @all_items = all_item_basket
     @all_sum = @all_items.map{|pi| 
       item_product = pi.product
       price = pi.current_price(current_user)
@@ -114,6 +125,12 @@ class HomeController < ApplicationController
     else
       redirect_to "/cabinet"
     end
+  end
+
+  private
+
+  def all_item_basket
+    ProductItem.new({api_key: current_api_key}).where(id: session[:items])
   end
 
 end

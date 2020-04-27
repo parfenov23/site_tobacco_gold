@@ -1,7 +1,7 @@
 - title "Корзина товаров"
 .content.content-block__normal.background.normal_align.page_buy_rate
     .header_block
-        - count_items = session[:items].present? ? session[:items].uniq.count : 0
+        - count_items = @all_items.count
         .title.hidden_text В корзине #{count_items} #{Russian.p(count_items, "товар", "товара", "товаров")}
         .sum_price.js__titleTotlaPriceBasket #{@all_sum} руб
 
@@ -21,7 +21,7 @@
                 .count #{count} шт.
                 .remove.js__rmItemInBasket data-id=item.id
                     .btn_rm ×
-    - if session[:items].present?
+    - if count_items > 0
         form.form_send_basket
             - if current_user.contact.blank? 
               .input-wrp

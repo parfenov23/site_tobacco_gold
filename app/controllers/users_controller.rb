@@ -1,4 +1,4 @@
-class UsersController < ActionController::Base
+class UsersController < ApiController
   def auth
     #Rails.cache.clear
     auth_user = User.auth(params[:user][:email], params[:user][:password])

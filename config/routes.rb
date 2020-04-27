@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get "cabinet" => "home#cabinet"
   get "test_page" => "home#test_page"
   get "show_sale/:id" => "home#show_sale"
+  get "page/:id" => "home#page"
   get "current_magazine/:current_magazine" => "home#current_magazine"
 
   get "sign_in" => "home#sign_in"

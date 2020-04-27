@@ -7,11 +7,11 @@ class Company
     end
   end
 
-  def self.current
-    new(ApiHookahStock.company)
+  def self.current(api_key=nil)
+    new(ApiHookahStock.company({api_key: api_key}))
   end
 
-  def magazines
-    ApiHookahStock.all_magazines
+  def magazines(api_key=nil)
+    ApiHookahStock.all_magazines({api_key: api_key})
   end
 end

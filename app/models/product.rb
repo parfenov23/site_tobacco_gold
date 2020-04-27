@@ -7,8 +7,8 @@ class Product
     end
   end
 
-  def self.all
-    ApiHookahStock.products.map{|product| new(product)}
+  def self.all(api_key=nil)
+    ApiHookahStock.products("", "", {api_key: api_key}).map{|product| new(product)}
   end
 
   def find(id)

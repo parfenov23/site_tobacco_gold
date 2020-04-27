@@ -1,6 +1,6 @@
 aside#left-sidebar-normal.left-sidebar__normal
   nav.left-menu
-    - Category.all.each do |category|
+    - Category.all(current_api_key).each do |category|
       .category_item
         a href="/?category_id=#{category.id}"
           span.title.hide_menu_average = category.first_name
@@ -10,6 +10,10 @@ aside#left-sidebar-normal.left-sidebar__normal
     /   a href="/all_mixs"
     /     span.title.hide_menu_average Миксы
   nav.left-menu.contacts
+    - @all_content_pages.each do |content_page|
+      a href="/page/#{content_page['url']}"
+        i.icon.how_it_works
+        span.title.hide_menu_average = content_page["title"]
     - if current_user_admin?
       a href="#{ApiHookahStock.url}/api/users/auth_admin?api_key=#{current_user.api_key}"
         i.icon.participant
@@ -18,22 +22,3 @@ aside#left-sidebar-normal.left-sidebar__normal
       a href="/cabinet"
         i.icon.participant
         span.title.hide_menu_average Личный кабинет
-    a href="/contacts"
-      i.icon.contacts
-      span.title.hide_menu_average Контакты
-
-    / a.category_sidebar data-type="normal" href="javascript:void(0)" 
-    /   i.icon.category
-    /   span.title.hide_menu_average
-    /     | Производители
-    /   hr.hide_menu_average
-    / - Category.all.each do |category|
-    /   a href="/?categroy=#{category.id}"
-    /     i.icon
-    /     span.title.hide_menu_average = category.first_name
-    /     hr.hide_menu_average
-    / - left_bar_links.each do |link|
-    /   a href=link[:href]
-    /     i.icon class=link[:type]
-    /     span.title.hide_menu_average = link[:title]
-    /     hr.hide_menu_average

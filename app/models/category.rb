@@ -7,15 +7,15 @@ class Category
     end
   end
 
-  def self.all
-    ApiHookahStock.categories.map{|category| new(category) }
+  def self.all(api_key=nil)
+    ApiHookahStock.categories("", "", {api_key: api_key}).map{|category| new(category) }
   end
 
-  def self.find(id)
-    new(ApiHookahStock.categories(id))
+  def self.find(id, api_key=nil)
+    new(ApiHookahStock.categories(id, "", {api_key: api_key}))
   end
 
-  def products
-    ApiHookahStock.categories(id, "/products").map{|prod| Product.new(prod)}
+  def products(api_key=nil)
+    ApiHookahStock.categories(id, "/products", {api_key: api_key}).map{|prod| Product.new(prod)}
   end
 end

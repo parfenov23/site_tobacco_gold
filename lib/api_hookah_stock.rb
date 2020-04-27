@@ -6,9 +6,9 @@ class ApiHookahStock
     sender(url + "/api/product_items#{add_id}#{add_url}", params)
   end
 
-  def self.categories(id="", add_url="")
+  def self.categories(id="", add_url="", params={})
     add_id = id.present? ? "/#{id}" : ""
-    sender(url + "/api/categories#{add_id}#{add_url}")
+    sender(url + "/api/categories#{add_id}#{add_url}", params)
   end
 
   def self.products(id="", add_url="", params={})
@@ -36,12 +36,16 @@ class ApiHookahStock
     sender(url + "/api/sales#{add_id}#{add_url}", params)
   end
 
-  def self.company
-    sender(url + "/api/api/company")
+  def self.company(params={})
+    sender(url + "/api/api/company", params)
   end
 
-  def self.all_magazines
-    sender(url + "/api/api/all_magazines")
+  def self.all_magazines(params={})
+    sender(url + "/api/api/all_magazines", params)
+  end
+
+  def self.all_content_pages(params={})
+    sender(url + "/api/api/all_content_pages", params)
   end
 
   def self.sender(url, params={}, type="get")
@@ -59,6 +63,6 @@ class ApiHookahStock
   end
 
   def self.api_key
-    Rails.env.production? ? "8605e5850d938c7ddb319760909524b2" : "de9bf6eedc4ff2e22ae8dfadaa4693904a51344ecb15c6702a2b9d03e6896acf202994487ffbd727f1077"
+    Rails.env.production? ? "8605e5850d938c7ddb319760909524b2" : "b093dec6d556b53c69ff6e33a7b7d794"
   end
 end

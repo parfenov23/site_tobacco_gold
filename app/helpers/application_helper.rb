@@ -42,7 +42,15 @@ module ApplicationHelper
   end
 
   def current_magazine
-    current_user.magazine
+    @curr_magazine
+  end
+
+  def company_magazines
+    @company_magazines
+  end
+
+  def current_company
+    @current_company
   end
 
   def all_pages
@@ -82,7 +90,7 @@ module ApplicationHelper
   end
 
   def all_product_items_top
-    ProductItem.new({api_key: session[:current_magazine]}).current_top
+    ProductItem.new({api_key: current_api_key}).current_top
   end
 
   # Методы которые нужно изменить
@@ -97,6 +105,10 @@ module ApplicationHelper
 
   def current_user
     @current_user
+  end
+
+  def current_api_key
+    session[:current_magazine]
   end
 
 end

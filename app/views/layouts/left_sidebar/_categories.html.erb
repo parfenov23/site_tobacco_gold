@@ -1,7 +1,7 @@
 <div id="category">
   <div class="triangle-left"></div>
   <nav class="menu_category">
-    <% Product.all.each do |product| %>
+    <% Product.all(current_api_key).each do |product| %>
         <a class="for-hover" href="/?category=<%= product.id %>">
             <span class="h-left-tooltip">
               <%= product.title %>

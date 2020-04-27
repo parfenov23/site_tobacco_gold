@@ -1,5 +1,5 @@
 .hide_product_in_category
-  - products = category.products
+  - products = category.products(current_api_key)
   ul
     - products.each do |product|
       li.menu__item

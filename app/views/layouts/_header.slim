@@ -4,16 +4,15 @@ header
       a.js__openLeftSideBarMenu href="#"
         i.icon.burger
       a.logo href="/" 
-        img#product_logo alt="" src="/uploads/img/logo.png"
-        img#product_logo_mini alt="" src="/uploads/img/logo.png" style="display:none;"
+        - current_logo = current_magazine["logo"]
+        img#product_logo alt="" src=current_logo
+        img#product_logo_mini alt="" src=current_logo style="display:none;"
     .right-part
       .address
         i.icon.location
-        - all_magazines = Company.current.magazines
-        - curr_magazine = all_magazines.find{|h| h["api_key"] == (session[:current_magazine] || ApiHookahStock.api_key)}
-        .currAddress = curr_magazine["address"]
+        .currAddress = current_magazine["address"]
         ul.listGroupAddress
-          - all_magazines.each do |magazine|
+          - company_magazines.each do |magazine|
             - if magazine["address"].present? && magazine["api_key"].present?
               li 
                 a href="/current_magazine/#{magazine['api_key']}" = magazine["address"]
@@ -25,7 +24,7 @@ header
       .separator
       - if user_signed_in?
         .profile onclick="window.location.href='/cabinet'"
-          a href="/users/edit"
+          a href="/cabinet"
             img.circle-img-new src= user_ava(current_user.avatar)
         a.exit.for-hover href="/users/sign_out"
           i.icon.log_out

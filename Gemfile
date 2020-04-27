@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.0'
-gem 'pg'
+gem 'rails', '4.2.5.2'
+gem 'pg', '0.20.0'
 gem 'nested-hstore'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier'
@@ -16,8 +16,10 @@ gem 'slim', '~> 2.0.0'
 gem 'pry'
 gem 'mechanize'
 # gem 'antigate'
+gem 'anti_captcha'
 gem 'russian'
 gem 'mini_magick'
+gem 'carrierwave'
 
 gem 'devise', '3.4.1'
 gem 'bcrypt', '3.1.10'
@@ -27,22 +29,25 @@ gem 'wkhtmltopdf-binary'
 
 gem 'therubyracer', :platforms => :ruby
 
-gem 'pg_search' # поиск по базе
+gem 'pg_search', '2.1.1' # поиск по базе
 gem 'string-similarity'
-gem 'activerecord-session_store'
 
-gem 'unirest', '~> 1.1', '>= 1.1.2'
+#========== sms center
+gem 'smsc'
+#==========
+gem 'bing-search' # web search image
+gem 'image_suckr'
 
-# #========== sms center
-# gem 'smsc'
-# #==========
-
-# gem 'pusher' # Pusher.Io
+gem 'pusher' # Pusher.Io
 
 gem 'localtunnel'
 
 gem 'whenever', :require => false
 gem 'unicorn'
+
+gem 'faye-websocket'
+gem 'to_regexp'
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'

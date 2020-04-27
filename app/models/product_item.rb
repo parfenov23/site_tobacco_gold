@@ -15,8 +15,8 @@ class ProductItem
     ApiHookahStock.product_items("", "", {type: "top", api_key: (api_key rescue nil)}).map{|pi| self.class.new(pi)}
   end
 
-  def self.find(id)
-    new(ApiHookahStock.product_items("", "/#{id}"))
+  def self.find(id, api_key=nil)
+    new(ApiHookahStock.product_items("", "/#{id}", {api_key: api_key}))
   end
 
   def product
@@ -32,7 +32,7 @@ class ProductItem
     default_img.to_s.scan("http").present? ? default_img : ApiHookahStock.url + "#{default_img}"
   end
 
-  def current_price(current_user)
+  def current_price(current_user=nil)
     current_user.present? ? current_user.current_price_item(self) : (default_price || product.current_price)
   end
 
