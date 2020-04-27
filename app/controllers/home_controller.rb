@@ -1,6 +1,6 @@
 require 'vk_message'
 class HomeController < ApiController
-  # before_filter :redirect_test, except: [:callback_vk, :auth]
+  before_filter :all_categories, :all_content_pages, :current_api_magazine, :company_magazines, :current_company, except: [:current_magazine]
   def index
     # begin
       @items = if params[:category_id].present?   
