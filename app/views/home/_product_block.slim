@@ -3,4 +3,4 @@
     a.item_link href="/products/#{product.id}"
       .title = product.title
       .img_item
-        img src=product.current_image
+        img src=product.current_image onerror="if (this.src != '/no_img_item.png') this.src = '/no_img_item.png';"
