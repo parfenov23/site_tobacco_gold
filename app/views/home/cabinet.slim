@@ -3,8 +3,8 @@
     .title Личный кабинет
   .content_block
     .user
-      .user_ava
-        img id="userAva" src="/uploads/ava.jpg" alt=""
+      / .user_ava
+      /   img id="userAva" src="/uploads/ava.jpg" alt=""
       - if @contact.present?
         .user_info
           .title.first_name Имя: #{@contact.first_name}

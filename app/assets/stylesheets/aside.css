@@ -80,7 +80,7 @@ aside#user-page.fix-to-top {
 }
 
 .close_item_content .item_info {
-    padding-bottom : 5px;
+    padding: 12px 0px 12px 0px;
     height         : 20px;
     text-align     : center;
 }

@@ -90,7 +90,11 @@ module ApplicationHelper
   end
 
   def all_product_items_top
-    ProductItem.new({api_key: current_api_key}).current_top
+    @all_top_magazine
+  end
+
+  def all_categories
+    @all_categories
   end
 
   # Методы которые нужно изменить

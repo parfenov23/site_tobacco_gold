@@ -48,6 +48,10 @@ class ApiHookahStock
     sender(url + "/api/api/all_content_pages", params)
   end
 
+  def self.all_top_magazine(params={})
+    sender(url + "/api/api/all_top_magazine", params)
+  end
+
   def self.find_api_key(params={})
     sender(url + "/api/api/find_api_key", params)
   end

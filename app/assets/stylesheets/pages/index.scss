@@ -132,6 +132,9 @@ $color_flame_pea_approx : #de8b00;
   height           : 20px;
   color            : $white;
   display          : inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   .icon {
     font-size   : 16px;
     float       : left;
@@ -146,7 +149,7 @@ $color_flame_pea_approx : #de8b00;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: 175px;
+    max-width: 134px;
   }
 }
 .allItems{

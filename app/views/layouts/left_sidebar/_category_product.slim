@@ -3,4 +3,4 @@
   ul
     - products.each do |product|
       li.menu__item
-        a href="/?product_id=#{product.id}" = product.title
+        a href="/products/#{product.id}" = product.title

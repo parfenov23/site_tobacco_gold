@@ -2,29 +2,19 @@ require 'vk_message'
 class HomeController < ApiController
   before_filter :all_categories, :all_content_pages, :current_api_magazine, :company_magazines, :current_company, except: [:current_magazine]
   def index
-    # begin
-      @items = if params[:category_id].present?   
-        ProductItem.new({api_key: current_api_key}).where(product_id: Category.find(params[:category_id], current_api_key).products.map(&:id) )
-      elsif params[:product_id].present? 
-        Product.new({}).find(params[:product_id]).product_items(current_api_key)
-      else
-        ProductItem.new({api_key: current_api_key}).all_present.sort_by { |hsh| hsh.count_sales }.reverse.first(20)
-      end
-      if params[:price].present?
-        ids = @items.map do |item| 
-          item_price = item.product.current_price
-          item.id if item_price >= params[:price][:from].to_i && item_price <= params[:price][:to].to_i
-        end.compact
-        @items = ProductItem.new({api_key: current_api_key}).where(id: ids)
-      end
-    # rescue => error
-    #   reset_session
-    #   # handle_error error
-    #   redirect_to "/?type=error" if params[:type] != "error"
-    # end
   end
 
   def how_it_works
+  end
+
+  def category
+    @items = ProductItem.new({api_key: current_api_key}).where(product_id: Category.find(params[:category_id], current_api_key).products.map(&:id) )
+    sort_by_price
+  end
+
+  def products
+    @items = Product.new({id: params[:product_id]}).product_items(current_api_key)
+    sort_by_price
   end
 
   def page
@@ -131,6 +121,12 @@ class HomeController < ApiController
 
   def all_item_basket
     ProductItem.new({api_key: current_api_key}).where(id: session[:items])
+  end
+
+  def sort_by_price
+    if params[:price].present?
+      @items = @items.select{|item| item.default_price >= params[:price][:from].to_i && item.default_price <= params[:price][:to].to_i}
+    end
   end
 
 end

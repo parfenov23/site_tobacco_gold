@@ -1,8 +1,8 @@
 aside#left-sidebar-normal.left-sidebar__normal
   nav.left-menu
-    - Category.all(current_api_key).each do |category|
+    - all_categories.each do |category|
       .category_item
-        a href="/?category_id=#{category.id}"
+        a href="/category/#{category.id}"
           span.title.hide_menu_average = category.first_name
           hr.hide_menu_average
         = render "layouts/left_sidebar/category_product", {category: category}
@@ -12,13 +12,13 @@ aside#left-sidebar-normal.left-sidebar__normal
   nav.left-menu.contacts
     - @all_content_pages.each do |content_page|
       a href="/page/#{content_page['url']}"
-        i.icon.how_it_works
-        span.title.hide_menu_average = content_page["title"]
+        i.icon.category
+        span.title = content_page["title"]
     - if current_user_admin?
       a href="#{ApiHookahStock.url}/api/users/auth_admin?api_key=#{current_user.api_key}"
         i.icon.participant
-        span.title.hide_menu_average Админка
+        span.title Админка
     - elsif current_user.present? && current_user.contact.present?
       a href="/cabinet"
         i.icon.participant
-        span.title.hide_menu_average Личный кабинет
+        span.title Личный кабинет

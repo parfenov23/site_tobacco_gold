@@ -15,7 +15,11 @@ class Product
     self.class.new(ApiHookahStock.products(id))
   end
 
-  def product_items(api_key)
-    ApiHookahStock.products(id, "/product_items", {api_key: (api_key rescue nil)}).map{|pi| ProductItem.new(pi)}
+  def product_items(api_key=nil)
+    ApiHookahStock.products(id, "/product_items", {api_key: api_key}).map{|pi| ProductItem.new(pi)}
+  end
+
+  def current_image
+    default_img.present? ? default_img : "/no_img_item.png"
   end
 end

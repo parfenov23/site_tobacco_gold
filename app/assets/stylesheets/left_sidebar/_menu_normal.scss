@@ -49,6 +49,7 @@ $color_flamingo_approx : #F6A623;
   .left-menu {
     margin-top: 8px;
     margin-bottom : 70px;
+    background-color: white;
     .category_item:hover{
       .hide_product_in_category{
         display: block;
@@ -63,6 +64,12 @@ $color_flamingo_approx : #F6A623;
       font-size: 15px;
       .title {
         line-height : 37px;
+        &.hide_menu_average{
+          color: black;
+          &:hover{
+            color: white;
+          }
+        }
       }
       hr {
         margin        : 0;
@@ -76,6 +83,9 @@ $color_flamingo_approx : #F6A623;
       }
       &:hover {
         background-color : $color_flamingo_approx;
+        & .hide_menu_average{ 
+          color: white;
+        }
       }
     }
     .hide_product_in_category{
@@ -85,7 +95,7 @@ $color_flamingo_approx : #F6A623;
       margin-top: -40px;
       padding: 16px 8px 16px 8px;
       width: 100%;
-      background-color: #494B51;
+      background-color: white;
       border-left: $color_flamingo_approx 1px solid;
       box-shadow: -3px 0px 1px 1px rgba(0, 0, 0, 0.15);
       ul{
@@ -104,6 +114,10 @@ $color_flamingo_approx : #F6A623;
             font-size: 15px;
             width: calc(100% - 8px);
             height: 100%;
+            color: black;
+            &:hover{
+              color: white;
+            }
           }
         }
       }
@@ -139,16 +153,20 @@ $color_flamingo_approx : #F6A623;
       position: fixed;
       bottom: 0;
       width: 230px;
-      background-color: white;
       margin-bottom: 24px;
+      background-color: initial;
       a{
-        color: black;
+        color: white;
         padding-left: 28px;
         i{
-          color: black;
+          color: white;
         }
         &:hover{
-          color: white;
+          color: black;
+          background-color: white;
+          i {
+            color: black;
+          }
         }
       }
     }

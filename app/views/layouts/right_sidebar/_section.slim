@@ -4,7 +4,6 @@
   section.right-sidebar__wrp.wrapper style=""
     aside#right-sidebar.right-sidebar style=("left: 1140px; position: absolute;") 
       - pop_items.each do |item|
-        - product = item.product
         .shadow-wrp
           .today-date ХИТ ПРОДАЖ
           a.close_item_content.item_content href="/item/#{item.id}"
@@ -18,4 +17,4 @@
                 .title_price = item.current_price(current_user)
               .user
                 i.icon.category
-                .user_name = product.title
+                .user_name = item.product_title

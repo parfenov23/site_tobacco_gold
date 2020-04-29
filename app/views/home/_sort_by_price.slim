@@ -1,0 +1,7 @@
+.sorting_slider
+  .left_part_sort
+    - price_from = params[:price][:from] rescue 0
+    - price_to = params[:price][:to] rescue 100000
+    #sliderSort data-from=price_from data-to=price_to
+  .rigth_part_sort
+    .btn.js__submitBtnFormSliderSort Поиск

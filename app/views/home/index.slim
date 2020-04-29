@@ -1,0 +1,13 @@
+- title "Табак для кальяна от мировых лидеров табачного производства!"
+- current_index_page = @all_content_pages.select{|page| page["url"] == "index"}.last
+.content.content-block__normal class=(current_index_page.present? ? "background" : "")
+  - if current_index_page.present?
+    .header_block
+      .title = current_index_page["title"]
+      hr
+    .content_block
+      = raw current_index_page["description"]
+  - else
+    .allItems
+      - all_categories.first.products(current_api_key).each do |product|
+        = render "product_block", {product: product}

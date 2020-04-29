@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get "show_sale/:id" => "home#show_sale"
   get "page/:id" => "home#page"
   get "current_magazine/:current_magazine" => "home#current_magazine"
+  get 'category/:category_id' => "home#category"
+  get 'products/:product_id' => "home#products"
 
   get "sign_in" => "home#sign_in"
   get "sign_up" => "home#sign_up"
@@ -35,6 +37,7 @@ Rails.application.routes.draw do
   get "profile" => "profile#edit"
   put "profile" => "profile#update"
   get 'stock' => "admin/stock#index"
+
 
   # post "admin/create_attachment" => "admin#create_attachment"
 
