@@ -256,7 +256,6 @@ a.no_color{
     padding-top      : 7px;
     position         : relative;
     cursor           : pointer;
-    background-color : #F2592B;
 }
 
 .action_btn .submit_form.disabled {

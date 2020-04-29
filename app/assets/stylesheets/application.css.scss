@@ -34,10 +34,6 @@ header::after{
   color : #000;
 }
 
-.item_link:hover {
-  color : $color_flamingo_approx;
-}
-
 .block_display_inline{
   display: inline-block;
 }
@@ -68,7 +64,6 @@ header::after{
 
 .btn{
   display: inline-block;
-  background-color: $color_flamingo_approx;
   height: 30px;
   font-size: 18px;
   line-height: 30px;
@@ -78,6 +73,9 @@ header::after{
   border-radius: 2px;
   min-width: 120px;
   text-align: center;
+  &:hover {
+    filter: grayscale(20%);
+  }
   &.not{
     background-color: #bbb;
     cursor: default;

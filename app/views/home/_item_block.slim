@@ -1,26 +1,26 @@
 .item.parent_item
   .item_content
-    a.item_link href="/item/#{item.id}"
+    a.item_link.colorHoverCustomize href="/item/#{item.id}"
       .title = item.title
       .img_item
         img src=item.current_img
     
     .user
-      i.icon.category
+      i.icon.category.colorCustomize
       .user_name = item.product_title
     
     .item_info
       .price
-        i.icon.cash
+        i.icon.cash.colorCustomize
         - price = item.current_price(current_user)
         .title_price #{price} руб
       .time
         .title_count
           .btn_qty
-            .qty.js__addCountItemBasket data-type="rm" -
+            .qty.js__addCountItemBasket.backgroundCustomize data-type="rm" -
           input.js__countItemBasket value="1"
           .btn_qty
-            .qty.js__addCountItemBasket data-type="add" + 
+            .qty.js__addCountItemBasket.backgroundCustomize data-type="add" + 
 
     - present_stock = item.count > 0 || item.in_stock
-    .button_rate.js__addToBasket data-id=item.id class=present_stock = present_stock ? "Добавить в корзину" : "Нет на складе"
+    .button_rate.js__addToBasket.backgroundCustomize data-id=item.id class=present_stock = present_stock ? "Добавить в корзину" : "Нет на складе"

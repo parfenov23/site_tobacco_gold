@@ -1,6 +1,6 @@
-.hide_product_in_category
+.hide_product_in_category.borderColorCustomize
   - products = category.products(current_api_key)
   ul
     - products.each do |product|
       li.menu__item
-        a href="/products/#{product.id}" = product.title
+        a.backgroundHoverCustomize href="/products/#{product.id}" = product.title

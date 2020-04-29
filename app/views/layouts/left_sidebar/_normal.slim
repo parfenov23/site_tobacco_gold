@@ -2,7 +2,7 @@ aside#left-sidebar-normal.left-sidebar__normal
   nav.left-menu
     - all_categories.each do |category|
       .category_item
-        a href="/category/#{category.id}"
+        a.backgroundHoverCustomize href="/category/#{category.id}"
           span.title.hide_menu_average = category.first_name
           hr.hide_menu_average
         = render "layouts/left_sidebar/category_product", {category: category}

@@ -45,10 +45,6 @@ aside .shadow-wrp a.close_item_content{
     color: #000;
 }
 
-aside .shadow-wrp a.close_item_content:hover{
-    color: $color_flamingo_approx;
-}
-
 aside .shadow-wrp .today-date {
     text-align    : right;
     font-size     : 12px;
@@ -102,7 +98,6 @@ aside#user-page.fix-to-top {
     display     : inline-block;
     margin-left : 3px;
     margin-top  : 2px;
-    color       : $color_flamingo_approx;
 }
 
 .close_item_content .price .title_price {

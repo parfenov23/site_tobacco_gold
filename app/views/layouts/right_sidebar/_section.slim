@@ -6,15 +6,15 @@
       - pop_items.each do |item|
         .shadow-wrp
           .today-date ХИТ ПРОДАЖ
-          a.close_item_content.item_content href="/item/#{item.id}"
+          a.close_item_content.item_content.colorHoverCustomize href="/item/#{item.id}"
             .title.hidden_text
               = item.title
             .img_item
               img src=item.current_img
             .item_info
               .price
-                i.icon.cash
+                i.icon.cash.colorCustomize
                 .title_price = item.current_price(current_user)
               .user
-                i.icon.category
+                i.icon.category.colorCustomize
                 .user_name = item.product_title

@@ -1,4 +1,4 @@
-header
+header.borderColorCustomize
   .holder__new.user_menu
     .left-part
       a.js__openLeftSideBarMenu href="#"
@@ -20,7 +20,7 @@ header
         a.no_color href="/buy_rate" 
           i.icon.buy_rate
         - style = session[:items].blank? ? "display: none" : ""
-        span.count style=style = session[:items].uniq.count if session[:items].present? 
+        span.count.backgroundCustomize style=style = session[:items].uniq.count if session[:items].present? 
       .separator
       - if user_signed_in?
         .profile onclick="window.location.href='/cabinet'"

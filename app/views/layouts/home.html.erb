@@ -35,6 +35,26 @@
   <script type="text/javascript" src="//vk.com/js/api/openapi.js?143"></script>
   <% $current_color_theme = (current_company.theme_color.present? ? current_company.theme_color : "#F6A623") %>
   <%= stylesheet_link_tag 'application' %>
+  <style>
+    .backgroundCustomize{
+      background-color: <%= $current_color_theme %>;
+    }
+    .colorCustomize{
+      color: <%= $current_color_theme %>;
+    }
+    .colorHoverCustomize:hover{
+      color: <%= $current_color_theme %> !important;
+    }
+    .backgroundHoverCustomize:hover{
+      background-color: <%= $current_color_theme %> !important;
+    }
+    .borderColorCustomize, .borderColorCustomize:after{
+      border-color: <%= $current_color_theme %> !important;
+    }
+    #sliderSort .noUi-connect{
+      background-color: <%= $current_color_theme %> !important;
+    }
+  </style>
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <%= yield :script %>

@@ -16,6 +16,7 @@
         width: 50px;
         img{
           width: 100%;
+          padding-top: 20px;
         }
       }
       .name{
@@ -35,7 +36,6 @@
       .remove{
         .btn_rm{
           border-radius: 50%;
-          background-color: #F6A623;
           color: white;
           font-size: 18px;
           width: 20px;
@@ -43,6 +43,10 @@
           text-align: center;
           margin-top: 24px;
           cursor: pointer;
+          line-height: 18px;
+          &:hover {
+            filter: grayscale(20%);
+          }
         }
       }
     }
