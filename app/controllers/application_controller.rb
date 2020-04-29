@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_filter :current_user
   before_action :current_api_key
+
   require "api_hookah_stock"
   def current_user
     @current_user = session[:api_key].present? ? User.current_user(session[:api_key]) : nil

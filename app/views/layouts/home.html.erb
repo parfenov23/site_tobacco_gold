@@ -33,6 +33,7 @@
   <meta name="yandex-verification" content="7a92de6225e2700a" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <script type="text/javascript" src="//vk.com/js/api/openapi.js?143"></script>
+  <% $current_color_theme = (current_company.theme_color.present? ? current_company.theme_color : "#F6A623") %>
   <%= stylesheet_link_tag 'application' %>
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

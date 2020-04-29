@@ -1,8 +1,5 @@
 //colors
-$color_mako_approx : #1f1f1f;
-$white : #FFF;
-$color_flamingo_approx : #F6A623;
-$color_flame_pea_approx : #de8b00;
+@import "color";
 
 .item .item_content {
   position : absolute;
@@ -55,7 +52,7 @@ $color_flame_pea_approx : #de8b00;
           width: 14px;
           height: 14px;
           border-radius: 50%;
-          background-color: #F6A623;
+          background-color: $color_flamingo_approx;
           margin-left: 4px;
           line-height: 14px;
           text-align: center;

@@ -145,7 +145,7 @@ a.no_color{
 }
 
 .content__wrp .sorting_slider .noUi-connect{
-    background: #F6A623;
+    background: $color_flamingo_approx;
 }
 
 .content__wrp .sorting_slider .noUi-handle:focus {

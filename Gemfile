@@ -4,6 +4,7 @@ gem 'rails', '4.2.5.2'
 gem 'pg', '0.20.0'
 gem 'nested-hstore'
 gem 'sass-rails', '~> 5.0'
+gem "sass_rails_patch", "~> 0.0.1"
 gem 'uglifier'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'yandex-money-sdk'

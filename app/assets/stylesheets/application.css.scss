@@ -1,3 +1,4 @@
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -12,20 +13,29 @@
  *
  * require_tree ./vendor
  *= require_self
+ *= require_tree ./vendor
  *= require_tree ./pages
  *= require_tree ./win_size
- *= require_tree ./vendor
-  *= require_tree ./devise
+ *= require_tree ./devise
  */
+@import "color";
 
-$color_flamingo_approx : #F6A623;
+header::after{
+  border-top: 3px solid $color_flamingo_approx;
+  display: block;
+  position: relative;
+  top: 8px;
+  margin: 0 auto;
+  width: 100%;
+  content: "";
+}
 
 .item_link {
   color : #000;
 }
 
 .item_link:hover {
-  color : $color_flamingo_approx ;
+  color : $color_flamingo_approx;
 }
 
 .block_display_inline{
@@ -58,7 +68,7 @@ $color_flamingo_approx : #F6A623;
 
 .btn{
   display: inline-block;
-  background-color: #F6A623;
+  background-color: $color_flamingo_approx;
   height: 30px;
   font-size: 18px;
   line-height: 30px;

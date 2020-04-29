@@ -1,3 +1,4 @@
+@import "color";
 aside.right-sidebar .common-info {
     padding-top    : 45px;
     padding-bottom : 10px;
@@ -45,7 +46,7 @@ aside .shadow-wrp a.close_item_content{
 }
 
 aside .shadow-wrp a.close_item_content:hover{
-    color: #F6A623;
+    color: $color_flamingo_approx;
 }
 
 aside .shadow-wrp .today-date {
@@ -101,7 +102,7 @@ aside#user-page.fix-to-top {
     display     : inline-block;
     margin-left : 3px;
     margin-top  : 2px;
-    color       : #F6A623;
+    color       : $color_flamingo_approx;
 }
 
 .close_item_content .price .title_price {
