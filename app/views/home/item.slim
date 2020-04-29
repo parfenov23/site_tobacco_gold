@@ -11,7 +11,7 @@
   .content_item
     .left_content
         .imgCenter
-          img src=@item.current_img u="image"
+          img src=@item.current_img u="image" onerror="if (this.src != '/no_img_item.png') this.src = '/no_img_item.png';"
         .all_action.parent_item
           input.js__countItemBasket type="hidden" value="1"
           - if @item.count > 0 || @item.in_stock

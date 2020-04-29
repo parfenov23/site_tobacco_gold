@@ -10,7 +10,7 @@
             .title.hidden_text
               = item.title
             .img_item
-              img src=item.current_img
+              img src=item.current_img onerror="if (this.src != '/no_img_item.png') this.src = '/no_img_item.png';"
             .item_info
               .price
                 i.icon.cash.colorCustomize
