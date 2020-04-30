@@ -18,9 +18,9 @@
  *= require_tree ./win_size
  *= require_tree ./devise
  */
-@import "color";
+ @import "color";
 
-header::after{
+ header::after{
   border-top: 3px solid $color_flamingo_approx;
   display: block;
   position: relative;
@@ -79,6 +79,24 @@ header::after{
   &.not{
     background-color: #bbb;
     cursor: default;
+  }
+}
+
+.productTags{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 12px 0px 12px 0px;
+  .tag{
+    color: black;
+    padding: 5px;
+    border: 1px solid;
+    border-radius: 8px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    &:hover, &.select{
+      background-color: black;
+      color: white;
+    }
   }
 }
 

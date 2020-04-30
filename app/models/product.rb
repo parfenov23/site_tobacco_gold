@@ -19,6 +19,10 @@ class Product
     ApiHookahStock.products(id, "/product_items", {api_key: api_key}).map{|pi| ProductItem.new(pi)}
   end
 
+  def find_product_items_by_tag(tag_id)
+    ApiHookahStock.products(id, "/tag_product_items", {api_key: api_key, tag_id: tag_id}).map{|pi| ProductItem.new(pi)}
+  end
+
   def current_image
     default_img.present? ? default_img : "/no_img_item.png"
   end

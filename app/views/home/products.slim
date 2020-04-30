@@ -1,5 +1,14 @@
 .content.content-block__normal
   = render "sort_by_price"
+  .productTags
+    - all_tags = ApiHookahStock.products(params[:product_id], "/find_tags", {api_key: current_api_key})
+    - if params[:tag_id].present?
+      a.tag href="/products/#{params[:product_id]}" Все
+    - all_tags.each do |tag|
+      - add_url = params[:price].present? ? "?price[from]=#{params[:price][:from]}&price[to]=#{params[:price][:to]}&tag_id=#{tag['id']}" : "?tag_id=#{tag['id']}"
+      a.tag href="/products/#{params[:product_id]}#{add_url}" class=(params[:tag_id].to_i == tag['id'].to_i ? "select" : "")
+        = tag["title"]
+
   .fullDevics
     - @items.each do |item| 
       - if item.count > 0 || item.in_stock 

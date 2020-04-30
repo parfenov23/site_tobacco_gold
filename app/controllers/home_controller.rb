@@ -13,7 +13,8 @@ class HomeController < ApiController
   end
 
   def products
-    @items = Product.new({id: params[:product_id]}).product_items(current_api_key)
+    product = Product.new({id: params[:product_id], api_key: current_api_key})
+    @items = params[:tag_id].present? ? product.find_product_items_by_tag(params[:tag_id]) : product.product_items(current_api_key)
     sort_by_price
   end
 
