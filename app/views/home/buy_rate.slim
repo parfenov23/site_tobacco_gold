@@ -14,7 +14,7 @@
             - sum = item.current_price(current_user)
             .item_content
                 .icon
-                    img src=item.current_img
+                    img src=item.current_img onerror="if (this.src != '/no_img_item.png') this.src = '/no_img_item.png';"
                 .name 
                     a href="/item?id=#{item.id}" = "#{item.product.title} - #{item.title}"
                 .sum #{sum} руб
