@@ -94,7 +94,7 @@ class HomeController < ApiController
   end
 
   def cabinet
-    @visible_bar = false
+    # @visible_bar = false
     @contact = current_user.contact
   end
 
