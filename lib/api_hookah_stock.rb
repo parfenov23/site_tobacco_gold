@@ -52,6 +52,10 @@ class ApiHookahStock
     sender(url + "/api/api/all_top_magazine", params)
   end
 
+  def self.find_api_key(params={})
+    sender(url + "/api/api/find_api_key", params)
+  end
+
   def self.sender(url, params={}, type="get")
     time_hash = Rails.env.production? ? 5 : 0
     Rails.cache.fetch(url + "?" + params.to_query, expires_in: time_hash.minute) do
