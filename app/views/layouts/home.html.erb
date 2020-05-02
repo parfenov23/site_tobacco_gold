@@ -75,7 +75,7 @@
     <%= render "layouts/left_sidebar/section" %>
     <%= render "layouts/right_sidebar/section" %>
     <section class="content__wrp wrapper">
-      <%class_inner = @visible_bar == false ? "not_right_bar" : ""%>
+      <%class_inner = all_product_items_top.blank? ? "not_right_bar" : ""%>
       <div class="inner__right-sidebar <%= class_inner %>" style="">
         <div class="inner-left-sidebar">
           <div class="inner__my-tasks" id="content">
