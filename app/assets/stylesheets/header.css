@@ -49,8 +49,8 @@ header .notification-area {
 }
 
 #product_logo {
-  width: 192px;
-  height: 25px;
+/*  width: 192px;*/
+  height: 100%;
   padding-top: 6px;
 }
 
