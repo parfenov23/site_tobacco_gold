@@ -345,6 +345,11 @@ header .profile{
   margin-right: 10px;
 }
 
+header .profile a i{
+  font-size: 20px;
+  color: white;
+}
+
 header .admin, header .phone{
   display: inline-block;
   float: left;

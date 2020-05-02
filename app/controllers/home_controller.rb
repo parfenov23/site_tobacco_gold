@@ -37,8 +37,8 @@ class HomeController < ApiController
 
   def rm_item_to_basket
     session[:items].delete(params[:item_id].to_i)
-    @all_items = ProductItem.new({}).where(id: session[:items])
-    @all_sum = @all_items.map{|pi| pi.product.current_price*session[:items].count(pi.id)}.sum
+    @all_items = ProductItem.new({api_key: current_api_key}).where(id: session[:items])
+    @all_sum = @all_items.map{|pi| pi.default_price*session[:items].count(pi.id)}.sum
     render json: {all: session[:items], count: session[:items].uniq.count, total_price: @all_sum}
   end
 
@@ -73,6 +73,7 @@ class HomeController < ApiController
 
   def current_magazine
     session[:current_magazine] = params[:current_magazine]
+    session[:items] = nil
     redirect_to "/"
   end
 

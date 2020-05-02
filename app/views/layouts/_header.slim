@@ -25,7 +25,8 @@ header.borderColorCustomize
       - if user_signed_in?
         .profile onclick="window.location.href='/cabinet'"
           a href="/cabinet"
-            img.circle-img-new src= user_ava(current_user.avatar)
+            / img.circle-img-new src= user_ava(current_user.avatar)
+            i.icon.participant
         a.exit.for-hover href="/users/sign_out"
           i.icon.log_out
       - else

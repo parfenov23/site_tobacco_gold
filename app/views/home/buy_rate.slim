@@ -1,9 +1,10 @@
 - title "Корзина товаров"
 .content.content-block__normal.background.normal_align.page_buy_rate
     .header_block
+        - sum_price_delivery = current_price_delivery(@all_sum)
         - count_items = @all_items.count
         .title.hidden_text В корзине #{count_items} #{Russian.p(count_items, "товар", "товара", "товаров")}
-        .sum_price.js__titleTotlaPriceBasket #{@all_sum} руб
+        .sum_price.js__titleTotlaPriceBasket #{@all_sum+sum_price_delivery} руб
 
     / .description_page
     /   = raw((ContentPage.where(name_page: "buy_rate").last.description.to_s rescue "Нет описания страницы"))
@@ -21,6 +22,10 @@
                 .count #{count} шт.
                 .remove.js__rmItemInBasket data-id=item.id
                     .btn_rm.backgroundCustomize ×
+        - if sum_price_delivery > 0
+          .delivery 
+            .title Стоимость доставки: 
+            .price #{sum_price_delivery} руб
     - if count_items > 0
         form.form_send_basket
             - if current_user.contact.blank? 
@@ -44,15 +49,8 @@
                 option value="visa" По карте при получении
             .input-wrp
                 input placeholder="Комментарий к заказу" name="request[comment]"
-
-            .btn.js__submitFormBasket.backgroundCustomize Отправить
-            / .column_left
-            /     .title_rate Выберите пакет ставок:
-            /     .packets
-            /         - 6.times do
-            /             .packet.block_display_inline
-            /                 img src="https://bonusmall.ru/img.php?id=5243"
-            /     .finish_price
-            /         |Стоимость 100 рублей
-            / / .column_right
-            / /     .title_rate Выберите способ оплаты:
+            input.minPriceOrder type="hidden" value=current_magazine["min_price_order"]
+            - if @all_sum >= current_magazine["min_price_order"]
+              .btn.js__submitFormBasket.backgroundCustomize Отправить
+            - else
+              .min_price_order Минимальная сумма заказа #{current_magazine["min_price_order"]} руб.

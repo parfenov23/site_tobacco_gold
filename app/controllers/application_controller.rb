@@ -9,10 +9,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_api_key
-    @current_api_key = if request.host == "localhost" 
-      "b093dec6d556b53c69ff6e33a7b7d794" 
-    elsif session[:current_magazine].blank?
-      session[:current_magazine] = ApiHookahStock.find_api_key({domain: request.host})["api_key"]
+    @current_api_key = if session[:current_magazine].blank?
+      session[:current_magazine] = request.host == "localhost" ? "b093dec6d556b53c69ff6e33a7b7d794" : ApiHookahStock.find_api_key({domain: request.host})["api_key"]
       session[:current_magazine]
     else
       session[:current_magazine]

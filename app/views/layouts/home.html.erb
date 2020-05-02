@@ -98,11 +98,8 @@
 
     <!-- VK Widget -->
     <% if Rails.env.production? %>
-    <div id="vk_community_messages"></div>
-    <script type="text/javascript">
-      VK.Widgets.CommunityMessages("vk_community_messages", 119261580, {tooltipButtonText: "Есть вопрос?"});
-    </script>
+      <%= raw current_magazine["vk_chat_widget"] %>
+      <%= raw current_magazine["ya_metrika"] %>
     <% end %>
-    <%= render "layouts/ya_metrika" if Rails.env.production? %>
   </body>
   </html>

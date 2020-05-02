@@ -51,8 +51,15 @@ var submitFormBasket = function(){
   var form = $(this).closest("form");
   var name = form.find("[name='request[user_name]']").val();
   var phone = form.find("[name='request[user_phone]']").val();
+  var street = form.find("[name='request[address][street]']").val();
+  var house = form.find("[name='request[address][house]']").val();
+  var room = form.find("[name='request[address][room]']").val();
+  var type_payment = form.find("[name='request[type_payment]']").val();
+  var valid_type_payment = (type_payment == "cash" || type_payment == "visa");
+  var min_price_order = parseInt(form.find(".minPriceOrder").val());
+  var valid_min_price_order = (parseFloat($(".js__titleTotlaPriceBasket").text()) >= min_price_order);
 
-  if (form.find("[name='contact_id']").length || name.length && phone.length){
+  if ((form.find("[name='contact_id']").length || name.length && phone.length) && (street.length && house.length && room.length && valid_type_payment && valid_min_price_order)){
     $.ajax({
       type   : 'POST',
       url    : '/send_item_to_basket',
@@ -68,7 +75,11 @@ var submitFormBasket = function(){
       }
     });
   }else{
-    show_error('Пожалуйста заполните все поля', 3000);
+    if(!valid_min_price_order){
+      show_error('Минимальная сумма заказа '+min_price_order+" руб.", 3000);
+    }else{
+      show_error('Пожалуйста заполните все поля', 3000);
+    }
   }
 }
 

@@ -53,6 +53,16 @@ module ApplicationHelper
     @current_company
   end
 
+  def current_price_delivery(current_price)
+    arr_price_delivery = current_magazine["price_delivery"].split(";").map{|d| {price: d.split("=").first.to_i, delivery: d.split("=").last.to_i}}
+
+    last_hash = arr_price_delivery.present? ? {} : {price: 0, delivery: 0}
+    arr_price_delivery.each do |t_hash|
+      last_hash = t_hash if current_price >= t_hash[:price]
+    end
+    last_hash[:delivery] || 0
+  end
+
   def all_pages
     [
       ["Как это работает", "how_it_works"],
