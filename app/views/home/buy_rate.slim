@@ -32,7 +32,19 @@
               input type="hidden" name="contact_id" value="#{current_user.contact.id}"
             input type="hidden" name="user_id" value="#{current_user.id}"
             .input-wrp
+                input placeholder="Улица" name="request[address][street]"
+            .input-wrp
+                input placeholder="Номер дома" name="request[address][house]"
+            .input-wrp
+                input placeholder="Квартира" name="request[address][room]"
+            .input-wrp
+              select.form_select name="request[type_payment]"
+                option Выберите тип оплаты
+                option value="cash" Наличные при получении
+                option value="visa" По карте при получении
+            .input-wrp
                 input placeholder="Комментарий к заказу" name="request[comment]"
+
             .btn.js__submitFormBasket.backgroundCustomize Отправить
             / .column_left
             /     .title_rate Выберите пакет ставок:
