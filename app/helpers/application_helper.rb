@@ -10,7 +10,7 @@ module ApplicationHelper
   # Заголовок страницы
   def layout_title
     d = @page_title.nil? ? "" : " | "
-    @page_title.to_s + d + "Tobacco Gold Екатеринбург"
+    @page_title.to_s + d + "#{current_company.title}"
   end
 
   def title(page_title=nil)
