@@ -54,7 +54,7 @@ module ApplicationHelper
   end
 
   def current_price_delivery(current_price)
-    arr_price_delivery = current_magazine["price_delivery"].split(";").map{|d| {price: d.split("=").first.to_i, delivery: d.split("=").last.to_i}}
+    arr_price_delivery = current_magazine["price_delivery"].to_s.split(";").map{|d| {price: d.split("=").first.to_i, delivery: d.split("=").last.to_i}}
 
     last_hash = arr_price_delivery.present? ? {} : {price: 0, delivery: 0}
     arr_price_delivery.each do |t_hash|

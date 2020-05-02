@@ -50,7 +50,7 @@
             .input-wrp
                 input placeholder="Комментарий к заказу" name="request[comment]"
             input.minPriceOrder type="hidden" value=current_magazine["min_price_order"]
-            - if @all_sum >= current_magazine["min_price_order"]
+            - if @all_sum >= current_magazine["min_price_order"].to_i
               .btn.js__submitFormBasket.backgroundCustomize Отправить
             - else
               .min_price_order Минимальная сумма заказа #{current_magazine["min_price_order"]} руб.
