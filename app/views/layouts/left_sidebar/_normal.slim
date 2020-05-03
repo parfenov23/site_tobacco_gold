@@ -11,9 +11,10 @@ aside#left-sidebar-normal.left-sidebar__normal
     /     span.title.hide_menu_average Миксы
   nav.left-menu.contacts
     - @all_content_pages.each do |content_page|
-      a href="/page/#{content_page['url']}"
-        i.icon.category
-        span.title = content_page["title"]
+      - if content_page["url"] != "index"
+        a href="/page/#{content_page['url']}"
+          i.icon.category
+          span.title = content_page["title"]
     - if current_user_admin?
       a href="#{ApiHookahStock.url}/api/users/auth_admin?api_key=#{current_user.api_key}"
         i.icon.participant
