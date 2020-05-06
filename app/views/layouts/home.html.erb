@@ -4,30 +4,28 @@
 <![endif]-->
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!--   <title>
-    Табак для кальяна от мировых лидеров табачного производства! | Tobacco Gold
-  </title> -->
   <title>
     <%= layout_title %>
   </title>
-  <meta name="description" content="Если вы ищете акцизный табак для кальяна, рассчитанный на российский рынок - компания «Tobacco Gold» к Вашим услугам! У нас вы сможете купить табак оптом по выгодной цене в Екатеринбурге и с гарантией качества.">
-  <meta name="keywords" content="табак для кальяна, табак для кальяна в екатеринбуге, купить табака для кальяна, купить табак для кальяна оптом, табак для кальяна оптом в екатеринбурге, купить табак оптом, купить кальян в екатеринбурге, кальян оптом, купить amy екатеринбург">
-  <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-  <link rel="manifest" href="/favicon/manifest.json">
+  <% current_favicon_folder = Rails.env.production? ? current_company.favicon_folder : "favicon"%>
+  <meta name="description" content="<%= current_company.meta_description %>">
+  <meta name="keywords" content="<%= current_company.meta_keywords %>">
+  <link rel="apple-touch-icon" sizes="57x57" href="/<%= current_favicon_folder %>/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/<%= current_favicon_folder %>/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/<%= current_favicon_folder %>/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/<%= current_favicon_folder %>/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/<%= current_favicon_folder %>/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/<%= current_favicon_folder %>/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/<%= current_favicon_folder %>/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/<%= current_favicon_folder %>/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/<%= current_favicon_folder %>/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/<%= current_favicon_folder %>/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/<%= current_favicon_folder %>/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/<%= current_favicon_folder %>/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/<%= current_favicon_folder %>/favicon-16x16.png">
+  <link rel="manifest" href="/<%= current_favicon_folder %>/manifest.json">
   <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+  <meta name="msapplication-TileImage" content="/<%= current_favicon_folder %>/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
   <meta name="interkassa-verification" content="63fbfa1c569045e082b4b3f5f89b3de4" />
   <meta name="yandex-verification" content="7a92de6225e2700a" />

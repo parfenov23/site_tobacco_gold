@@ -1,4 +1,4 @@
-- title "Табак для кальяна от мировых лидеров табачного производства!"
+- title current_company.meta_title
 - current_index_page = @all_content_pages.select{|page| page["url"] == "index"}.last
 .content.content-block__normal class=(current_index_page.present? ? "background" : "")
   - if current_index_page.present?
