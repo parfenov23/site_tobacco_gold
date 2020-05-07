@@ -67,8 +67,8 @@
   &:hover {
     filter: grayscale(20%);
   }
-  &.not{
-    background-color: #bbb;
+  &.not, &.false{
+    background-color: #bbb !important;
     cursor: default;
   }
 }
