@@ -1,4 +1,7 @@
 @import "color";
+aside.right-sidebar{
+  margin-bottom: 48px;
+}
 aside.right-sidebar .common-info {
   padding-top    : 45px;
   padding-bottom : 10px;
