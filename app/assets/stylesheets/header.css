@@ -1,11 +1,21 @@
 header {
   width      : 100%;
   height     : 48px;
-  background : url(/uploads/common/header/header.png) 0 0 repeat-x;
+/*  background : url(/uploads/common/header/header.png) 0 0 repeat-x;*/
   position   : fixed;
   top        : 0;
   left       : 0;
   z-index    : 999
+}
+
+ header::after{
+  border-top: 3px solid $color_flamingo_approx;
+  display: block;
+  position: relative;
+  top: 11px;
+  margin: 0 auto;
+  width: 100%;
+  content: "";
 }
 
 header .holder__new {

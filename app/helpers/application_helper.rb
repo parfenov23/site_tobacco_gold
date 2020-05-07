@@ -125,4 +125,12 @@ module ApplicationHelper
     @current_api_key
   end
 
+  def theme_color
+    hash_color = JSON.parse(current_company.theme_color, {:symbolize_names => true}) rescue {}
+    hash_color[:left_bar_color] = hash_color[:left_bar_color].present? ? hash_color[:left_bar_color] : "#1f1f1f"
+    hash_color[:btn_color] = hash_color[:btn_color].present? ? hash_color[:btn_color] : "#F6A623"
+    hash_color[:body_color] = hash_color[:background_color].present? ? hash_color[:background_color] : "url(/uploads/common/patt.png) 0 0 repeat"
+    hash_color
+  end
+
 end

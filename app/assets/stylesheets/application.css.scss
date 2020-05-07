@@ -20,15 +20,6 @@
  */
  @import "color";
 
- header::after{
-  border-top: 3px solid $color_flamingo_approx;
-  display: block;
-  position: relative;
-  top: 8px;
-  margin: 0 auto;
-  width: 100%;
-  content: "";
-}
 
 .item_link {
   color : #000;

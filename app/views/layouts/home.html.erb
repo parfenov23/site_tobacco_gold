@@ -31,26 +31,29 @@
   <meta name="yandex-verification" content="7a92de6225e2700a" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <script type="text/javascript" src="//vk.com/js/api/openapi.js?143"></script>
-  <% $current_color_theme = (current_company.theme_color.present? ? current_company.theme_color : "#F6A623") %>
+  <% current_color_theme = theme_color %>
   <%= stylesheet_link_tag 'application' %>
   <style>
     .backgroundCustomize{
-      background-color: <%= $current_color_theme %>;
+      background-color: <%= current_color_theme[:btn_color] %>;
     }
     .colorCustomize{
-      color: <%= $current_color_theme %>;
+      color: <%= current_color_theme[:btn_color] %>;
     }
     .colorHoverCustomize:hover{
-      color: <%= $current_color_theme %> !important;
+      color: <%= current_color_theme[:btn_color] %> !important;
     }
     .backgroundHoverCustomize:hover{
-      background-color: <%= $current_color_theme %> !important;
+      background-color: <%= current_color_theme[:btn_color] %> !important;
     }
     .borderColorCustomize, .borderColorCustomize:after{
-      border-color: <%= $current_color_theme %> !important;
+      border-color: <%= current_color_theme[:btn_color] %> !important;
     }
     #sliderSort .noUi-connect{
-      background-color: <%= $current_color_theme %> !important;
+      background-color: <%= current_color_theme[:btn_color]%> !important;
+    }
+    .asidBarColor{
+      background-color: <%= current_color_theme[:left_bar_color] %>;
     }
   </style>
   
@@ -68,7 +71,7 @@
   <%= yield :styles %>
   <!--<link href="/uploads/application.css" media="all" rel="stylesheet" type="text/css">-->
 
-  <body>
+  <body style="background: <%= current_color_theme[:body_color] %>;">
     <%= render "layouts/header" %>
     <%= render "layouts/left_sidebar/section" %>
     <%= render "layouts/right_sidebar/section" %>
