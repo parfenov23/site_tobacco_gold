@@ -15,7 +15,7 @@
         - price = item.current_price(current_user)
         .title_price #{price} руб
       .time
-        - max_count = item.magazine_count.select{|h| h["id"] == current_magazine["id"]}.first["count"]
+        - max_count = item.magazine_count.select{|h| h["id"] == current_magazine["id"]}.first["count"] rescue 99999
         - current_count_basket = session[:items].select{|i| i == item.id}.count
         .title_count data-max_count=max_count data-current_count=current_count_basket
           .btn_qty
