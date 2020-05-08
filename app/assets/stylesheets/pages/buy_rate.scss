@@ -28,10 +28,26 @@
         width: 20%;
         padding-top: 24px;
         padding-left: 8px;
+        text-align: center;
       }
       .count{
+        text-align: center;
         width: 20%;
         padding-top: 24px;
+        display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        .btn_increase{
+          border-radius: 50%;
+          color: white;
+          font-size: 14px;
+          width: 14px;
+          height: 14px;
+          text-align: center;
+          cursor: pointer;
+          line-height: 14px;
+          margin: 0px 6px 0px 6px;
+        }
       }
       .remove{
         .btn_rm{

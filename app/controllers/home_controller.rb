@@ -29,10 +29,12 @@ class HomeController < ApiController
   end
 
   def add_item_to_basket
-    arr = params[:count].to_i.times.map{|c| params[:item_id].to_i}
-    # binding.pry
-    session[:items] = session[:items].present? ? (session[:items] + arr) : arr
-    render json: {all: session[:items], count: session[:items].uniq.count}
+    find_count_item = session[:items].select{|k| k == params[:item_id].to_i}.count
+    if (find_count_item + params[:count].to_i) <= params[:max_count].to_i
+      arr = params[:count].to_i.times.map{|c| params[:item_id].to_i}
+      session[:items] = session[:items].present? ? (session[:items] + arr) : arr
+      render json: {all: session[:items], count: session[:items].uniq.count}
+    end
   end
 
   def rm_item_to_basket
@@ -40,6 +42,19 @@ class HomeController < ApiController
     @all_items = ProductItem.new({api_key: current_api_key}).where(id: session[:items])
     @all_sum = @all_items.map{|pi| pi.default_price*session[:items].count(pi.id)}.sum
     render json: {all: session[:items], count: session[:items].uniq.count, total_price: @all_sum}
+  end
+
+  def add_or_rm_count_item_basket
+    count = session[:items].select{|k| k == params[:item_id].to_i}.count
+    if params[:type] == "add"
+      session[:items] += [params[:item_id].to_i]
+      count += 1
+    else
+      count -= 1
+      session[:items].delete(params[:item_id].to_i)
+      session[:items] += count.times.map{|k| params[:item_id].to_i }
+    end
+    render json: {count: count}
   end
 
   def redirect_test
@@ -57,10 +72,15 @@ class HomeController < ApiController
   end
 
   def send_item_to_basket
+    if params[:registration] == "true"
+      Rails.cache.clear
+      auth_user = User.registration(params[:user])
+      session[:api_key] = auth_user[:api_key] if auth_user[:success]
+    end
     basket = {}
     all_items_ids = all_item_basket.map(&:id)
     session[:items].map { |item| (basket[item.to_s] = basket[item.to_s].to_i + 1) if all_items_ids.include?(item.to_i)  }
-    result = ApiHookahStock.order_request("", "", params.merge({basket: basket, api_key: current_api_key}), "post")
+    result = ApiHookahStock.order_request("", "", params.merge({basket: basket, api_key: current_api_key, user_id: current_user.id}).except(:user), "post")
     Rails.cache.clear
     session[:items] = nil
     render json: result
@@ -86,7 +106,7 @@ class HomeController < ApiController
   # end
 
   def buy_rate
-    current_user.blank? ? (redirect_to "/sign_in") : nil
+    # current_user.blank? ? (redirect_to "/sign_in") : nil
     @all_items = all_item_basket
     @all_sum = @all_items.map{|pi| 
       item_product = pi.product

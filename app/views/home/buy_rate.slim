@@ -8,7 +8,7 @@
 
     / .description_page
     /   = raw((ContentPage.where(name_page: "buy_rate").last.description.to_s rescue "Нет описания страницы"))
-    .content_rate
+    .content_rate data-delivery=current_magazine["price_delivery"].to_s
         - @all_items.each do |item|
             - count = session[:items].count(item.id) 
             - item_product = item.product
@@ -19,23 +19,33 @@
                 .name 
                     a href="/item?id=#{item.id}" = "#{item.product.title} - #{item.title}"
                 .sum #{sum} руб
-                .count #{count} шт.
+                - max_count = item.magazine_count.select{|h| h["id"] == current_magazine["id"]}.first["count"]
+                .count data-max_count=(max_count)
+                  .btn_increase.backgroundCustomize.js__AddOrRmCountBasket data-id=item.id data-type="rm" -
+                  span #{count} шт.
+                  .btn_increase.backgroundCustomize.js__AddOrRmCountBasket style=(max_count == count ? "display: none;" : "") data-id=item.id data-type="add" +
                 .remove.js__rmItemInBasket data-id=item.id
                     .btn_rm.backgroundCustomize ×
-        - if sum_price_delivery > 0
-          .delivery 
-            .title Стоимость доставки: 
-            .price #{sum_price_delivery} руб
+        .delivery style=(sum_price_delivery > 0 ? "" : "display: none;")
+          .title Стоимость доставки: 
+          .price #{sum_price_delivery} руб
     - if count_items > 0
         form.form_send_basket
-            - if current_user.contact.blank? 
+            - if current_user.blank?
+              .input-wrp
+                  input placeholder="Email" name="user[email]" type="email"
+              .input-wrp
+                  input placeholder="Пароль" name="user[password]" type="password"
+              .input-wrp
+                  input placeholder="Повторите пароль" name="user[password_confirmation]" type="password"
               .input-wrp
                   input placeholder="Ваше имя" name="request[user_name]"
               .input-wrp
                   input placeholder="Номер телефона" name="request[user_phone]"
+              input type="hidden" name="registration" value="true"
             - else
               input type="hidden" name="contact_id" value="#{current_user.contact.id}"
-            input type="hidden" name="user_id" value="#{current_user.id}"
+              / input type="hidden" name="user_id" value="#{current_user.id}"
             .input-wrp
                 input placeholder="Улица" name="request[address][street]"
             .input-wrp
@@ -51,7 +61,6 @@
                 input placeholder="Комментарий к заказу" name="request[comment]"
             - min_price_order = current_magazine["min_price_order"].present? ? current_magazine["min_price_order"] : 0
             input.minPriceOrder type="hidden" value=min_price_order
-            - if @all_sum >= current_magazine["min_price_order"].to_i
-              .btn.js__submitFormBasket.backgroundCustomize Отправить
-            - else
-              .min_price_order Минимальная сумма заказа #{current_magazine["min_price_order"]} руб.
+            - valid_min_order = @all_sum >= current_magazine["min_price_order"].to_i
+            .btn.js__submitFormBasket.backgroundCustomize style=(valid_min_order ? "" : "display: none;") Отправить
+            .min_price_order style=(valid_min_order ? "display: none;" : "") Минимальная сумма заказа #{current_magazine["min_price_order"]} руб.

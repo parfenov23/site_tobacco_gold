@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   post "add_item_to_basket" => "home#add_item_to_basket"
   post "rm_item_to_basket" => "home#rm_item_to_basket"
   post "send_item_to_basket" => "home#send_item_to_basket"
+  post "add_or_rm_count_item_basket" => "home#add_or_rm_count_item_basket"
 
   #VK================
   get "callback_vk" => "home#callback_vk"
