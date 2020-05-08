@@ -18,8 +18,10 @@
               .user
                 i.icon.category.colorCustomize
                 .user_name = item.product_title
-          - present_stock = item.count > 0 || item.in_stock
+          - item_count = item.magazine_count.select{|h| h["id"] == current_magazine["id"]}.first["count"]
+          - present_stock = item_count > 0 || item.in_stock
           .parent_item
             input.js__countItemBasket type="hidden" value="1"
+            input.title_count type="hidden" data-max_count=item_count
             - js_add_btn = present_stock ? "js__addToBasket" : ""
             .btn.backgroundCustomize data-id=item.id class=(present_stock.to_s + " " +  js_add_btn) = present_stock ? "Добавить в корзину" : "Нет на складе"

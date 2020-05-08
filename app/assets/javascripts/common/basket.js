@@ -1,7 +1,7 @@
 var addCountToBasket = function(){
   var btn_id = $(this).data('id');
   var count = $(this).closest(".parent_item").find(".js__countItemBasket").val();
-  var max_count = parseInt($(this).closest(".item_content").find(".title_count").data("max_count"));
+  var max_count = parseInt($(this).closest(".parent_item").find(".title_count").data("max_count"));
   $.ajax({
     type   : 'POST',
     url    : '/add_item_to_basket',
