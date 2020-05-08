@@ -14,7 +14,9 @@
           img src=@item.current_img u="image" onerror="if (this.src != '/no_img_item.png') this.src = '/no_img_item.png';"
         .all_action.parent_item
           input.js__countItemBasket type="hidden" value="1"
-          - if @item.count > 0 || @item.in_stock
+          - item_count = @item.magazine_count.select{|h| h["id"] == current_magazine["id"]}.first["count"]
+          - if item_count > 0 || @item.in_stock
+            input.title_count type="hidden" data-max_count=item_count
             .btn.js__addToBasket.backgroundCustomize data-id=@item.id Добавить в корзину
           - else
             .btn.not.backgroundCustomize.backgroundHoverCustomize Нет в наличии
