@@ -100,7 +100,7 @@ var sum_basket = function(){
     var count = parseFloat($(block).find(".count span").text());
     sum += (price*count);
   });
-  sum = sum + price_delivery(sum);
+  sum = (sum + price_delivery(sum)).toFixed(2);
   $(".header_block .sum_price").text(sum + " руб");
   var min_price_order = parseInt($(".form_send_basket .minPriceOrder").val());
   if(sum > min_price_order){
