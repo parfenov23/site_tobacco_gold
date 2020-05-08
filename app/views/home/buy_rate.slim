@@ -4,7 +4,7 @@
         - sum_price_delivery = current_price_delivery(@all_sum)
         - count_items = @all_items.count
         .title.hidden_text В корзине #{count_items} #{Russian.p(count_items, "товар", "товара", "товаров")}
-        .sum_price.js__titleTotlaPriceBasket #{@all_sum+sum_price_delivery} руб
+        .sum_price.js__titleTotlaPriceBasket #{(@all_sum+sum_price_delivery).round(2)} руб
 
     / .description_page
     /   = raw((ContentPage.where(name_page: "buy_rate").last.description.to_s rescue "Нет описания страницы"))
