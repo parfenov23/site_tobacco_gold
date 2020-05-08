@@ -29,7 +29,7 @@ class HomeController < ApiController
   end
 
   def add_item_to_basket
-    find_count_item = session[:items].select{|k| k == params[:item_id].to_i}.count
+    find_count_item = session[:items].present? ? session[:items].select{|k| k == params[:item_id].to_i}.count : 0
     if (find_count_item + params[:count].to_i) <= params[:max_count].to_i
       arr = params[:count].to_i.times.map{|c| params[:item_id].to_i}
       session[:items] = session[:items].present? ? (session[:items] + arr) : arr
