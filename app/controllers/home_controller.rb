@@ -117,7 +117,15 @@ class HomeController < ApiController
 
   def cabinet
     # @visible_bar = false
-    @contact = current_user.contact
+    if (current_user.contact.present? rescue false)
+      @contact = current_user.contact
+    else
+      redirect_to "/"
+    end
+  end
+
+  def redirect_to_index
+    redirect_to "/"
   end
 
   def callback_vk
