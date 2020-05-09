@@ -38,14 +38,15 @@
                   input placeholder="Пароль" name="user[password]" type="password"
               .input-wrp
                   input placeholder="Повторите пароль" name="user[password_confirmation]" type="password"
+              input type="hidden" name="registration" value="true"
+            - if (current_user.contact.blank? rescue true)
               .input-wrp
                   input placeholder="Ваше имя" name="request[user_name]"
               .input-wrp
                   input placeholder="Номер телефона" name="request[user_phone]"
-              input type="hidden" name="registration" value="true"
             - else
               input type="hidden" name="contact_id" value="#{current_user.contact.id}"
-              / input type="hidden" name="user_id" value="#{current_user.id}"
+            / input type="hidden" name="user_id" value="#{current_user.id}"
             .input-wrp
                 input placeholder="Улица" name="request[address][street]"
             .input-wrp

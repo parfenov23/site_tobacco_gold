@@ -27,7 +27,7 @@ var rmItemInBasket = function(){
     success: function (data) {
       show_error('Товар удален из корзины', 3000);
       $("header .my_rate .count").text(data.length);
-      $(".header_block .js__titleTotlaPriceBasket").text(data.total_price.toFixed(1) + " руб")
+      $(".header_block .js__titleTotlaPriceBasket").text(data.total_price.toFixed(2) + " руб")
       btn.closest(".item_content").remove();
     },
     error  : function () {

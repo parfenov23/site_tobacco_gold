@@ -19,7 +19,7 @@ aside#left-sidebar-normal.left-sidebar__normal.asidBarColor
       a href="#{ApiHookahStock.url}/api/users/auth_admin?api_key=#{current_user.api_key}"
         i.icon.participant
         span.title Админка
-    - elsif current_user.present? && current_user.contact.present?
+    - elsif ((current_user.present? && current_user.contact.present?) rescue false)
       a href="/cabinet"
         i.icon.participant
         span.title Личный кабинет
