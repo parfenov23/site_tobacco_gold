@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   get "profile" => "profile#edit"
   put "profile" => "profile#update"
   get 'stock' => "admin/stock#index"
-  get '*unmatched_route', to: 'home#redirect_to_index'
+
 
 
   # post "admin/create_attachment" => "admin#create_attachment"
@@ -53,4 +53,5 @@ Rails.application.routes.draw do
 
 
   root :to => "home#index"
+  get '*unmatched_route', to: 'home#redirect_to_index'
 end

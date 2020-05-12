@@ -74,7 +74,13 @@ class HomeController < ApiController
   def send_item_to_basket
     if params[:registration] == "true"
       Rails.cache.clear
-      auth_user = User.registration(params[:user])
+      user_email = "#{params[:request][:user_phone].gsub(" ","").gsub("-","")}@crm-stock.ru"
+      pssword = SecureRandom.hex(8)
+      user_params = {
+        user: {email: user_email, password: pssword, password_confirmation: pssword},
+        contact: {first_name: params[:request][:user_name], phone: params[:request][:user_phone]}
+      }
+      auth_user = User.registration(user_params)
       session[:api_key] = auth_user[:api_key] if auth_user[:success]
     end
     basket = {}

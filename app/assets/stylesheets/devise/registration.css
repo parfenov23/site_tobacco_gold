@@ -51,11 +51,7 @@ form .title {
   display : block;
 }
 
-.email {
-  padding-top : 10px;
-}
-
-.login {
+.email, .login, .first_name, .phone  {
   padding-top : 10px;
 }
 

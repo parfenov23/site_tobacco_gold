@@ -32,12 +32,12 @@
     - if count_items > 0
         form.form_send_basket
             - if current_user.blank?
-              .input-wrp
-                  input placeholder="Email" name="user[email]" type="email"
-              .input-wrp
-                  input placeholder="Пароль" name="user[password]" type="password"
-              .input-wrp
-                  input placeholder="Повторите пароль" name="user[password_confirmation]" type="password"
+              / .input-wrp
+              /     input placeholder="Email" name="user[email]" type="email"
+              / .input-wrp
+              /     input placeholder="Пароль" name="user[password]" type="password"
+              / .input-wrp
+              /     input placeholder="Повторите пароль" name="user[password_confirmation]" type="password"
               input type="hidden" name="registration" value="true"
             - if (current_user.contact.blank? rescue true)
               .input-wrp

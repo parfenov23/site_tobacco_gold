@@ -170,4 +170,5 @@ $(document).ready(function () {
   $(document).on('click', '.js__AddOrRmCountBasket', addOrRmCountBasket);
 
   $(".form_send_basket [name='request[user_phone]']").mask("+7(999) 999-9999");
+  $("form#new_user.form_validate #contact_phone").mask("+7(999) 999-9999");
 });
