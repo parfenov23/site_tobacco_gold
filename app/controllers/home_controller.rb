@@ -104,7 +104,7 @@ class HomeController < ApiController
   end
 
   def item
-    @item = ProductItem.find(params[:id], current_api_key) 
+    @item = ProductItem.find(params[:id], current_api_key)
   end
 
   # def mix_box

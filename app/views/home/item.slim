@@ -11,7 +11,8 @@
   .content_item
     .left_content
         .imgCenter
-          img src=@item.current_img u="image" onerror="if (this.src != '/no_img_item.png') this.src = '/no_img_item.png';"
+          a data-fancybox="gallery" href=@item.current_img
+            img src=@item.current_img u="image" onerror="if (this.src != '/no_img_item.png') this.src = '/no_img_item.png';"
         .all_action.parent_item
           input.js__countItemBasket type="hidden" value="1"
           - item_count = @item.magazine_count.select{|h| h["id"] == current_magazine["id"]}.first["count"]
