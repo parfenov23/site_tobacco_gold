@@ -57,7 +57,7 @@ class ApiHookahStock
   end
 
   def self.sender(url, params={}, type="get")
-    time_hash = Rails.env.production? ? 5 : 0
+    time_hash = Rails.env.production? ? 0 : 0
     Rails.cache.fetch(url + "?" + params.to_query, expires_in: time_hash.minute) do
       FileUtils.rm_rf(Rails.root.to_s + "/tmp/cache")
       agent = Mechanize.new
