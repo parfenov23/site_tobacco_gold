@@ -58,13 +58,14 @@ class ApiHookahStock
 
   def self.sender(url, params={}, type="get")
     time_hash = Rails.env.production? ? 0 : 0
-    Rails.cache.fetch(url + "?" + params.to_query, expires_in: time_hash.minute) do
-      FileUtils.rm_rf(Rails.root.to_s + "/tmp/cache")
-      agent = Mechanize.new
-      params.merge!({api_key: api_key}) if params[:api_key].blank?
-      page = (type == "get" ? agent.get(url, params) : agent.post(url, params))
-      JSON.parse(page.body)
-    end
+    # Rails.cache.fetch(url + "?" + params.to_query, expires_in: time_hash.minute) do
+    FileUtils.rm_rf(Rails.root.to_s + "/tmp/cache")
+    agent = Mechanize.new
+    params.merge!({api_key: api_key}) if params[:api_key].blank?
+    page = (type == "get" ? agent.get(url, params) : agent.post(url, params))
+    FileUtils.rm_rf(Rails.root.to_s + "/tmp/cache")
+    JSON.parse(page.body)
+    # end
   end
 
   def self.url
