@@ -2,10 +2,13 @@
 - content_for :script do
   script src="/uploads/script/item.js" type="text/javascript"
 
+- find_product = @item.product
+- find_category = Category.find(find_product.category_id)
+= render "hlebBar", {arr_links: [{title: "Главная", url: "/"}, {title: find_category.first_name, url: "/category/#{find_category.id}"}, {title: find_product.title, url: "/category/#{find_product.id}"}, {title: @item.title, url: "/category/#{@item.id}"}]}
+
 .content.content-block__normal.background.normal_align
   .header_block
-    .title.hidden_text #{@item.product.title} - #{@item.title}
-    - item_product = @item.product
+    .title.hidden_text #{@item.title}
     - price = @item.current_price(current_user)
     .sum_price ЦЕНА: #{price} руб
   .content_item

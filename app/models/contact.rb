@@ -15,6 +15,10 @@ class Contact
     all_contact_prices.select{|k| k["product_id"] == item.product_id}.last
   end
 
+  def all_order_request
+    ApiHookahStock.order_request("", "/contact_order_request", {contact_id: id})
+  end
+
   def sales
     Sale.all_contact(id)
   end

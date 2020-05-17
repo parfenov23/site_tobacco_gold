@@ -1,7 +1,8 @@
 class ApiController < ApplicationController
   before_action :all_categories, :all_content_pages, 
   :current_api_magazine, :company_magazines, 
-  :current_company, :all_top_magazine
+  :current_company, :all_top_magazine, 
+  except: [:update_user_contact, :send_item_to_basket, :user_reset_password]
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   # protect_from_forgery with: :exception

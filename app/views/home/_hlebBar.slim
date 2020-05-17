@@ -1,0 +1,8 @@
+- i = 0
+.hlebBar.asidBarColor
+  - arr_links.each do |link|
+    - if i > 0
+      span ›
+    - i += 1
+    - add_class = (arr_links.last == link ? "colorCustomize" : "")
+    a.colorHoverCustomize href="#{link[:url]}" class=add_class = link[:title]

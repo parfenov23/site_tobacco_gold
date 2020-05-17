@@ -101,7 +101,7 @@
     }
   }
   .button_rate {
-/*    background-color : $color_flamingo_approx;*/
+    /*    background-color : $color_flamingo_approx;*/
     height           : 30px;
     font-size        : 18px;
     line-height      : 30px;
@@ -154,3 +154,41 @@
     display: initial;
   }
 }
+
+.allItems.category{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .item{
+    width: 100%;
+    max-width: calc(50% - 4px);
+    margin-bottom: 4px;
+    height: 280px;
+    .item_content{
+      position: initial;
+      width: 100%;
+      padding: 0;
+      .item_link{
+        display: inline-block;
+        padding: 4px;
+        .img_item{
+          max-width: 100%;
+          width: 100%;
+          height: 226px;
+          max-height: 220px;
+          img{
+            height: 100%;
+            max-width: 100%;
+          }
+        }
+      }
+      .title{
+        overflow: inherit;
+        white-space: initial;
+        text-overflow: initial;
+        width: 100%;
+        margin-top: 8px;
+      }
+    }
+  }
+} 

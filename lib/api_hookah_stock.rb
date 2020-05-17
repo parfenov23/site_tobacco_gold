@@ -21,9 +21,9 @@ class ApiHookahStock
     sender(url + "/api/users#{add_id}#{add_url}", params)
   end
 
-  def self.contacts(id="", add_url="", params={})
+  def self.contacts(id="", add_url="", params={}, type="get")
     add_id = id.present? ? "/#{id}" : ""
-    sender(url + "/api/contacts#{add_id}#{add_url}", params)
+    sender(url + "/api/contacts#{add_id}#{add_url}", params, type)
   end
 
   def self.order_request(id="", add_url="", params={}, type="get")
@@ -59,13 +59,24 @@ class ApiHookahStock
   def self.sender(url, params={}, type="get")
     time_hash = Rails.env.production? ? 0 : 0
     # Rails.cache.fetch(url + "?" + params.to_query, expires_in: time_hash.minute) do
-    FileUtils.rm_rf(Rails.root.to_s + "/tmp/cache")
+    # FileUtils.rm_rf(Rails.root.to_s + "/tmp/cache")
     agent = Mechanize.new
     params.merge!({api_key: api_key}) if params[:api_key].blank?
-    page = (type == "get" ? agent.get(url, params) : agent.post(url, params))
-    FileUtils.rm_rf(Rails.root.to_s + "/tmp/cache")
+    page = sender_method(agent, type, url, params)
+    # FileUtils.rm_rf(Rails.root.to_s + "/tmp/cache")
     JSON.parse(page.body)
     # end
+  end
+
+  def self.sender_method(agent, type, url, params)
+    case type
+    when "get"
+      agent.get(url, params)
+    when "post"
+      agent.post(url, params)
+    when "put"
+      agent.put(url, params.to_json, {"Content-Type" => "application/json"})
+    end
   end
 
   def self.url

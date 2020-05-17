@@ -52,7 +52,7 @@ $(document).ready(function () {
         if(data.success){
           window.location.href = "/"
         }else{
-          show_error("Проверьте логин или пароль", 3000);
+          show_error(data.text_error, 3000);
         }
         
       },
@@ -71,7 +71,7 @@ $(document).ready(function () {
         if(data.success){
           window.location.href = "/"
         }else{
-          show_error("Проверьте данные", 3000);
+          show_error(data.text_error, 3000);
         }
         
       },

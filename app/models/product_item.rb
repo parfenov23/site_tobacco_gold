@@ -20,7 +20,7 @@ class ProductItem
   end
 
   def product
-    Product.new({}).find(product_id)
+    Product.find(product_id)
   end
 
   def where(*arg)

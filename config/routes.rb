@@ -20,14 +20,18 @@ Rails.application.routes.draw do
   get "current_magazine/:current_magazine" => "home#current_magazine"
   get 'category/:category_id' => "home#category"
   get 'products/:product_id' => "home#products"
+  get 'show_pdf_order_request/:id' => "home#show_pdf_order_request"
 
   get "sign_in" => "home#sign_in"
   get "sign_up" => "home#sign_up"
+  get "reset_password" => "home#reset_password"
 
   post "add_item_to_basket" => "home#add_item_to_basket"
   post "rm_item_to_basket" => "home#rm_item_to_basket"
   post "send_item_to_basket" => "home#send_item_to_basket"
   post "add_or_rm_count_item_basket" => "home#add_or_rm_count_item_basket"
+  post "update_user_contact" => "home#update_user_contact"
+  post "user_reset_password" => "home#user_reset_password"
 
   #VK================
   get "callback_vk" => "home#callback_vk"

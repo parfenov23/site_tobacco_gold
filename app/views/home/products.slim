@@ -1,3 +1,6 @@
+- find_product = Product.find(params[:product_id])
+- find_category = Category.find(find_product.category_id)
+= render "hlebBar", {arr_links: [{title: "Главная", url: "/"}, {title: find_category.first_name, url: "/category/#{find_category.id}"}, {title: find_product.title, url: "/category/#{find_product.id}"}]}
 .content.content-block__normal
   = render "sort_by_price"
   .productTags

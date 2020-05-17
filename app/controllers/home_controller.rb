@@ -1,6 +1,8 @@
 require 'vk_message'
 class HomeController < ApiController
-  before_filter :all_categories, :all_content_pages, :current_api_magazine, :company_magazines, :current_company, except: [:current_magazine]
+  before_filter :all_categories, :all_content_pages, :current_api_magazine, 
+  :company_magazines, :current_company, 
+  except: [:current_magazine, :update_user_contact, :send_item_to_basket, :user_reset_password]
   def index
   end
 
@@ -151,6 +153,20 @@ class HomeController < ApiController
     else
       redirect_to "/cabinet"
     end
+  end
+
+  def update_user_contact
+    ApiHookahStock.contacts(current_user.contact.id, "", params.merge({api_key: current_api_key}), "put")
+    render json: {success: true}
+  end
+
+  def user_reset_password
+    render json: ApiHookahStock.users("", "/reset_password", params.merge({api_key: current_api_key}))
+  end
+
+  def show_pdf_order_request
+    data = open("#{ApiHookahStock.url}/order_invoice/#{params[:id]}.pdf?key=#{params[:time]}").read
+    send_data data, type: 'application/pdf', disposition: 'inline'
   end
 
   private

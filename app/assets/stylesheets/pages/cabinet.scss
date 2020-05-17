@@ -9,6 +9,19 @@
       font-size: 14px;
     }
   }
+  .user_info{
+    width: 100%;
+    span {
+      margin-bottom: 4px;
+      display: inline-block;
+    }
+    input{
+      width: calc(100% - 7px);
+    }
+    .btn{
+      margin-top: 8px;
+    }
+  }
 }
 
 .my_sales{

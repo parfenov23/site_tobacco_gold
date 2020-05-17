@@ -6,19 +6,35 @@
       / .user_ava
       /   img id="userAva" src="/uploads/ava.jpg" alt=""
       - if @contact.present?
-        .user_info
-          .title.first_name Имя: #{@contact.first_name}
-          .title.phone Телефон: #{@contact.phone}
-          .title.balance Баланс на карте: #{@contact.purse} руб.
+        form.user_info
+          .title.first_name 
+            span ФИО: 
+            input.form_input placeholder="ФИО" name="contacts[first_name]" value=@contact.first_name
+          .title.phone 
+            span Телефон: 
+            input.form_input placeholder="Телефон" name="contacts[phone]" value=@contact.phone
+          / .title.balance Баланс на карте: #{@contact.purse} руб.
+          .btn.backgroundCustomize.js_updateUserContact Сохранить
 
 
-.content.content-block__normal.background
-  .header_block
-    .title Мои покупки
-  .content_block
-    .my_sales
-      - if @contact.present?
+- if @contact.present?
+  .content.content-block__normal.background
+    .header_block
+      .title Мои заказы
+    .content_block
+      .my_sales
+        - @contact.all_order_request.each do |order_request|
+          - if order_request['current_status']['id'] != "paid"
+            .sale
+              a href="/show_pdf_order_request/#{order_request['id']}?time=#{order_request['created_at'].to_time.to_i}" target="_blank"
+                = "#{order_request['created_at'].to_s.to_time.strftime("%d-%m-%Y")} (#{order_request['total_sum_and_delivery']}р.) | #{order_request['current_status']['title']}"
+
+  .content.content-block__normal.background
+    .header_block
+      .title Мои покупки
+    .content_block
+      .my_sales
         - @contact.sales.each do |sale|
           .sale
-            a href="/show_sale/#{sale.id}.pdf" 
+            a href="/show_sale/#{sale.id}.pdf" target="_blank"
               = "#{sale.created_at.to_s.to_time.strftime("%d-%m-%Y")} (#{sale.price}р.) "

@@ -1,64 +1,69 @@
 @media only screen and(min-width : 300px) and(max-width : 900px) {
-    .left-sidebar__wrp{
-        .left-sidebar__normal{
-            left: -100%;
-        }
+  .left-sidebar__wrp{
+    .left-sidebar__normal{
+      left: -100%;
     }
-    .left-part{
-        .burger{
-            display: inline-block !important;
-            font-size: 24px;
-            color: #ffffff;
-        }
-        .logo{
-            display: none;
-        }
+  }
+  .left-part{
+    .burger{
+      display: inline-block !important;
+      font-size: 24px;
+      color: #ffffff;
     }
-    header{
-        .right-part{
-            min-width: 238px;
-        }
-    }   
-    .content__wrp.wrapper{
-        margin-top: 48px;
+    .logo{
+      display: none;
     }
-    .category_item{
-      .hide_product_in_category{
-        display: none !important;
-      }
+  }
+  header{
+    .right-part{
+      min-width: 238px;
     }
-    .right-sidebar__wrp{
-        display: none;
-    }
-
-    .content_item{
-        .left_content{
-            .all_action{
-                .btn{
-                    font-size: 16px;
-                }
-            }
-        }
-    }
-    .sorting_slider{
+  }   
+  .content__wrp.wrapper{
+    margin-top: 48px;
+  }
+  .category_item{
+    .hide_product_in_category{
       display: none !important;
     }
-    .allItems{
-      .mobileDevice{
-        display: initial;
-      }
-      .fullDevics{
-        display: none;
+  }
+  .right-sidebar__wrp{
+    display: none;
+  }
+
+  .content_item{
+    .left_content{
+      .all_action{
+        .btn{
+          font-size: 16px;
+        }
       }
     }
+  }
+  .sorting_slider{
+    display: none !important;
+  }
+  .allItems{
+    .mobileDevice{
+      display: initial;
+    }
+    .fullDevics{
+      display: none;
+    }
+  }
 }
 @media only screen and(min-width : 300px) and(max-width : 900px) and(max-width : 600px) {
-    .content.content-block__normal{
-        zoom: 0.7;
+  .content.content-block__normal{
+    zoom: 0.7;
+  }
+  .content__wrp .inner-left-sidebar {
+    margin-right: 0px;
+    .hlebBar{
+      left: 0;
+      width: 100%;
+      padding-left: 4px;
     }
-    .content__wrp .inner-left-sidebar {
-        margin-right: 0px;
-    }
+  }
 
 }
 @media only screen and(min-width : 300px) and(max-width : 900px) and(max-width : 560px) {
