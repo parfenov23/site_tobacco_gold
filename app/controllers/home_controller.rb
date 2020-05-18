@@ -79,6 +79,7 @@ class HomeController < ApiController
       user_email = "#{params[:request][:user_phone].gsub(" ","").gsub("-","")}@crm-stock.ru"
       pssword = SecureRandom.hex(8)
       user_params = {
+        api_key: current_api_key,
         user: {email: user_email, password: pssword, password_confirmation: pssword},
         contact: {first_name: params[:request][:user_name], phone: params[:request][:user_phone]}
       }
