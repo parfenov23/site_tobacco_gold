@@ -75,7 +75,7 @@ class HomeController < ApiController
 
   def send_item_to_basket
     if params[:registration] == "true"
-      Rails.cache.clear
+      Rails.cache.clear rescue nil
       user_email = "#{params[:request][:user_phone].gsub(" ","").gsub("-","")}@crm-stock.ru"
       pssword = SecureRandom.hex(8)
       user_params = {
@@ -89,7 +89,7 @@ class HomeController < ApiController
     all_items_ids = all_item_basket.map(&:id)
     session[:items].map { |item| (basket[item.to_s] = basket[item.to_s].to_i + 1) if all_items_ids.include?(item.to_i)  }
     result = ApiHookahStock.order_request("", "", params.merge({basket: basket, api_key: current_api_key, user_id: current_user.id}).except(:user), "post")
-    Rails.cache.clear
+    Rails.cache.clear rescue nil
     session[:items] = nil
     render json: result
   end
