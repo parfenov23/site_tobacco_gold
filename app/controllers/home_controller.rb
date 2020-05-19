@@ -2,7 +2,11 @@ require 'vk_message'
 class HomeController < ApiController
   before_filter :all_categories, :all_content_pages, :current_api_magazine, 
   :company_magazines, :current_company, 
-  except: [:current_magazine, :update_user_contact, :send_item_to_basket, :user_reset_password]
+  except: [
+    :current_magazine, :update_user_contact, 
+    :send_item_to_basket, :user_reset_password, 
+    :add_item_to_basket, :rm_item_to_basket, :add_or_rm_count_item_basket
+  ]
   def index
   end
 
@@ -10,8 +14,8 @@ class HomeController < ApiController
   end
 
   def category
-    @items = ProductItem.new({api_key: current_api_key}).where(product_id: Category.find(params[:category_id], current_api_key).products.map(&:id) )
-    sort_by_price
+    # @items = ProductItem.new({api_key: current_api_key}).where(product_id: Category.find(params[:category_id], current_api_key).products.map(&:id) )
+    # sort_by_price
   end
 
   def products

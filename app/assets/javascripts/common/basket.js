@@ -27,7 +27,7 @@ var rmItemInBasket = function(){
     success: function (data) {
       show_error('Товар удален из корзины', 3000);
       $("header .my_rate .count").text(data.length);
-      $(".header_block .js__titleTotlaPriceBasket").text(data.total_price.toFixed(2) + " руб")
+      sum_basket();
       btn.closest(".item_content").remove();
     },
     error  : function () {
@@ -100,8 +100,9 @@ var sum_basket = function(){
     var count = parseFloat($(block).find(".count span").text());
     sum += (price*count);
   });
+  $(".header_block .sum_price").text(sum.toFixed(2) + " руб");
   sum = (sum + price_delivery(sum)).toFixed(2);
-  $(".header_block .sum_price").text(sum + " руб");
+  $(".content_rate .totalOrder .sum_price").text(sum + " руб");
   var min_price_order = parseInt($(".form_send_basket .minPriceOrder").val());
   if(sum > min_price_order){
     $(".form_send_basket .btn").show();
