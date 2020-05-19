@@ -1,5 +1,6 @@
 class ApiHookahStock
   require 'mechanize'
+  require 'digest/md5'
 
   def self.product_items(id="", add_url="", params={})
     add_id = id.present? ? "/#{id}" : ""
@@ -58,14 +59,21 @@ class ApiHookahStock
 
   def self.sender(url, params={}, type="get")
     time_hash = Rails.env.production? ? 5 : 0
-    # Rails.cache.fetch(url + "?" + params.to_query, expires_in: time_hash.minute) do
-      # FileUtils.rm_rf(Rails.root.to_s + "/tmp/cache")
-      agent = Mechanize.new
-      params.merge!({api_key: api_key}) if params[:api_key].blank?
-      page = sender_method(agent, type, url, params)
-      # FileUtils.rm_rf(Rails.root.to_s + "/tmp/cache")
-      JSON.parse(page.body)
-    # end
+    id_cache = Digest::MD5.hexdigest(url + "?" + params.to_query)
+    begin
+      Rails.cache.fetch(id_cache, expires_in: time_hash.minute) do
+        # FileUtils.rm_rf(Rails.root.to_s + "/tmp/cache")
+        agent = Mechanize.new
+        params.merge!({api_key: api_key}) if params[:api_key].blank?
+        page = sender_method(agent, type, url, params)
+        # FileUtils.rm_rf(Rails.root.to_s + "/tmp/cache")
+        JSON.parse(page.body)
+      end
+    rescue Errno::EACCES => e
+      FileUtils.rm_rf(Rails.root.to_s + "/tmp/cache")
+      sender(url, params={}, type="get")
+    end
+
   end
 
   def self.sender_method(agent, type, url, params)
