@@ -2,5 +2,5 @@
   .item_content
     a.item_link.colorHoverCustomize href="/products/#{product.id}"
       .img_item
-        img src=product.current_image onerror="if (this.src != '/no_img_item.png') this.src = '/no_img_item.png';"
+        img data-src=product.current_image onerror="if (this.src != '/no_img_item.png') this.src = '/no_img_item.png';"
       .title = product.title

@@ -21,7 +21,7 @@
  @import "color";
 
 
-.item_link {
+ .item_link {
   color : #000;
 }
 
@@ -90,6 +90,16 @@
     }
   }
 }
+
+img {
+  opacity: 1;
+  transition: opacity 0.3s;
+  &[data-src] {
+    opacity: 0;
+  }
+}
+
+
 
 @import "left_sidebar/menu_normal";
 @import "aside";

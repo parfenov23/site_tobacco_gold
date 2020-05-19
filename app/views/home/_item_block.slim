@@ -3,7 +3,7 @@
     a.item_link.colorHoverCustomize href="/item/#{item.id}"
       .title = item.title
       .img_item
-        img src=item.current_img onerror="if (this.src != '/no_img_item.png') this.src = '/no_img_item.png';"
+        img data-src=item.current_img onerror="if (this.src != '/no_img_item.png') this.src = '/no_img_item.png';"
     
     .user
       i.icon.category.colorCustomize
