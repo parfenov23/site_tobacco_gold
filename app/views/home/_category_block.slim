@@ -1,6 +1,6 @@
 .item.parent_item
   .item_content
-    a.item_link.colorHoverCustomize href="/category/#{category.id}"
+    a.item_link.colorHoverCustomize.js_loadContentPage data-href="/category/#{category.id}" href="javascript:void(0)"
       .img_item
         img src=category.img onerror="if (this.src != '/no_img_item.png') this.src = '/no_img_item.png';"
       .title = category.first_name

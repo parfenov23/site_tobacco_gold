@@ -1,14 +1,14 @@
 header {
   width      : 100%;
   height     : 48px;
-/*  background : url(/uploads/common/header/header.png) 0 0 repeat-x;*/
+  /*  background : url(/uploads/common/header/header.png) 0 0 repeat-x;*/
   position   : fixed;
   top        : 0;
   left       : 0;
-  z-index    : 999
+  z-index    : 100;
 }
 
- header::after{
+header::after{
   border-top: 3px solid $color_flamingo_approx;
   display: block;
   position: relative;
@@ -59,7 +59,7 @@ header .notification-area {
 }
 
 #product_logo {
-/*  width: 192px;*/
+  /*  width: 192px;*/
   height: 100%;
   padding-top: 6px;
 }
@@ -215,19 +215,104 @@ header .important-a .icon {
   margin-right   : 3px
 }
 
+header .center-part{
+  width: 100%;
+}
+
+header .center-part .listWrpSearch{
+  position: absolute;
+  left: 0;
+  top: 26px;
+  background-color: white;
+  z-index: 5;
+  width: 100%;
+  -moz-box-shadow: 0 1px 4px rgba(51, 82, 109, 0.26);
+  -webkit-box-shadow: 0 1px 4px rgba(51, 82, 109, 0.26);
+  box-shadow: 0 1px 4px rgba(51, 82, 109, 0.26);
+  background: #FFF;
+  min-width: 300px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+header .center-part .listWrpSearch{
+  display: none;
+}
+
+header .center-part .listWrpSearch ul{
+  list-style: none;
+  padding-left: 0px;
+  margin: 0px;
+}
+
+header .center-part .listWrpSearch .reference{
+  display: none;
+}
+
+header .center-part .listWrpSearch ul li{
+  padding: 6px;
+  border-bottom: 1px solid #bbb;
+  cursor: pointer;
+}
+
+header .center-part .listWrpSearch ul li:last-child{
+  border-bottom: none;
+}
+
+header .center-part .listWrpSearch ul li a{
+  width: 100%;
+  display: block;
+  color: black;
+}
+
+header .center-part .listWrpSearch ul li a .title{
+  font-size: 18px;
+  margin-left: 8px;
+}
+
+header .center-part .listWrpSearch ul li a .price{
+  float: right;
+  font-size: 14px;
+  color: #6f6f6f;
+  line-height: 22px;
+}
+
+
+header .center-part .listWrpSearch ul li a img{
+  width: 20px;
+}
+
+header .center-part .inputWrpSearch{
+  display: flex;
+  width: 100%;
+}
+
 header .search {
-  width         : 71px;
-  background    : url(/uploads/common/header/search.png) 0 7px no-repeat;
-  padding-left  : 15px;
+  width         : 100%;
+  /*  background    : url(/uploads/common/header/search.png) 0 7px no-repeat;*/
+  padding-left  : 4px;
   border-bottom : 1px solid #9CA0A6;
   float         : left;
-  margin-right  : 13px
+  margin-right  : 13px;
+  display: flex;
+  position: relative;
 }
 
 header .search input {
   background : none;
   border     : none;
-  width      : 71px
+  width      : 100%;
+  color: white;
+  line-height: 23px;
+  outline: none;
+  font-size: 16px;
+}
+
+header .search .search_icon{
+  margin: 4px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
 }
 
 header .separator {
@@ -259,7 +344,8 @@ header .log-in {
 header .left-part{
   display: flex;
   justify-content: flex-start;
-  width: 100%;
+  width: 40%;
+  /*  max-width: 300px;*/
 }
 
 header .left-part .burger{
@@ -269,7 +355,7 @@ header .left-part .burger{
 header .right-part {
   display: flex;
   justify-content: flex-end;
-  width: 100%;
+  width: 50%;
   padding-top: 2px;
 }
 

@@ -73,12 +73,13 @@ a.no_color{
   background-color : rgba(255, 255, 255, 0.6);
   position         : fixed;
   bottom           : 0;
-  left             : 0
+  left             : 0;
+  margin-left: 240px;
 }
 
 #to-top a {
-  float      : right;
-  margin     : 7px 40px 0 0;
+  float      : left;
+  margin     : 7px 0px 0 20px;
   width      : 33px;
   height     : 33px;
   position   : relative;

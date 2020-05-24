@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get "sign_in" => "home#sign_in"
   get "sign_up" => "home#sign_up"
   get "reset_password" => "home#reset_password"
+  get "ajax_search_product_item" => "home#ajax_search_product_item"
 
   post "add_item_to_basket" => "home#add_item_to_basket"
   post "rm_item_to_basket" => "home#rm_item_to_basket"

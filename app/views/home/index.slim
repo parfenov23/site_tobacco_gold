@@ -1,5 +1,9 @@
 - title current_company.meta_title
 - current_index_page = @all_content_pages.select{|page| page["url"] == "index"}.last
+.content.content-block__normal
+  .allItems.category
+    - all_categories.each do |category|
+      = render "category_block", {category: category}
 - if current_index_page.present?
   .content.content-block__normal.background
     .header_block
@@ -7,7 +11,3 @@
       hr
     .content_block
       = raw current_index_page["description"]
-.content.content-block__normal
-  .allItems.category
-    - all_categories.each do |category|
-      = render "category_block", {category: category}

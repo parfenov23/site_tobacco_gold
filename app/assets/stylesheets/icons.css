@@ -72,3 +72,7 @@ i.location:before{
  content: "\e900";
 }
 
+i.search_icon:before{
+  content: "\e903";
+}
+

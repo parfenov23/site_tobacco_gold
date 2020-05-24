@@ -39,4 +39,10 @@ class ProductItem
   def all_present
     ApiHookahStock.product_items("", "", {type: "present", api_key: api_key}).map{|pi| self.class.new(pi)}
   end
+
+  def transfer_to_json
+    as_json({
+      methods: [:current_img]
+    })
+  end
 end

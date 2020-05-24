@@ -1,13 +1,18 @@
 require 'vk_message'
 class HomeController < ApiController
   before_filter :all_categories, :all_content_pages, :current_api_magazine, 
-  :company_magazines, :current_company, 
+  :company_magazines, :current_company, :all_top_magazine,
   except: [
     :current_magazine, :update_user_contact, 
     :send_item_to_basket, :user_reset_password, 
-    :add_item_to_basket, :rm_item_to_basket, :add_or_rm_count_item_basket
+    :add_item_to_basket, :rm_item_to_basket, :add_or_rm_count_item_basket,
+    :ajax_search_product_item
   ]
   def index
+    if params[:type] == "json"
+      html_form = render_to_string "/home/index", :layout => false
+      render text: html_form
+    end
   end
 
   def how_it_works
@@ -16,6 +21,10 @@ class HomeController < ApiController
   def category
     # @items = ProductItem.new({api_key: current_api_key}).where(product_id: Category.find(params[:category_id], current_api_key).products.map(&:id) )
     # sort_by_price
+    if params[:type] == "json"
+      html_form = render_to_string "/home/category", :layout => false
+      render text: html_form
+    end
   end
 
   def products
@@ -174,6 +183,13 @@ class HomeController < ApiController
     send_data data, type: 'application/pdf', disposition: 'inline'
   end
 
+  def ajax_search_product_item
+    render json: ApiHookahStock.product_items("", "/search", params.merge({api_key: current_api_key})).map{|pi| 
+      product_item = ProductItem.new(pi)
+      product_item.as_json.merge({"current_img" => product_item.current_img})
+    }
+  end
+
   private
 
   def all_item_basket
@@ -183,6 +199,10 @@ class HomeController < ApiController
   def sort_by_price
     if params[:price].present?
       @items = @items.select{|item| item.default_price >= params[:price][:from].to_i && item.default_price <= params[:price][:to].to_i}
+    end
+    if params[:sort].present?
+      @items = @items.sort {|a,b| a.current_price(current_user) <=> b.current_price(current_user)} if params[:sort] == "price"
+      @items = @items.sort {|a,b| a.title <=> b.title} if params[:sort] == "title"
     end
   end
 

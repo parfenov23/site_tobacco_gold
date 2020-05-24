@@ -4,7 +4,7 @@
 
 - find_product = @item.product
 - find_category = Category.find(find_product.category_id)
-= render "hlebBar", {arr_links: [{title: "Главная", url: "/"}, {title: find_category.first_name, url: "/category/#{find_category.id}"}, {title: find_product.title, url: "/category/#{find_product.id}"}, {title: @item.title, url: "/category/#{@item.id}"}]}
+= render "hlebBar", {arr_links: [{title: "Главная", url: "/"}, {title: find_category.first_name, url: "/category/#{find_category.id}"}, {title: find_product.title, url: "/products/#{find_product.id}"}, {title: @item.title, url: "/category/#{@item.id}"}]}
 
 .content.content-block__normal.background.normal_align
   .header_block
@@ -21,7 +21,7 @@
           - item_count = @item.magazine_count.select{|h| h["id"] == current_magazine["id"]}.first["count"]
           - if item_count > 0 || @item.in_stock
             input.title_count type="hidden" data-max_count=item_count
-            .btn.js__addToBasket.backgroundCustomize data-id=@item.id Добавить в корзину
+            .btn.js__addToBasket.backgroundCustomize.true data-id=@item.id Добавить в корзину
           - else
             .btn.not.backgroundCustomize.backgroundHoverCustomize Нет в наличии
     .description_item

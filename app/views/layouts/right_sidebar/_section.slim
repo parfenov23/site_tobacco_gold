@@ -24,4 +24,4 @@
             input.js__countItemBasket type="hidden" value="1"
             input.title_count type="hidden" data-max_count=item_count
             - js_add_btn = present_stock ? "js__addToBasket" : ""
-            .btn.backgroundCustomize data-id=item.id class=(present_stock.to_s + " " +  js_add_btn) = present_stock ? "Добавить в корзину" : "Нет на складе"
+            .btn.backgroundCustomize.true data-id=item.id class=(present_stock.to_s + " " +  js_add_btn) = present_stock ? "Добавить в корзину" : "Нет на складе"

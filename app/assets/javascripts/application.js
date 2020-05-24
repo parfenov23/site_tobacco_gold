@@ -15,6 +15,16 @@ show_error = function (text, duration) {
   }
 };
 
+show_error_popup = function (text) {
+  $("#overlay, .alert_popup").show();
+  $(".alert_popup .text").html(text);
+}
+
+close_error_popup = function(){
+  $("#overlay, .alert_popup").hide();
+  window.location.reload();
+}
+
 function hide_to_top() {
   var scrollHeight = $(document).scrollTop();
   var windowHeight = $(window).height();
@@ -96,6 +106,22 @@ var loadDataImg = function(){
   });
 }
 
+var insertParam = function(key, value){
+    key = encodeURI(key); value = encodeURI(value);
+    var kvp = document.location.search.substr(1).split('&');
+    var i=kvp.length; var x; 
+    while(i--) {
+        x = kvp[i].split('=');
+        if (x[0]==key){
+            x[1] = value;
+            kvp[i] = x.join('=');
+            break;
+        }
+    }
+    if(i<0) {kvp[kvp.length] = [key,value].join('=');}
+    document.location.search = kvp.join('&'); 
+}
+
 $(document).ready(function () {
   hide_to_top();
   $('#to-top a').on('click', function (e) {
@@ -114,6 +140,11 @@ $(document).ready(function () {
     $( this ).toggleClass( "active" );
   });
 
+  //
+  $(".js_selectOrderItems").change(function(){
+    insertParam("sort", $(this).val());
+});
+
   $(document).on('click', '.js__submitBtnFormSliderSort', function(){
     var block_sort = $(this).closest(".sorting_slider").find("#sliderSort");
     var from = block_sort.find(".noUi-handle-lower .noUi-tooltip").text().split(" Руб.")[0];
@@ -122,5 +153,30 @@ $(document).ready(function () {
   });
   noUIinstall();
   loadDataImg();
+
+  $(document).on('click', '.alert_popup .close', close_error_popup);
+
+  $(document).on('click', '.js_loadContentPage', function(){
+    var btn = $(this).closest(".js_loadContentPage");
+    var url = btn.data("href");
+    history.pushState(url, "Категории", url);
+    $.ajax({
+      type   : 'get',
+      url    : url,
+      data   : {type: 'json'},
+      success: function (data) {
+        var content = $(data);
+        $("#content").fadeOut(300, function(){
+          $("#content").html('');
+          $("#content").append(content);
+          $("#content").fadeIn(300);
+          loadDataImg();
+        });
+      },
+      error  : function () {
+        show_error('Ошибка', 3000);
+      }
+    });
+  })
 
 });

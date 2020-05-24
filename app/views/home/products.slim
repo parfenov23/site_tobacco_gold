@@ -11,7 +11,11 @@
       - add_url = params[:price].present? ? "?price[from]=#{params[:price][:from]}&price[to]=#{params[:price][:to]}&tag_id=#{tag['id']}" : "?tag_id=#{tag['id']}"
       a.tag href="/products/#{params[:product_id]}#{add_url}" class=(params[:tag_id].to_i == tag['id'].to_i ? "select" : "")
         = tag["title"]
-
+  .orderSortItems
+    span Сортировать по:
+    select.js_selectOrderItems
+      option selected=(params[:sort] == "title" ? "selected" : false) value="title" Названию
+      option selected=(params[:sort] == "price" ? "selected" : false) value="price" Цене
   .fullDevics
     - @items.each do |item| 
       - if item.count > 0 || item.in_stock 

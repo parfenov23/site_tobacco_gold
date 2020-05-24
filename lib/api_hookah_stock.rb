@@ -61,7 +61,7 @@ class ApiHookahStock
     time_hash = Rails.env.production? ? 5 : 0
     id_cache = Digest::MD5.hexdigest(url + "?" + params.to_query)
     begin
-      Rails.cache.fetch(id_cache, expires_in: time_hash.minute) do
+      Rails.cache.fetch(id_cache, expires_in: time_hash.minute, race_condition_ttl: time_hash.minute) do
         # FileUtils.rm_rf(Rails.root.to_s + "/tmp/cache")
         agent = Mechanize.new
         params.merge!({api_key: api_key}) if params[:api_key].blank?

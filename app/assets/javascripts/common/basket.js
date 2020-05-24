@@ -1,20 +1,26 @@
 var addCountToBasket = function(){
-  var btn_id = $(this).data('id');
-  var count = $(this).closest(".parent_item").find(".js__countItemBasket").val();
-  var max_count = parseInt($(this).closest(".parent_item").find(".title_count").data("max_count"));
-  $.ajax({
-    type   : 'POST',
-    url    : '/add_item_to_basket',
-    data   : {item_id: btn_id, count: count, max_count: max_count},
-    success: function (data) {
-      show_error('Товар добавлен в корзину', 3000);
-      $("header .my_rate .count").show();
-      $("header .my_rate .count").text(data.count);
-    },
-    error  : function () {
-      show_error('Ошибка. Попробуйте уменьшить количество', 3000);
-    }
-  });
+  var btn = $(this);
+  var btn_id = btn.data('id');
+  var count = btn.closest(".parent_item").find(".js__countItemBasket").val();
+  var max_count = parseInt(btn.closest(".parent_item").find(".title_count").data("max_count"));
+  if (btn.hasClass("true")){
+    $.ajax({
+      type   : 'POST',
+      url    : '/add_item_to_basket',
+      data   : {item_id: btn_id, count: count, max_count: max_count},
+      success: function (data) {
+        show_error('Товар добавлен в корзину', 3000);
+        btn.text("Товар в корзине");
+        btn.removeClass("true");
+        btn.addClass("false");
+        $("header .my_rate .count").show();
+        $("header .my_rate .count").text(data.count);
+      },
+      error  : function () {
+        show_error('Ошибка. Попробуйте уменьшить количество', 3000);
+      }
+    });
+  }
 }
 
 var rmItemInBasket = function(){
@@ -58,7 +64,8 @@ var addCountItemBasket = function(){
 }
 
 var submitFormBasket = function(){
-  var form = $(this).closest("form");
+  var btn = $(this);
+  var form = btn.closest("form");
   var name = form.find("[name='request[user_name]']").val();
   var phone = form.find("[name='request[user_phone]']").val();
   var street = form.find("[name='request[address][street]']").val();
@@ -70,17 +77,20 @@ var submitFormBasket = function(){
   var valid_min_price_order = (parseFloat($(".js__titleTotlaPriceBasket").text()) >= min_price_order);
 
   if ((form.find("[name='contact_id']").length || name.length && phone.length) && (street.length && house.length && room.length && valid_type_payment && valid_min_price_order)){
+    btn.hide();
     $.ajax({
       type   : 'POST',
       url    : '/send_item_to_basket',
       data   : form.serialize(),
       success: function (data) {
-        show_error('Ваша заявка отправлена. Наш менеджер свяжется с Вами в ближайшее время!', 3000);
-        setTimeout(function(){
-          window.location.href = '/'
-        }, 3000)
+        show_error_popup("Ваш заказ №" + data.id + " отправлен!<br>В ближайшее время с вами свяжется наш менеджер");
+        // show_error('Ваша заявка отправлена. Наш менеджер свяжется с Вами в ближайшее время!', 3000);
+        // setTimeout(function(){
+        //   window.location.href = '/'
+        // }, 3000)
       },
       error  : function () {
+        btn.show();
         show_error('Ошибка', 3000);
       }
     });

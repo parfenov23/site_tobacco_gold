@@ -13,6 +13,9 @@
           .title.phone 
             span Телефон: 
             input.form_input placeholder="Телефон" name="contacts[phone]" value=@contact.phone
+          .title.password 
+            span Новый пароль: 
+            input.form_input placeholder="Минимально 6 симвалов" name="contacts[password]" type="password"
           / .title.balance Баланс на карте: #{@contact.purse} руб.
           .btn.backgroundCustomize.js_updateUserContact Сохранить
 

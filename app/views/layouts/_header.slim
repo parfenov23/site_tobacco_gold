@@ -3,10 +3,23 @@ header.borderColorCustomize.asidBarColor
     .left-part
       a.js__openLeftSideBarMenu href="#"
         i.icon.burger
-      a.logo href="/" 
+      a.logo.js_loadContentPage data-href="/" href="javascript:void(0)"
         - current_logo = current_magazine["logo"]
         img#product_logo alt="" src=current_logo
         img#product_logo_mini alt="" src=current_logo style="display:none;"
+    .center-part
+      .search.focusBorderColor
+        .inputWrpSearch
+          input.js_search_product_item placeholder="Поиск по каталогу"
+          i.icon.search_icon
+        .listWrpSearch
+          ul
+            li.reference
+              a.colorHoverCustomize href="#"
+                img onerror="if (this.src != '/no_img_item.png') this.src = '/no_img_item.png';" src=""
+                span.title
+                span.price 23.40 руб
+            li.notSearch По Вашему запросу ничего не найдено
     .right-part
       .address
         i.icon.location

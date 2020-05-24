@@ -55,6 +55,9 @@
     .asidBarColor{
       background-color: <%= current_color_theme[:left_bar_color] %>;
     }
+    .focusBorderColor:focus-within{
+      border-bottom: 1px solid <%= current_color_theme[:btn_color] %>;
+    }
   </style>
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -90,6 +93,15 @@
 
     <div id="alert">
       <div class="text"></div>
+      <div class="close">×</div>
+    </div>
+    <div id="overlay" class="dark-overlay"></div>
+    <div class="alert_popup">
+      <div class="text">
+<!--         Ваш заказ №3452 отправлен! 
+        <br>
+        В ближайшее время с вами свяжется наш менеджер  -->
+      </div>
       <div class="close">×</div>
     </div>
 
