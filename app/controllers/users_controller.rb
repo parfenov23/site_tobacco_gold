@@ -7,7 +7,7 @@ class UsersController < ApiController
   end
 
   def registration
-    Rails.cache.clear
+    Rails.cache.clear rescue nil
     auth_user = User.registration(params.merge({api_key: current_api_key}))
     session[:api_key] = auth_user[:api_key] if auth_user[:success]
     render json: {success: auth_user[:success], text_error: auth_user[:text_error]}
