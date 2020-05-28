@@ -314,8 +314,8 @@ a.no_color{
 
 .header_block .hidden_text {
   text-overflow : ellipsis;
-  overflow      : hidden;
-  white-space   : nowrap;
+/*  overflow      : hidden;
+  white-space   : nowrap;*/
   width: 70%;
 }
 .header_block .sum_price{

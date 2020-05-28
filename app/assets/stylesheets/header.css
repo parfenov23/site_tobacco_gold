@@ -291,7 +291,7 @@ header .search {
   width         : 100%;
   /*  background    : url(/uploads/common/header/search.png) 0 7px no-repeat;*/
   padding-left  : 4px;
-  border-bottom : 1px solid #9CA0A6;
+  border-bottom : 1px solid white;
   float         : left;
   margin-right  : 13px;
   display: flex;
@@ -306,6 +306,10 @@ header .search input {
   line-height: 23px;
   outline: none;
   font-size: 16px;
+}
+
+header .search input::placeholder {
+  color: white;
 }
 
 header .search .search_icon{

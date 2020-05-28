@@ -201,8 +201,9 @@ class HomeController < ApiController
       @items = @items.select{|item| item.default_price >= params[:price][:from].to_i && item.default_price <= params[:price][:to].to_i}
     end
     if params[:sort].present?
-      @items = @items.sort {|a,b| a.current_price(current_user) <=> b.current_price(current_user)} if params[:sort] == "price"
-      @items = @items.sort {|a,b| a.title <=> b.title} if params[:sort] == "title"
+      @items = @items.sort {|a,b| a.current_price(current_user) <=> b.current_price(current_user)} if params[:sort] == "price" || params[:sort] == "priceASC"
+      @items = @items.sort {|a,b| a.title <=> b.title} if params[:sort] == "title" || params[:sort] == "titleASC"
+      @items = @items.reverse if params[:sort].scan("ASC").present?
     end
   end
 

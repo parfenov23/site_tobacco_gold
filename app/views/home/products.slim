@@ -14,8 +14,10 @@
   .orderSortItems
     span Сортировать по:
     select.js_selectOrderItems
-      option selected=(params[:sort] == "title" ? "selected" : false) value="title" Названию
-      option selected=(params[:sort] == "price" ? "selected" : false) value="price" Цене
+      option selected=(params[:sort] == "title" ? "selected" : false) value="title" По алфавиту А-Я
+      option selected=(params[:sort] == "titleASC" ? "selected" : false) value="titleASC" По алфавиту Я-А
+      option selected=(params[:sort] == "price" ? "selected" : false) value="price" Сначала дешевые
+      option selected=(params[:sort] == "priceASC" ? "selected" : false) value="priceASC" Сначала дорогие
   .fullDevics
     - @items.each do |item| 
       - if item.count > 0 || item.in_stock 
