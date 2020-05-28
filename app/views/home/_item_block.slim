@@ -1,20 +1,14 @@
 .item.parent_item
   .item_content
     a.item_link.colorHoverCustomize href="/item/#{item.id}"
-      .title = item.title
       .img_item
         img data-src=item.current_img onerror="if (this.src != '/no_img_item.png') this.src = '/no_img_item.png';"
-    
-    .user
-      i.icon.category.colorCustomize
-      .user_name = item.product_title
-    
-    .item_info
+      .title = item.title
+      - price = item.current_price(current_user)
       .price
-        i.icon.cash.colorCustomize
-        - price = item.current_price(current_user)
-        .title_price #{price} руб
-      .time
+        .title_price #{price} ₽
+    .blockAddToCart
+      .time.asidBarColor
         - max_count = item.magazine_count.select{|h| h["id"] == current_magazine["id"]}.first["count"]
         - current_count_basket = session[:items].present? ? session[:items].select{|i| i == item.id}.count : 0
         .title_count data-max_count=max_count data-current_count=current_count_basket
@@ -23,6 +17,6 @@
           input.js__countItemBasket value="1"
           .btn_qty style=(max_count == current_count_basket ? "display: none" : "")
             .qty.js__addCountItemBasket.backgroundCustomize data-type="add" + 
-
-    - present_stock = item.count > 0 || item.in_stock
-    .button_rate.js__addToBasket.backgroundCustomize data-id=item.id class=present_stock = present_stock ? "Добавить в корзину" : "Нет на складе"
+      
+      - present_stock = item.count > 0 || item.in_stock
+      .button_rate.js__addToBasket.backgroundCustomize data-id=item.id class=present_stock = present_stock ? "В корзину" : "Нет на складе"

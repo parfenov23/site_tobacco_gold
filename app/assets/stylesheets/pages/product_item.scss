@@ -1,37 +1,31 @@
-//colors
 @import "color";
-
+.all_items{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .item .item_content {
-  position : absolute;
-  padding  : 10px;
-  width    : 200px;
+  /*  position : absolute;*/
+  padding  : 6px;
+  /*  width    : 200px;*/
   .price {
-    float            : left;
-    font-size        : 15px;
-    background-color : $color_mako_approx;
-    width            : 98px;
-    height           : 20px;
-    color            : $white;
-    display          : inline-block;
     .title_price {
-      padding : 1px;
-      display : inline-block;
-    }
-    .icon {
-      font-size   : 16px;
-      float       : left;
-      display     : inline-block;
-      margin-left : 3px;
-      margin-top  : 1px;
+      font-weight: 400;
+      display: block;
+      width: calc(100% - 40px);
+      text-align: center;
+      padding: 0 20px 0 20px;
+      font-size: 20px;
+      margin: 4px 0px 4px 0px;
     }
   }
   .time {
     display          : inline-block;
-    background-color : $color_mako_approx;
     color            : $white;
     width            : 97px;
     height           : 20px;
-    float            : right;
+    margin-bottom: 8px;
+    border-radius: 14px;
     .icon {
       font-size   : 16px;
       float       : left;
@@ -84,13 +78,14 @@
     width         : 200px;
   }
   .title {
-    overflow       : hidden;
-    white-space    : nowrap;
-    text-overflow  : ellipsis;
-    float          : left;
-    font-size      : 15px;
-    padding-bottom : 10px;
-    width          : 200px;
+    display: block;
+    width: calc(100% - 20px);
+    text-align: center;
+    padding: 0 10px 5px 10px;
+    overflow: hidden;
+    margin: 0;
+    font-size: 14px;
+    height: 60px;
   }
   .img_item {
     height         : 225px;
@@ -186,9 +181,37 @@
         overflow: inherit;
         white-space: initial;
         text-overflow: initial;
-        width: 100%;
+/*        width: 100%;*/
         margin-top: 8px;
       }
     }
   }
 } 
+
+.item {
+  background-color   : #FFF;
+  height             : 400px;
+  width              : 220px;
+  display            : inline-block;
+  margin-left        : 3px;
+  margin-bottom      : 2px;
+  -moz-box-shadow    : 0 1px 4px rgba(51, 82, 109, 0.26);
+  -webkit-box-shadow : 0 1px 4px rgba(51, 82, 109, 0.26);
+  box-shadow         : 0 1px 4px rgba(51, 82, 109, 0.26);
+}
+
+.item.product{
+  height: 280px;
+}
+
+.item.product .item_content .img_item{
+  height: 200px;
+}
+
+.item.product .item_content .title{
+  overflow: inherit;
+  white-space: initial;
+  text-overflow: initial;
+  width: 188px;
+  margin-top: 8px;
+}

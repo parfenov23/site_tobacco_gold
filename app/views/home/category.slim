@@ -2,10 +2,9 @@
 = render "hlebBar", {arr_links: [{title: "Главная", url: "/"}, {title: find_category.first_name, url: "/category/#{find_category.id}"}]}
 .content.content-block__normal
   / = render "sort_by_price"
-  .allItems
-    .mobileDevice.fullDevics
-      - find_category.products(current_api_key).each do |product|
-        = render "product_block", {product: product}
+  .all_items
+    - find_category.products(current_api_key).each do |product|
+      = render "product_block", {product: product}
     
       / - @items.each do |item| 
       /   - if item.count > 0 || item.in_stock 

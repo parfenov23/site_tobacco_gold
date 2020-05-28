@@ -19,6 +19,7 @@
       option selected=(params[:sort] == "price" ? "selected" : false) value="price" Сначала дешевые
       option selected=(params[:sort] == "priceASC" ? "selected" : false) value="priceASC" Сначала дорогие
   .fullDevics
-    - @items.each do |item| 
-      - if item.count > 0 || item.in_stock 
-        = render "item_block", {item: item}
+    .all_items
+      - @items.each do |item| 
+        - if item.count > 0 || item.in_stock 
+          = render "item_block", {item: item}
