@@ -66,5 +66,5 @@
             - min_price_order = current_magazine["min_price_order"].present? ? current_magazine["min_price_order"] : 0
             input.minPriceOrder type="hidden" value=min_price_order
             - valid_min_order = @all_sum >= current_magazine["min_price_order"].to_i
-            .btn.js__submitFormBasket.backgroundCustomize style=(valid_min_order ? "" : "display: none;") Отправить
+            .btn.js__submitFormBasket.btnCustomizeColor style=(valid_min_order ? "" : "display: none;") Отправить
             .min_price_order style=(valid_min_order ? "display: none;" : "") Минимальная сумма заказа #{current_magazine["min_price_order"]} руб.

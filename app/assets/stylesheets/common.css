@@ -96,36 +96,6 @@ a.no_color{
   opacity : 0
 }
 
-.item {
-  background-color   : #FFF;
-  height             : 320px;
-  width              : 220px;
-  display            : inline-block;
-  margin-left        : 3px;
-  margin-bottom      : 2px;
-  min-width          : 220px;
-  max-width          : 350px;
-  -moz-box-shadow    : 0 1px 4px rgba(51, 82, 109, 0.26);
-  -webkit-box-shadow : 0 1px 4px rgba(51, 82, 109, 0.26);
-  box-shadow         : 0 1px 4px rgba(51, 82, 109, 0.26);
-}
-
-.item.product{
-  height: 280px;
-}
-
-.item.product .item_content .img_item{
-  height: 200px;
-}
-
-.item.product .item_content .title{
-  overflow: inherit;
-  white-space: initial;
-  text-overflow: initial;
-  width: 100%;
-  margin-top: 8px;
-}
-
 .content__wrp .inner-left-sidebar {
   margin-right : 20px;
 }

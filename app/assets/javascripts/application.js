@@ -122,6 +122,15 @@ var insertParam = function(key, value){
     document.location.search = kvp.join('&'); 
 }
 
+var selectCartTabItem = function(){
+  var btn = $(this);
+  all_content_tabs = btn.closest(".selectDescToSpec").find(".card-tab__content");
+  all_content_tabs.hide();
+  btn.closest("ul").find("li").removeClass("active").removeClass("borderColorCustomize");
+  btn.addClass("active").addClass("borderColorCustomize");
+  all_content_tabs.closest(".selectDescToSpec").find("."+btn.data("show")).show();
+}
+
 $(document).ready(function () {
   hide_to_top();
   $('#to-top a').on('click', function (e) {
@@ -177,6 +186,7 @@ $(document).ready(function () {
         show_error('Ошибка', 3000);
       }
     });
-  })
+  });
+  $(document).on('click', '.js_selectCartTabItem li', selectCartTabItem);
 
 });

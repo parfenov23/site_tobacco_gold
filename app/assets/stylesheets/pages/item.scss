@@ -38,6 +38,29 @@
       padding-bottom : 5px;
     }
   }
+  .selectDescToSpec{
+    .catalog-tabs{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border-bottom: 1px solid #e6e6e6;
+      &__tab{
+        display: inline-block;
+        padding: 13px 24px;
+        margin: 0 20px 0 0;
+        border-bottom: 1px solid transparent;
+        cursor: pointer;
+        font-size: 16px;
+        &.active{
+          color: #000000;
+        }
+      }
+    }
+    .card-tab__content{
+      padding: 12px 0px 12px 0px;
+      display: none;
+    }
+  }
 }
 
 #vk_comments{

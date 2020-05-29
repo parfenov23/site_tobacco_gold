@@ -35,28 +35,32 @@
   <%= stylesheet_link_tag 'application' %>
   <style>
     .backgroundCustomize{
-      background-color: <%= current_color_theme[:btn_color] %>;
+      background-color: <%= current_color_theme[:backgroundCustomize] %>;
     }
     .colorCustomize{
-      color: <%= current_color_theme[:btn_color] %> !important;
+      color: <%= current_color_theme[:colorCustomize] %> !important;
     }
     .colorHoverCustomize:hover{
-      color: <%= current_color_theme[:btn_color] %> !important;
+      color: <%= current_color_theme[:colorCustomizeHover] %> !important;
     }
     .backgroundHoverCustomize:hover{
-      background-color: <%= current_color_theme[:btn_color] %> !important;
+      background-color: <%= current_color_theme[:backgroundHoverCustomize] %> !important;
+    }
+    .btnCustomizeColor{
+      background-color: <%= current_color_theme[:btnCustomizeColor] %> !important;
     }
     .borderColorCustomize, .borderColorCustomize:after{
-      border-color: <%= current_color_theme[:btn_color] %> !important;
+      border-color: <%= current_color_theme[:borderColorCustomize] %> !important;
     }
+
     #sliderSort .noUi-connect{
-      background-color: <%= current_color_theme[:btn_color]%> !important;
+      background-color: <%= current_color_theme[:borderColorCustomize]%> !important;
     }
     .asidBarColor{
       background-color: <%= current_color_theme[:left_bar_color] %>;
     }
     .focusBorderColor:focus-within{
-      border-bottom: 1px solid <%= current_color_theme[:btn_color] %>;
+      border-bottom: 1px solid <%= current_color_theme[:focusBorderColor] %>;
     }
   </style>
   

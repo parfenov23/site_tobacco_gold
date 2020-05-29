@@ -21,9 +21,15 @@
           - item_count = @item.magazine_count.select{|h| h["id"] == current_magazine["id"]}.first["count"]
           - if item_count > 0 || @item.in_stock
             input.title_count type="hidden" data-max_count=item_count
-            .btn.js__addToBasket.backgroundCustomize.true data-id=@item.id Добавить в корзину
+            .btn.js__addToBasket.btnCustomizeColor.true data-id=@item.id Добавить в корзину
           - else
-            .btn.not.backgroundCustomize.backgroundHoverCustomize Нет в наличии
-    .description_item
-      = raw (@item.description || "Нет описания")
+            .btn.not Нет в наличии
+    .selectDescToSpec
+      ul.catalog-tabs.js_selectCartTabItem
+        li.catalog-tabs__tab.active.borderColorCustomize data-show="description_item" Описание
+        li.catalog-tabs__tab data-show="specification" Характеристики
+      .description_item.card-tab__content style="display: block;"
+        = raw (@item.description || "Нет описания")
+      .specification.card-tab__content
+        = raw (@item.specification || "Нет характеристик")
 = render "layouts/comment_vk" if Rails.env.production?
