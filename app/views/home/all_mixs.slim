@@ -1,9 +1,31 @@
+- @item = ProductItem.find(params[:id], current_api_key, true)
+.content.content-block__normal.background.normal_align
+  .header_block
+    .title.hidden_text #{@item.title}
+    - price = @item.current_price(current_user)
+    .sum_price ЦЕНА: #{price} руб
+  .content_item
+    .left_content
+        .imgCenter
+          a data-fancybox="gallery" href=@item.current_img
+            img src=@item.current_img u="image" onerror="if (this.src != '/no_img_item.png') this.src = '/no_img_item.png';"
+        .all_action.parent_item
+          input.js__countItemBasket type="hidden" value="1"
+          - item_count = @item.magazine_count.select{|h| h["id"] == current_magazine["id"]}.first["count"]
+          - if item_count > 0 || @item.in_stock
+            input.title_count type="hidden" data-max_count=item_count
+            .btn.js__addToBasket.btnCustomizeColor.true data-id=@item.id Добавить в корзину
+          - else
+            .btn.not Нет в наличии
+    .selectDescToSpec
+      ul.catalog-tabs.js_selectCartTabItem
+        li.catalog-tabs__tab.active.borderColorCustomize data-show="description_item" Описание
+        li.catalog-tabs__tab data-show="specification" Характеристики
+      .description_item.card-tab__content style="display: block;"
+        = raw (@item.description || "Нет описания")
+      .specification.card-tab__content
+        = raw (@item.specification || "Нет характеристик")
 .content.content-block__normal
-  .allItems
-    - MixBox.all.each do |mix_box|
-      .item.parent_item
-        .item_content
-          a.item_link href="/mix_box/#{mix_box.id}"
-            .title = mix_box.title
-            .img_item
-              img src="#{mix_box.img}"
+  .fullDevics
+    .all_items
+      = render "item_block", {item: @item}

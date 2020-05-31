@@ -115,6 +115,7 @@
     </div>
     <script type="text/javascript" src="//vk.com/js/api/openapi.js?143"></script>
     <input type="hidden" value="<%= current_api_key %>">
+    <input class="envProduction" type="hidden" value="<%= Rails.env.production? %>">
 
     <!-- VK Widget -->
     <% if Rails.env.production? %>

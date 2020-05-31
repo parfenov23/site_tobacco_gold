@@ -15,8 +15,9 @@ class ProductItem
     ApiHookahStock.product_items("", "", {type: "top", api_key: (api_key rescue nil)}).map{|pi| self.class.new(pi)}
   end
 
-  def self.find(id, api_key=nil)
-    new(ApiHookahStock.product_items("", "/#{id}", {api_key: api_key}))
+  def self.find(id, api_key=nil, no_cach=false)
+    t = no_cach ? "?t=#{Time.now.to_i}" : ""
+    new(ApiHookahStock.product_items("", "/#{id}#{t}", {api_key: api_key}))
   end
 
   def product

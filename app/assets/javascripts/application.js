@@ -107,19 +107,19 @@ var loadDataImg = function(){
 }
 
 var insertParam = function(key, value){
-    key = encodeURI(key); value = encodeURI(value);
-    var kvp = document.location.search.substr(1).split('&');
-    var i=kvp.length; var x; 
-    while(i--) {
-        x = kvp[i].split('=');
-        if (x[0]==key){
-            x[1] = value;
-            kvp[i] = x.join('=');
-            break;
-        }
+  key = encodeURI(key); value = encodeURI(value);
+  var kvp = document.location.search.substr(1).split('&');
+  var i=kvp.length; var x; 
+  while(i--) {
+    x = kvp[i].split('=');
+    if (x[0]==key){
+      x[1] = value;
+      kvp[i] = x.join('=');
+      break;
     }
-    if(i<0) {kvp[kvp.length] = [key,value].join('=');}
-    document.location.search = kvp.join('&'); 
+  }
+  if(i<0) {kvp[kvp.length] = [key,value].join('=');}
+  document.location.search = kvp.join('&'); 
 }
 
 var selectCartTabItem = function(){
@@ -129,6 +129,27 @@ var selectCartTabItem = function(){
   btn.closest("ul").find("li").removeClass("active").removeClass("borderColorCustomize");
   btn.addClass("active").addClass("borderColorCustomize");
   all_content_tabs.closest(".selectDescToSpec").find("."+btn.data("show")).show();
+}
+
+var getGeoLocation = function(){
+  if($(".envProduction").val() == "true"){
+    $.get("https://ipinfo.io", function (response) { 
+      var city = response.city;
+      var api_key = "trnsl.1.1.20171111T163230Z.04bdb3d7a3cc5cc3.ba4f5477c9fa02e2c6c9febb79947b65de104637"
+      var url_translate = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=" + api_key + "&text=" + city +"&lang=en-ru";
+      $.get(url_translate, function(response){
+        var city = response.text[0];
+        var curr_adress = $(".address .currAddress").text();
+        if (curr_adress != city){
+          var find_adress = $(".address ul li a:contains('"+  city +"')");
+          if (find_adress.length && $.session.get("autoSetCity") != "true"){
+            window.location.href = find_adress.attr('href');
+            $.session.set("autoSetCity", "true");
+          }
+        }
+      }, "jsonp");
+    }, "jsonp");
+  }
 }
 
 $(document).ready(function () {
@@ -152,7 +173,7 @@ $(document).ready(function () {
   //
   $(".js_selectOrderItems").change(function(){
     insertParam("sort", $(this).val());
-});
+  });
 
   $(document).on('click', '.js__submitBtnFormSliderSort', function(){
     var block_sort = $(this).closest(".sorting_slider").find("#sliderSort");
