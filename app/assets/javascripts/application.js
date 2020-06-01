@@ -15,14 +15,17 @@ show_error = function (text, duration) {
   }
 };
 
-show_error_popup = function (text) {
+show_error_popup = function (text, reload) {
   $("#overlay, .alert_popup").show();
+  $(".alert_popup").attr("data-reload", reload);
   $(".alert_popup .text").html(text);
 }
 
 close_error_popup = function(){
   $("#overlay, .alert_popup").hide();
-  window.location.reload();
+  if($(".alert_popup").attr("data-reload") != "false"){
+    window.location.reload();
+  }
 }
 
 function hide_to_top() {
@@ -142,8 +145,13 @@ var getGeoLocation = function(){
         var curr_adress = $(".address .currAddress").text();
         if (curr_adress != city){
           var find_adress = $(".address ul li a:contains('"+  city +"')");
-          if (find_adress.length && $.session.get("autoSetCity") != "true"){
-            window.location.href = find_adress.attr('href');
+          if ($.session.get("autoSetCity") != "true"){
+            if(find_adress.length){
+              window.location.href = find_adress.attr('href');
+            }else{
+              show_error_popup("<div class='selectCity'><div class='title'>Выберите город</div><ul>" + 
+                $(".listGroupAddress").html() + "</ul></div>", "false");
+            }
             $.session.set("autoSetCity", "true");
           }
         }
@@ -154,6 +162,7 @@ var getGeoLocation = function(){
 
 $(document).ready(function () {
   hide_to_top();
+  getGeoLocation();
   $('#to-top a').on('click', function (e) {
     event.preventDefault();
     $('html, body').stop()

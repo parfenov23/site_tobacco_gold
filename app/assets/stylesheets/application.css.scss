@@ -94,6 +94,19 @@
     color: #000;
     cursor: pointer;
   }
+  .selectCity{
+    .title{
+
+    }
+    ul{
+      list-style-position: inside;
+      -moz-column-count: 2; /* Firefox */
+      -webkit-column-count: 2; /* Safari and Chrome */
+      column-count: 2;
+      list-style: none;
+      height: 200px;
+    }
+  }
 }
 
 .btn{
