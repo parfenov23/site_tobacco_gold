@@ -27,7 +27,7 @@ header.borderColorCustomize.asidBarColor
         ul.listGroupAddress.borderColorCustomize
           - company_magazines.each do |magazine|
             - if magazine["address"].present? && magazine["api_key"].present?
-              li 
+              li.backgroundHoverCustomize 
                 a href="/current_magazine/#{magazine['api_key']}" = magazine["address"]
       .my_rate
         a.no_color href="/buy_rate" 

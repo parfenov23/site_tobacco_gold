@@ -516,7 +516,7 @@ header .address ul li a{
 
 header .address ul li:hover{
   cursor: pointer;
-  background-color: #F6A623;
+/*  background-color: #F6A623;*/
 }
 
 header .my_rate .count {
