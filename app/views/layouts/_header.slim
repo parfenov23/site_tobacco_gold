@@ -24,7 +24,7 @@ header.borderColorCustomize.asidBarColor
       .address
         i.icon.location
         .currAddress = current_magazine["address"]
-        ul.listGroupAddress.borderColorCustomize
+        ul.listGroupAddress.borderColorCustomize.asidBarColor
           - company_magazines.each do |magazine|
             - if magazine["address"].present? && magazine["api_key"].present?
               li.backgroundHoverCustomize 
