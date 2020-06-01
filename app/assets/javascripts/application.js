@@ -143,7 +143,8 @@ var getGeoLocation = function(){
       $.get(url_translate, function(response){
         var city = response.text[0];
         var curr_adress = $(".address .currAddress").text();
-        if (curr_adress != city){
+        var count_all_address = $(".address ul li").length;
+        if (curr_adress != city && count_all_address > 1){
           var find_adress = $(".address ul li a:contains('"+  city +"')");
           if ($.session.get("autoSetCity") != "true"){
             if(find_adress.length){
