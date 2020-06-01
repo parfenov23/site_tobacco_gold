@@ -151,7 +151,8 @@ var getGeoLocation = function(){
               window.location.href = find_adress.attr('href');
             }else{
               show_error_popup("<div class='selectCity'><div class='title'>Выберите город</div><ul>" + 
-                $(".listGroupAddress").html() + "</ul></div>", "false");
+                $(".listGroupAddress").html().replace(/class=\"backgroundHoverCustomize\"/gi, '') + 
+                "</ul></div>", "false");
             }
             $.session.set("autoSetCity", "true");
           }
