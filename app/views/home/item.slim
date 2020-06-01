@@ -29,7 +29,7 @@
         li.catalog-tabs__tab.active.borderColorCustomize data-show="description_item" Описание
         li.catalog-tabs__tab data-show="specification" Характеристики
       .description_item.card-tab__content style="display: block;"
-        = raw (@item.description || "Нет описания")
+        = raw (@item.description.gsub("\r\n", "<br>") || "Нет описания")
       .specification.card-tab__content
-        = raw (@item.specification || "Нет характеристик")
+        = raw (@item.specification.gsub("\r\n", "<br>") || "Нет характеристик")
 = render "layouts/comment_vk" if Rails.env.production?
