@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   get "profile" => "profile#edit"
   put "profile" => "profile#update"
   get 'stock' => "admin/stock#index"
+  get 'ajax_find_address' => "home#ajax_find_address"
 
 
 

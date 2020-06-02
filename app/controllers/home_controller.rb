@@ -190,6 +190,15 @@ class HomeController < ApiController
     }
   end
 
+  def ajax_find_address
+    agent = Mechanize.new
+    page = agent.get("http://kladr-api.ru/api.php?query=#{params[:city]}&contentType=city")
+    json_city = JSON.parse(page.body)
+    city_id = json_city["result"][1]["id"]
+    arr_streets =  JSON.parse(agent.get("http://kladr-api.ru/api.php?query=#{params[:street]}0&contentType=street&cityId=#{city_id}"))["result"].map{|r| r["id"] != "Free"}
+    render json: arr_streets
+  end
+
   private
 
   def all_item_basket
