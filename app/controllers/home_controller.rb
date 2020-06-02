@@ -197,7 +197,7 @@ class HomeController < ApiController
     city_id = json_city["result"][1].present? ? json_city["result"][1]["id"] : 0
     arr_streets = []
     if city_id != 0
-      arr_streets =  JSON.parse(agent.get("http://kladr-api.ru/api.php?query=#{params[:street]}&contentType=street&cityId=#{city_id}").body)["result"].map{|r| r if r["id"] != "Free"}.compact
+      arr_streets =  JSON.parse(agent.get("http://kladr-api.ru/api.php?query=#{params[:street]}&contentType=street&cityId=#{city_id}").body)["result"].map{|r| r if r["id"] != "Free"}.compact.uniq! {|e| e["name"] }
     end
     render json: arr_streets
   end
