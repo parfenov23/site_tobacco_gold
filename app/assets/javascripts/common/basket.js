@@ -225,6 +225,11 @@ $(document).ready(function () {
     }
   });
 
+  $(".form_send_basket [name='request[user_phone]']").on('keyup', function(){
+    if ($(this).val() == "8" || $(this).val() == "+7(8"){
+      $(this).val('');
+    }
+  })
 
   $(".form_send_basket [name='request[user_phone]']").mask("+7(999) 999-9999");
   $("form#new_user.form_validate #contact_phone").mask("+7(999) 999-9999");
