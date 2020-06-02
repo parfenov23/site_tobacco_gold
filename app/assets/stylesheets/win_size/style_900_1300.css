@@ -37,9 +37,6 @@
     .content__wrp .inner__right-sidebar {
       margin-right: 290px;
     }
-    .content__wrp .inner__right-sidebar.not_right_bar{
-      margin-right: 0px;
-    }
 
     .content__wrp .inner-left-sidebar {
       margin-left : 260px

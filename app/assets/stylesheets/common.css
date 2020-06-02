@@ -107,6 +107,13 @@ a.no_color{
 .content-block__normal {
   padding    : 15px;
   text-align : center;
+  
+}
+.content__wrp .inner__right-sidebar {
+    margin-right: 300px;
+}
+.content__wrp .inner__right-sidebar.not_right_bar{
+  margin-right: 0px;
 }
 
 .content-block__normal.background {
@@ -285,8 +292,8 @@ a.no_color{
 .header_block .hidden_text {
   text-overflow : ellipsis;
 /*  overflow      : hidden;
-  white-space   : nowrap;*/
-  width: 70%;
+white-space   : nowrap;*/
+width: 70%;
 }
 .header_block .sum_price{
   width: 30%;
