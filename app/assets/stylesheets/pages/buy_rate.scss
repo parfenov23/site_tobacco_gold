@@ -110,4 +110,33 @@
       margin-top: 12px;
     }
   }
+  .input_select{
+    position: relative;
+    .listWrp{
+      display: none;
+      position: absolute;
+      background-color: white;
+      width: calc(100% - 20px);
+      list-style: none;
+      padding: 10px;
+      -moz-box-shadow: 0 1px 4px rgba(51, 82, 109, 0.26);
+      -webkit-box-shadow: 0 1px 4px rgba(51, 82, 109, 0.26);
+      box-shadow: 0 1px 4px rgba(51, 82, 109, 0.26);
+      max-height: 140px;
+      overflow: auto;
+      li{
+        padding: 4px;
+        cursor: pointer;
+        &.reference{
+          display: none;
+        }
+        .title{
+          margin-bottom: 0px;
+        }
+        &:hover{
+          color: white;
+        }
+      }
+    }
+  }
 }

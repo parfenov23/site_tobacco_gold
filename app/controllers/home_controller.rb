@@ -194,8 +194,11 @@ class HomeController < ApiController
     agent = Mechanize.new
     page = agent.get("http://kladr-api.ru/api.php?query=#{params[:city]}&contentType=city")
     json_city = JSON.parse(page.body)
-    city_id = json_city["result"][1]["id"]
-    arr_streets =  JSON.parse(agent.get("http://kladr-api.ru/api.php?query=#{params[:street]}0&contentType=street&cityId=#{city_id}"))["result"].map{|r| r["id"] != "Free"}
+    city_id = json_city["result"][1].present? ? json_city["result"][1]["id"] : 0
+    arr_streets = []
+    if city_id != 0
+      arr_streets =  JSON.parse(agent.get("http://kladr-api.ru/api.php?query=#{params[:street]}&contentType=street&cityId=#{city_id}").body)["result"].map{|r| r if r["id"] != "Free"}.compact
+    end
     render json: arr_streets
   end
 

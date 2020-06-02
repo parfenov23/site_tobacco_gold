@@ -50,8 +50,11 @@
             - else
               input type="hidden" name="contact_id" value="#{current_user.contact.id}"
             / input type="hidden" name="user_id" value="#{current_user.id}"
-            .input-wrp
-                input placeholder="Улица" name="request[address][street]"
+            .input-wrp.input_select
+                input placeholder="Улица" name="request[address][street]" autocomplete="off"
+                ul.listWrp
+                  li.reference.backgroundHoverCustomize
+                    .title Улица
             .input-wrp
                 input placeholder="Номер дома" name="request[address][house]"
             .input-wrp

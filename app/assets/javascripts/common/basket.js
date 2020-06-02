@@ -172,6 +172,13 @@ var addOrRmCountBasket = function(){
   });
 }
 
+var pasteAddress = function (block){
+  block.on('click', function(){
+    block.closest(".input_select").find("input").val($(this).text());
+    block.closest(".listWrp").hide();
+  })
+}
+
 
 $(document).ready(function () {
   $(document).on('click', '.js__addToBasket', addCountToBasket);
@@ -179,6 +186,45 @@ $(document).ready(function () {
   $(document).on('click', '.js__addCountItemBasket', addCountItemBasket);
   $(document).on('click', '.js__submitFormBasket', submitFormBasket);
   $(document).on('click', '.js__AddOrRmCountBasket', addOrRmCountBasket);
+
+  var timout_search_keyup = ""
+  $(document).on('keyup', 'input[name="request[address][street]"]', function(){
+    clearTimeout(timout_search_keyup);
+    var input = $(this);
+    var city = $(".currAddress").text();
+    var search_list_block = $(".form_send_basket .listWrp");
+    if(input.val().length > 0){
+      timout_search_keyup = setTimeout(function(){
+        $.ajax({
+          type   : 'GET',
+          url    : '/ajax_find_address',
+          data   : {city: city, street: input.val()},
+          success: function (data) {
+            search_list_block.find(".cloneRefer").remove();
+            if(data.length > 0){
+              search_list_block.show();
+              var ref_block = search_list_block.find(".reference");
+              $.each(data, function(n, e){
+                var clone_ref_block = ref_block.clone();
+                clone_ref_block.find(".title").text(e.name);
+                clone_ref_block.removeClass("reference").addClass("cloneRefer");
+                pasteAddress(clone_ref_block);
+                ref_block.closest("ul").append(clone_ref_block);
+              });
+            }else{
+              search_list_block.hide();
+            }
+          },
+          error  : function () {
+            show_error('Ошибка.', 3000);
+          }
+        });
+      }, 500);
+    }else{
+      search_list_block.hide();
+    }
+  });
+
 
   $(".form_send_basket [name='request[user_phone]']").mask("+7(999) 999-9999");
   $("form#new_user.form_validate #contact_phone").mask("+7(999) 999-9999");
