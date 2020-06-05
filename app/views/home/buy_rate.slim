@@ -50,15 +50,22 @@
             - else
               input type="hidden" name="contact_id" value="#{current_user.contact.id}"
             / input type="hidden" name="user_id" value="#{current_user.id}"
-            .input-wrp.input_select
-                input placeholder="Улица" name="request[address][street]" autocomplete="off"
-                ul.listWrp
-                  li.reference.backgroundHoverCustomize
-                    .title Улица
-            .input-wrp
-                input placeholder="Номер дома" name="request[address][house]"
-            .input-wrp
-                input placeholder="Квартира" name="request[address][room]"
+            .homeAddress
+              .input-wrp.input_select
+                  input placeholder="Улица" name="request[address][street]" autocomplete="off"
+                  ul.listWrp
+                    li.reference.backgroundHoverCustomize
+                      .title Улица
+              .input-wrp
+                  input placeholder="Номер дома" name="request[address][house]"
+              .input-wrp
+                  input placeholder="Квартира" name="request[address][room]"
+              .input-wrp
+                  input placeholder="Подьезд" name="request[address][porch]"
+              .input-wrp
+                  input placeholder="Этаж" name="request[address][floor]"
+              .input-wrp
+                  input placeholder="Домофон" name="request[address][domofon]"
             .input-wrp
               select.form_select name="request[type_payment]"
                 option Выберите тип оплаты

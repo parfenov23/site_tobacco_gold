@@ -191,13 +191,22 @@ class HomeController < ApiController
   end
 
   def ajax_find_address
-    agent = Mechanize.new
-    page = agent.get("http://kladr-api.ru/api.php?query=#{params[:city]}&contentType=city")
-    json_city = JSON.parse(page.body)
+    connection = Faraday.new 
+    fetched_page = connection.post do |request|
+      request.url "https://kladr-api.ru/api.php?query=#{params[:city]}&contentType=city&limit=10&token=rYa224GhZe8dNF7Qt8eD6Zdf3D243zf5"
+      request.headers['Content-Type'] = 'application/json'
+    end
+    json_city = JSON.parse(fetched_page.body)
+
     city_id = json_city["result"][1].present? ? json_city["result"][1]["id"] : 0
     arr_streets = []
     if city_id != 0
-      arr_streets =  JSON.parse(agent.get("http://kladr-api.ru/api.php?query=#{params[:street]}&contentType=street&cityId=#{city_id}").body)["result"].map{|r| r if r["id"] != "Free"}.compact.uniq! {|e| e["name"] }
+      connection = Faraday.new
+      fetched_page = connection.post do |request|
+        request.url "https://kladr-api.ru/api.php?query=#{params[:street]}&contentType=street&cityId=#{city_id}"
+        request.headers['Content-Type'] = 'application/json'
+      end
+      arr_streets = JSON.parse(fetched_page.body)["result"].map{|r| r if r["id"] != "Free"}.compact.uniq! {|e| e["name"] }
     end
     render json: arr_streets
   end

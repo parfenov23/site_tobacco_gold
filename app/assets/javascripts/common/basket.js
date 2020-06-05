@@ -72,11 +72,13 @@ var submitFormBasket = function(){
   var house = form.find("[name='request[address][house]']").val();
   var room = form.find("[name='request[address][room]']").val();
   var type_payment = form.find("[name='request[type_payment]']").val();
+  var porch = form.find("[name='request[address][porch]']").val();
+  var floor = form.find("[name='request[address][floor]']").val();
   var valid_type_payment = (type_payment == "cash" || type_payment == "visa");
   var min_price_order = parseInt(form.find(".minPriceOrder").val());
   var valid_min_price_order = (parseFloat($(".js__titleTotlaPriceBasket").text()) >= min_price_order);
 
-  if ((form.find("[name='contact_id']").length || name.length && phone.length) && (street.length && house.length && room.length && valid_type_payment && valid_min_price_order)){
+  if ((form.find("[name='contact_id']").length || name.length && phone.length) && (street.length && house.length && room.length && valid_type_payment && valid_min_price_order && porch && floor)){
     btn.hide();
     $.ajax({
       type   : 'POST',
