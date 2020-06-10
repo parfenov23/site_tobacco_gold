@@ -33,6 +33,10 @@ class ProductItem
     default_img.to_s.scan("http").present? ? default_img : (default_img.present? ? (ApiHookahStock.url + "#{default_img}") : "/no_img_item.png")
   end
 
+  def mini_img
+    thumb_img.present? ? (ApiHookahStock.url + "#{thumb_img}") : "/no_img_item.png"
+  end
+
   def current_price(current_user=nil)
     current_user.present? ? current_user.current_price_item(self) : (default_price || product.current_price)
   end

@@ -215,6 +215,9 @@ $(document).ready(function () {
           $("#content").append(content);
           $("#content").fadeIn(300);
           loadDataImg();
+          if($(".js__openLeftSideBarMenu.active").length){
+            $(".js__openLeftSideBarMenu").click();
+          }
         });
       },
       error  : function () {

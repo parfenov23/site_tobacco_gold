@@ -2,7 +2,7 @@
   .item_content
     a.item_link.colorHoverCustomize href="/item/#{item.id}"
       .img_item
-        img data-src=item.current_img onerror="if (this.src != '/no_img_item.png') this.src = '/no_img_item.png';"
+        img data-src=item.mini_img onerror="if (this.src != '/no_img_item.png') this.src = '/no_img_item.png';"
       .title = item.title
       - price = item.current_price(current_user)
       .price
