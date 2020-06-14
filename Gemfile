@@ -22,7 +22,7 @@ gem 'russian'
 gem 'mini_magick'
 gem 'carrierwave'
 
-gem 'devise', '3.4.1'
+gem 'devise', '4.7.1'
 gem 'bcrypt', '3.1.10'
 
 gem 'wicked_pdf'
