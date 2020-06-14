@@ -28,7 +28,7 @@ gem 'bcrypt', '3.1.10'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
-gem 'therubyracer', :platforms => :ruby
+# gem 'therubyracer', :platforms => :ruby
 
 gem 'pg_search', '2.1.1' # поиск по базе
 gem 'string-similarity'

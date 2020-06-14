@@ -89,7 +89,7 @@ class HomeController < ApiController
   def send_item_to_basket
     if params[:registration] == "true"
       Rails.cache.clear rescue nil
-      user_email = "#{params[:request][:user_phone].gsub(" ","").gsub("-","")}@crm-stock.ru"
+      user_email = "#{params[:request][:user_phone].gsub(" ","").gsub("-","")}-#{SecureRandom.hex(4)}@crm-stock.ru"
       pssword = SecureRandom.hex(8)
       user_params = {
         api_key: current_api_key,
