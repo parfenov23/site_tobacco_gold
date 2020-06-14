@@ -245,8 +245,6 @@ GEM
     to_regexp (0.2.1)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.8)
-      execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
@@ -311,7 +309,6 @@ DEPENDENCIES
   spring
   string-similarity
   to_regexp
-  uglifier
   unicorn
   web-console (~> 2.0)
   whenever
