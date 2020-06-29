@@ -138,7 +138,7 @@ var getGeoLocation = function(){
   if($(".envProduction").val() == "true"){
     var count_all_address = $(".address ul li").length;
     if( count_all_address > 1){
-      $.get("http://ipinfo.io/?token=95f8effe2702cd", function (response) { 
+      $.get("http://ip-api.com/json/?fields=city", function (response) { 
         var city = response.city;
         var api_key = "trnsl.1.1.20171111T163230Z.04bdb3d7a3cc5cc3.ba4f5477c9fa02e2c6c9febb79947b65de104637"
         var url_translate = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=" + api_key + "&text=" + city +"&lang=en-ru";

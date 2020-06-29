@@ -35,37 +35,33 @@
     - if count_items > 0
         form.form_send_basket
             - if current_user.blank?
-              / .input-wrp
-              /     input placeholder="Email" name="user[email]" type="email"
-              / .input-wrp
-              /     input placeholder="Пароль" name="user[password]" type="password"
-              / .input-wrp
-              /     input placeholder="Повторите пароль" name="user[password_confirmation]" type="password"
               input type="hidden" name="registration" value="true"
             - if (current_user.contact.blank? rescue true)
               .input-wrp
-                  input placeholder="Ваше имя" name="request[user_name]"
+                  input.validate placeholder="Ваше имя" name="request[user_name]"
               .input-wrp
-                  input placeholder="Номер телефона" name="request[user_phone]"
+                  input.validate placeholder="Номер телефона" name="request[user_phone]"
             - else
-              input type="hidden" name="contact_id" value="#{current_user.contact.id}"
+              input.validate type="hidden" name="contact_id" value="#{current_user.contact.id}"
             / input type="hidden" name="user_id" value="#{current_user.id}"
+            .input-wrp
+              input.validate placeholder="Город" name="request[address][city]"
             .homeAddress
               .input-wrp.input_select
-                  input placeholder="Улица" name="request[address][street]" autocomplete="off"
+                  input.validate placeholder="Улица" name="request[address][street]" autocomplete="off"
                   ul.listWrp
                     li.reference.backgroundHoverCustomize
                       .title Улица
               .input-wrp
-                  input placeholder="Номер дома" name="request[address][house]"
+                  input.validate placeholder="Номер дома" name="request[address][house]"
               .input-wrp
-                  input placeholder="Квартира" name="request[address][room]"
+                  input.validate placeholder="Квартира" name="request[address][room]"
               .input-wrp
-                  input placeholder="Подьезд" name="request[address][porch]"
+                  input.validate placeholder="Подьезд" name="request[address][porch]"
               .input-wrp
-                  input placeholder="Этаж" name="request[address][floor]"
+                  input.validate placeholder="Этаж" name="request[address][floor]"
               .input-wrp
-                  input placeholder="Домофон" name="request[address][domofon]"
+                  input.validate placeholder="Домофон" name="request[address][domofon]"
             .input-wrp
               select.form_select name="request[type_payment]"
                 option Выберите тип оплаты

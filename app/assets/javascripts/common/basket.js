@@ -66,19 +66,27 @@ var addCountItemBasket = function(){
 var submitFormBasket = function(){
   var btn = $(this);
   var form = btn.closest("form");
-  var name = form.find("[name='request[user_name]']").val();
-  var phone = form.find("[name='request[user_phone]']").val();
-  var street = form.find("[name='request[address][street]']").val();
-  var house = form.find("[name='request[address][house]']").val();
-  var room = form.find("[name='request[address][room]']").val();
   var type_payment = form.find("[name='request[type_payment]']").val();
-  var porch = form.find("[name='request[address][porch]']").val();
-  var floor = form.find("[name='request[address][floor]']").val();
   var valid_type_payment = (type_payment == "cash" || type_payment == "visa");
   var min_price_order = parseInt(form.find(".minPriceOrder").val());
   var valid_min_price_order = (parseFloat($(".js__titleTotlaPriceBasket").text()) >= min_price_order);
+  var form_input_count = form.find("input.validate").length;
+  var form_valid_count = 0;
+  var street = form.find(".checkStreet[name='request[address][street]']").val() || "";
+  form.find("input.validate").each(function(n, block){
+    if ($(block).val().length) {
+      $(block).closest(".input-wrp").removeClass("error");
+      form_valid_count += 1;
+    }else{
+      $(block).closest(".input-wrp").addClass("error");
+    }
+  });
+  if(!street.length){
+    form.find("[name='request[address][street]']").closest(".input-wrp").addClass("error");
+    form_valid_count -= 1;
+  }
 
-  if ((form.find("[name='contact_id']").length || name.length && phone.length) && (street.length && house.length && room.length && valid_type_payment && valid_min_price_order && porch && floor)){
+  if ( (valid_type_payment && valid_min_price_order) && (form_input_count == form_valid_count) ){
     btn.hide();
     $.ajax({
       type   : 'POST',
@@ -86,10 +94,6 @@ var submitFormBasket = function(){
       data   : form.serialize(),
       success: function (data) {
         show_error_popup("Ваш заказ №" + data.id + " отправлен!<br>В ближайшее время с вами свяжется наш менеджер");
-        // show_error('Ваша заявка отправлена. Наш менеджер свяжется с Вами в ближайшее время!', 3000);
-        // setTimeout(function(){
-        //   window.location.href = '/'
-        // }, 3000)
       },
       error  : function () {
         btn.show();
@@ -177,6 +181,7 @@ var addOrRmCountBasket = function(){
 var pasteAddress = function (block){
   block.on('click', function(){
     block.closest(".input_select").find("input").val($(this).text());
+    block.closest(".input_select").find("input").addClass("checkStreet");
     block.closest(".listWrp").hide();
   })
 }
@@ -203,7 +208,8 @@ $(document).ready(function () {
           data   : {city: city, street: input.val()},
           success: function (data) {
             search_list_block.find(".cloneRefer").remove();
-            if(data.length > 0){
+            
+            if(data && data.length > 0){
               search_list_block.show();
               var ref_block = search_list_block.find(".reference");
               $.each(data, function(n, e){
