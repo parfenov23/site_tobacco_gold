@@ -38,6 +38,7 @@ class HomeController < ApiController
     if current_page.present?
       @title = current_page["title"]
       @content = current_page["description"]
+      render layout: false if params[:type] == "json"
     else
       redirect_to "/"
     end

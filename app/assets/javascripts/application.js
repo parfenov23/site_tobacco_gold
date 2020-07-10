@@ -204,6 +204,7 @@ $(document).ready(function () {
     var btn = $(this).closest(".js_loadContentPage");
     var url = btn.data("href");
     history.pushState(url, "Категории", url);
+    $.ajaxSetup({ cache: false });
     $.ajax({
       type   : 'get',
       url    : url,
