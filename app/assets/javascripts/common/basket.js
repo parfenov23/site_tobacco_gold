@@ -81,7 +81,8 @@ var submitFormBasket = function(){
       $(block).closest(".input-wrp").addClass("error");
     }
   });
-  if(!street.length){
+  var count_all_address = $(".address ul li").length;
+  if(!street.length && count_all_address > 1){
     form.find("[name='request[address][street]']").closest(".input-wrp").addClass("error");
     form_valid_count -= 1;
   }
