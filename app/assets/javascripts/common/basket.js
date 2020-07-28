@@ -66,14 +66,12 @@ var addCountItemBasket = function(){
 var submitFormBasket = function(){
   var btn = $(this);
   var form = btn.closest("form");
-  var type_payment = form.find("[name='request[type_payment]']").val();
-  var valid_type_payment = (type_payment == "cash" || type_payment == "visa");
   var min_price_order = parseInt(form.find(".minPriceOrder").val());
   var valid_min_price_order = (parseFloat($(".js__titleTotlaPriceBasket").text()) >= min_price_order);
-  var form_input_count = form.find("input.validate").length;
+  var form_input_count = form.find(".validate").length;
   var form_valid_count = 0;
   var street = form.find(".checkStreet[name='request[address][street]']").val() || "";
-  form.find("input.validate").each(function(n, block){
+  form.find(".validate").each(function(n, block){
     if ($(block).val().length) {
       $(block).closest(".input-wrp").removeClass("error");
       form_valid_count += 1;
@@ -87,7 +85,7 @@ var submitFormBasket = function(){
     form_valid_count -= 1;
   }
 
-  if ( (valid_type_payment && valid_min_price_order) && (form_input_count == form_valid_count) ){
+  if ( (valid_min_price_order) && (form_input_count == form_valid_count) ){
     btn.hide();
     $.ajax({
       type   : 'POST',

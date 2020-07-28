@@ -45,7 +45,12 @@
               input.validate type="hidden" name="contact_id" value="#{current_user.contact.id}"
             / input type="hidden" name="user_id" value="#{current_user.id}"
             .input-wrp
-              input.validate placeholder="Город" name="request[address][city]"
+              / input.validate placeholder="Город" name="request[address][city]"
+              select.form_select.validate name="request[address][city]"
+                option value="" Выберите город
+                - company_magazines.each do |magazine|
+                  option value=magazine["address"] = magazine["address"]
+
             .homeAddress
               .input-wrp.input_select
                   input.validate placeholder="Улица" name="request[address][street]" autocomplete="off"
@@ -63,8 +68,8 @@
               .input-wrp
                   input.validate placeholder="Домофон" name="request[address][domofon]"
             .input-wrp
-              select.form_select name="request[type_payment]"
-                option Выберите тип оплаты
+              select.form_select.validate name="request[type_payment]"
+                option value="" Выберите тип оплаты
                 option value="cash" Наличные при получении
                 option value="visa" По карте при получении
             .input-wrp
