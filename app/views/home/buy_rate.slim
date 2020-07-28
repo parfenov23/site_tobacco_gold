@@ -49,7 +49,8 @@
               select.form_select.validate name="request[address][city]"
                 option value="" Выберите город
                 - company_magazines.each do |magazine|
-                  option value=magazine["address"] = magazine["address"]
+                  - if magazine["address"].present? && magazine["api_key"].present?
+                    option value=magazine["address"] = magazine["address"]
 
             .homeAddress
               .input-wrp.input_select
