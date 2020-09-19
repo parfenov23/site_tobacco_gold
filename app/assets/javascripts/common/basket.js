@@ -193,6 +193,15 @@ $(document).ready(function () {
   $(document).on('click', '.js__submitFormBasket', submitFormBasket);
   $(document).on('click', '.js__AddOrRmCountBasket', addOrRmCountBasket);
 
+  $('select[name="request[type_payment]"]').on('change', function() {
+    var value = this.value;
+    if (value == "cash"){
+      $("input[name='request[surrender]']").closest(".input-wrp").show();
+    }else{
+      $("input[name='request[surrender]']").closest(".input-wrp").hide();
+    }
+  });
+
   var timout_search_keyup = ""
   $(document).on('keyup', 'input[name="request[address][street]"]', function(){
     clearTimeout(timout_search_keyup);

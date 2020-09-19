@@ -73,6 +73,8 @@
                 option value="" Выберите тип оплаты
                 option value="cash" Наличные при получении
                 option value="visa" По карте при получении
+            .input-wrp style="display:none;"
+              input.validate placeholder="Потребуется сдача с" name="request[surrender]"
             .input-wrp
                 input placeholder="Комментарий к заказу" name="request[comment]"
             - min_price_order = current_magazine["min_price_order"].present? ? current_magazine["min_price_order"] : 0
